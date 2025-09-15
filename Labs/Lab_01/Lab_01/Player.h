@@ -11,8 +11,8 @@ public:
 	Player(float size = 50.0f);
 
 	void handleInput();
-	void update(sf::Time dt);
-	void render(sf::RenderWindow& window);
+	void playerUpdate(sf::Time dt);
+	void playerRender(sf::RenderWindow& window);
 
 private:
 

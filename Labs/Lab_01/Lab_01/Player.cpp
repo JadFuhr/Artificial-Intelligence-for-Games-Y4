@@ -18,8 +18,15 @@ void Player::handleInput()
 
 }
 
+void Player::playerUpdate(sf::Time dt)
+{
 
-void Player::render(sf::RenderWindow& window)
+
+
+}
+
+
+void Player::playerRender(sf::RenderWindow& window)
 {
 
 
