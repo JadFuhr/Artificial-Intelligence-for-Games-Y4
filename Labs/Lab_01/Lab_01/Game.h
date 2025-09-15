@@ -8,6 +8,8 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include "Player.h"
+
 
 class Game
 {
@@ -23,6 +25,8 @@ private:
 	void update(sf::Time t_deltaTime);
 	void render();
 	void setupSprites();
+
+	Player player;
 
 	sf::RenderWindow window; 
 	sf::Font font;	

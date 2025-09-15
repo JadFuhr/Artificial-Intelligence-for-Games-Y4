@@ -8,9 +8,10 @@
 #include <iostream>
 
 Game::Game() :
-	window{ sf::VideoMode{ sf::Vector2u{1020U, 720U}, 32U }, "Basic Movement" }
+	window{ sf::VideoMode{ sf::Vector2u{1020U, 720U}, 32U }, "Basic Movement" },player(50.0f)
 { 
-	setupSprites(); 
+	//setupSprites();
+
 }
 
 Game::~Game()
@@ -71,11 +72,10 @@ void Game::checkKeyboardState()
 }
 
 
-
-
 void Game::update(sf::Time t_deltaTime)
 {
 	checkKeyboardState();
+
 	if (exitGame)
 	{
 		window.close();
@@ -87,7 +87,7 @@ void Game::render()
 {
 	window.clear(sf::Color::Black);
 
-	
+	player.playerRender(window);
 	
 	window.display();
 }
