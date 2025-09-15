@@ -15,9 +15,14 @@ Player::Player(float size)
 
 void Player::handleInput()
 {
+	sf::Vector2f movement{ 0.0f,0.0f };
 
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)) movement.x -= 1.0f;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) movement.x += 1.0f;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) movement.y -= 1.0f;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) movement.y += 1.0f;
 
-
+	player.move(movement * speed * (1.0f / 60.0f)); // per frame 
 }
 
 void Player::playerUpdate(sf::Time dt)
