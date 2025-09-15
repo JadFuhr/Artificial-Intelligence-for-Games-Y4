@@ -1,8 +1,14 @@
+//Author: Jad Fuhr
+//Student Number: C00290965
+ 
+ 
 #include "Game.h"
+#include "Player.h"
+#include "NPC.h"
 #include <iostream>
 
 Game::Game() :
-	window{ sf::VideoMode{ sf::Vector2u{1020U, 720U}, 32U }, "SFML Game 3.0" }
+	window{ sf::VideoMode{ sf::Vector2u{1020U, 720U}, 32U }, "Basic Movement" }
 { 
 	setupSprites(); 
 }
@@ -77,19 +83,19 @@ void Game::render()
 {
 	window.clear(sf::Color::Black);
 
-	window.draw(sprite);
+	
 	
 	window.display();
 }
 
 void Game::setupSprites()
 {
-	if (!texture.loadFromFile("ASSETS\\IMAGES\\SFML-LOGO.png"))
-	{
-		
-		std::cout << "problem loading logo" << std::endl;
-	}
-	
-	sprite.setTexture(texture,true);
-	sprite.setPosition(sf::Vector2f{ 150.0f, 50.0f });
+	//if (!texture.loadFromFile("ASSETS\\IMAGES\\SFML-LOGO.png"))
+	//{
+	//	
+	//	std::cout << "problem loading logo" << std::endl;
+	//}
+	//
+	//sprite.setTexture(texture,true);
+	//sprite.setPosition(sf::Vector2f{ 150.0f, 50.0f });
 }
