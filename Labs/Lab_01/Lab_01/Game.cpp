@@ -70,6 +70,9 @@ void Game::checkKeyboardState()
 	}
 }
 
+
+
+
 void Game::update(sf::Time t_deltaTime)
 {
 	checkKeyboardState();
@@ -78,6 +81,7 @@ void Game::update(sf::Time t_deltaTime)
 		window.close();
 	}
 }
+
 
 void Game::render()
 {
