@@ -9,7 +9,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "Player.h"
-
+#include "NPC.h"
 
 class Game
 {
@@ -27,6 +27,7 @@ private:
 	void setupSprites();
 
 	Player player;
+	NPC npc;
 
 	sf::RenderWindow window; 
 	sf::Font font;	

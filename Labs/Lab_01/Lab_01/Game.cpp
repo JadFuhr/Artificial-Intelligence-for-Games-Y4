@@ -8,7 +8,7 @@
 #include <iostream>
 
 Game::Game() :
-	window{ sf::VideoMode{ sf::Vector2u{1020U, 720U}, 32U }, "Basic Movement" },player(50.0f)
+	window{ sf::VideoMode{ sf::Vector2u{1020U, 720U}, 32U }, "Basic Movement" },player(50.0f),npc(25.0f)
 { 
 	//setupSprites();
 
@@ -90,7 +90,8 @@ void Game::render()
 	window.clear(sf::Color::Black);
 
 	player.playerRender(window);
-	
+	npc.npcRender(window);
+
 	window.display();
 }
 

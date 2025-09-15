@@ -28,7 +28,7 @@ void Player::handleInput()
 void Player::playerUpdate(sf::Time dt)
 {
 
-
+	// possible collisions with npc 
 
 }
 
