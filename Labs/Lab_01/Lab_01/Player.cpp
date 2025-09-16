@@ -27,8 +27,32 @@ void Player::handleInput()
 
 void Player::playerUpdate(sf::Time dt)
 {
+	sf::Vector2f pos = player.getPosition();
+	sf::Vector2f size = player.getSize();
 
-	// possible collisions with npc 
+	// horizontal wrapping 
+
+	if (pos.x + size.x < 0)
+	{
+		pos.x = WINDOW_X;
+	}
+	else if (pos.x > WINDOW_X)
+	{
+		pos.x = -size.x;
+	}
+
+	// vertical wrapping 
+
+	if (pos.y + size.y < 0)
+	{
+		pos.y = WINDOW_Y;
+	}
+	else if (pos.y > WINDOW_Y)
+	{
+		pos.y = -size.y;a
+	}
+
+	player.setPosition(pos);
 
 }
 

@@ -78,6 +78,8 @@ void Game::update(sf::Time t_deltaTime)
 	checkKeyboardState();
 
 	player.handleInput();
+	player.playerUpdate(t_deltaTime);
+
 
 	if (exitGame)
 	{
