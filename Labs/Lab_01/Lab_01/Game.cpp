@@ -5,10 +5,11 @@
 #include "Game.h"
 #include "Player.h"
 #include "NPC.h"
+
 #include <iostream>
 
 Game::Game() :
-	window{ sf::VideoMode{ sf::Vector2u{1020U, 720U}, 32U }, "Basic Movement" },player(50.0f),npc(25.0f)
+	window{ sf::VideoMode{ sf::Vector2u{WINDOW_X, WINDOW_Y}, 32U }, "Basic Movement" },player(50.0f),npc(25.0f)
 { 
 	//setupSprites();
 

@@ -1,9 +1,10 @@
 #pragma once
 #ifndef PLAYER_HPP
 #define PLAYER_HPP
+
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
-
+#include "Constants.h"
 
 class Player
 {

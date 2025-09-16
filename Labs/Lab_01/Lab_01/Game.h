@@ -10,6 +10,7 @@
 #include <SFML/Audio.hpp>
 #include "Player.h"
 #include "NPC.h"
+#include "Constants.h"
 
 class Game
 {
