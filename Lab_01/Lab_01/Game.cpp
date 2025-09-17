@@ -74,7 +74,7 @@ void Game::update(sf::Time t_deltaTime)
 {
 	checkKeyboardState();
 
-	player.handleInput();
+	player.handleInput(t_deltaTime);
 	player.playerUpdate(t_deltaTime);
 
 
