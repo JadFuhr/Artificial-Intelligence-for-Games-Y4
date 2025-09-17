@@ -11,7 +11,7 @@
 Game::Game() :
 	window{ sf::VideoMode{ sf::Vector2u{WINDOW_X, WINDOW_Y}, 32U }, "Basic Movement" },player(50.0f),npc(25.0f)
 { 
-	//setupSprites();
+	//setupSprites();  
 
 }
 

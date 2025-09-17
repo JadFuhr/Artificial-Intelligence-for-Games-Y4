@@ -10,6 +10,8 @@ Player::Player(float size)
 	player.setOutlineColor(sf::Color::White);
 	player.setOutlineThickness(2);
 	player.setPosition(sf::Vector2f(200, 200));
+
+	//setupSprite();
 }
 
 
@@ -49,7 +51,7 @@ void Player::playerUpdate(sf::Time dt)
 	}
 	else if (pos.y > WINDOW_Y)
 	{
-		pos.y = -size.y;a
+		pos.y = -size.y;
 	}
 
 	player.setPosition(pos);
@@ -61,6 +63,13 @@ void Player::playerRender(sf::RenderWindow& window)
 {
 
 	window.draw(player);
+}
 
+void Player::setupSprite()
+{
+	if (!player_texture.loadFromFile("ASSETS\\IMAGES\\Ship.png"))
+	{
+		std::cout << "problem loading player sprite" << std::endl;
+	}
 
 }
