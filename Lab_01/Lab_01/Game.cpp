@@ -3,9 +3,6 @@
  
  
 #include "Game.h"
-#include "Player.h"
-#include "NPC.h"
-
 #include <iostream>
 
 Game::Game() :
