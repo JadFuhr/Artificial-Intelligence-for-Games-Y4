@@ -49,7 +49,7 @@ void Player::playerUpdate(sf::Time dt)
 	}
 	else if (pos.y > WINDOW_Y)
 	{
-		pos.y = -size.y;a
+		pos.y = -size.y;
 	}
 
 	player.setPosition(pos);
