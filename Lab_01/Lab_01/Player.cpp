@@ -122,8 +122,8 @@ void Player::setupSprite()
 	{
 		std::cout << "problem loading player sprite" << std::endl;
 	}
-
-
-	player_sprite.setTexture(player_texture);
+	
+	player_sprite = sf::Sprite(player_texture);
 	player_sprite.setOrigin(sf::Vector2f(player_texture.getSize().x / 2.0f, player_texture.getSize().y / 2.0f));
+
 }
