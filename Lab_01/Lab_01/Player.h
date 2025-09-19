@@ -23,10 +23,10 @@ private:
 
 
 	float speed{ 200.0f };
-	float acceleration{ 100.0f };
-	float deceleration{ 50.0f };
-	float maxSpeed{ 250.0f };
-	float rotationSpeed{ 100.0f };
+	float acceleration{ 150.0f };
+	float deceleration{ 100.0f };
+	float maxSpeed{ 600.0f };
+	float rotationSpeed{ 150.0f };
 };
 
 #endif 

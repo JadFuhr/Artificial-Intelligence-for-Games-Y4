@@ -9,6 +9,7 @@ Player::Player(float size)
 	player.setFillColor(sf::Color::Black);
 	player.setOutlineColor(sf::Color::White);
 	player.setOutlineThickness(2);
+	player.setOrigin(sf::Vector2f(size / 2.0f, size / 2.0f));
 	player.setPosition(sf::Vector2f(200, 200));
 
 	setupSprite();
@@ -56,17 +57,14 @@ void Player::handleInput(sf::Time dt)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
 	{
 		player.rotate(sf::degrees(-rotationSpeed * dt.asSeconds()));
+		player_sprite.rotate(sf::degrees(-rotationSpeed * dt.asSeconds()));
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
 	{
 		player.rotate(sf::degrees(rotationSpeed * dt.asSeconds()));
+		player_sprite.rotate(sf::degrees(rotationSpeed * dt.asSeconds()));
 	}
 
-	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) movement.x += 1.0f;
-	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) movement.y -= 1.0f;
-	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) movement.y += 1.0f;
-
-	//player.move(movement * speed * (1.0f / 60.0f)); // per frame 
 }
 
 void Player::playerUpdate(sf::Time dt)
@@ -105,7 +103,7 @@ void Player::playerUpdate(sf::Time dt)
 	}
 
 	player.setPosition(pos);
-
+	player_sprite.setPosition(pos);
 }
 
 
@@ -125,5 +123,5 @@ void Player::setupSprite()
 	
 	player_sprite = sf::Sprite(player_texture);
 	player_sprite.setOrigin(sf::Vector2f(player_texture.getSize().x / 2.0f, player_texture.getSize().y / 2.0f));
-
+	player_sprite.rotate(sf::degrees(90));
 }
