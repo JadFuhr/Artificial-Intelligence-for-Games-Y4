@@ -6,9 +6,9 @@
 Player::Player(float size)
 {
 	player.setSize(sf::Vector2f(size, size));
-	player.setFillColor(sf::Color::Black);
-	player.setOutlineColor(sf::Color::White);
-	player.setOutlineThickness(2);
+	player.setFillColor(sf::Color::Transparent);
+	//player.setOutlineColor(sf::Color::White);
+	//player.setOutlineThickness(2);
 	player.setOrigin(sf::Vector2f(size / 2.0f, size / 2.0f));
 	player.setPosition(sf::Vector2f(200, 200));
 
@@ -18,8 +18,6 @@ Player::Player(float size)
 
 void Player::handleInput(sf::Time dt)
 {
-	sf::Vector2f movement{ 0.0f,0.0f };
-
 	// forward acceleration
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
