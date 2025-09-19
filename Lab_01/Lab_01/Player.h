@@ -14,7 +14,7 @@ public:
 	void handleInput(sf::Time dt);
 	void playerUpdate(sf::Time dt);
 	void playerRender(sf::RenderWindow& window);
-	void setupSprite();
+	void setupPlayerSprite();
 private:
 
 	sf::RectangleShape player;

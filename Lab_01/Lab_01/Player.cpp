@@ -12,7 +12,7 @@ Player::Player(float size)
 	player.setOrigin(sf::Vector2f(size / 2.0f, size / 2.0f));
 	player.setPosition(sf::Vector2f(200, 200));
 
-	setupSprite();
+	setupPlayerSprite();
 }
 
 
@@ -112,11 +112,11 @@ void Player::playerRender(sf::RenderWindow& window)
 	window.draw(player_sprite);
 }
 
-void Player::setupSprite()
+void Player::setupPlayerSprite()
 {
 	if (!player_texture.loadFromFile("ASSETS\\IMAGES\\Ship.png"))
 	{
-		std::cout << "problem loading player sprite" << std::endl;
+		std::cout << "problem loading Player sprite" << std::endl;
 	}
 	
 	player_sprite = sf::Sprite(player_texture);
