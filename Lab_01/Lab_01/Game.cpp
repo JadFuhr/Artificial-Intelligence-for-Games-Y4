@@ -76,7 +76,7 @@ void Game::update(sf::Time t_deltaTime)
 
 	player.handleInput(t_deltaTime);
 	player.playerUpdate(t_deltaTime);
-
+	npc.npcUpdate(t_deltaTime, player);
 
 	if (exitGame)
 	{
@@ -95,14 +95,3 @@ void Game::render()
 	window.display();
 }
 
-void Game::setupSprites()
-{
-	//if (!texture.loadFromFile("ASSETS\\IMAGES\\SFML-LOGO.png"))
-	//{
-	//	
-	//	std::cout << "problem loading logo" << std::endl;
-	//}
-	//
-	//sprite.setTexture(texture,true);
-	//sprite.setPosition(sf::Vector2f{ 150.0f, 50.0f });
-}

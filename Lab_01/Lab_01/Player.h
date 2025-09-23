@@ -15,6 +15,8 @@ public:
 	void playerUpdate(sf::Time dt);
 	void playerRender(sf::RenderWindow& window);
 	void setupSprite();
+
+	sf::Vector2f getPosition() const;
 private:
 
 	sf::RectangleShape player;

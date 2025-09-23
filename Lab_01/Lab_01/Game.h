@@ -25,7 +25,6 @@ private:
 	void checkKeyboardState();
 	void update(sf::Time t_deltaTime);
 	void render();
-	void setupSprites();
 
 	Player player;
 	NPC npc;

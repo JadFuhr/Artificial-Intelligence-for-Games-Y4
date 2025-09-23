@@ -15,6 +15,11 @@ Player::Player(float size)
 }
 
 
+sf::Vector2f Player::getPosition() const
+{
+	return player.getPosition();
+}
+
 void Player::handleInput(sf::Time dt)
 {
 	sf::Vector2f movement{ 0.0f,0.0f };
@@ -61,12 +66,6 @@ void Player::handleInput(sf::Time dt)
 	{
 		player.rotate(sf::degrees(rotationSpeed * dt.asSeconds()));
 	}
-
-	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) movement.x += 1.0f;
-	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) movement.y -= 1.0f;
-	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) movement.y += 1.0f;
-
-	//player.move(movement * speed * (1.0f / 60.0f)); // per frame 
 }
 
 void Player::playerUpdate(sf::Time dt)
@@ -105,7 +104,8 @@ void Player::playerUpdate(sf::Time dt)
 	}
 
 	player.setPosition(pos);
-
+	player_sprite.setPosition(player.getPosition() + player.getSize() / 2.0f);
+	player_sprite.setRotation(player.getRotation());
 }
 
 
@@ -123,7 +123,10 @@ void Player::setupSprite()
 		std::cout << "problem loading player sprite" << std::endl;
 	}
 
+	sf::Vector2f texSize(player_texture.getSize());
+	sf::Vector2f playerSize = player.getSize();
 
+	player_sprite.setScale(sf::Vector2f(playerSize.x / texSize.x, playerSize.y / texSize.y));
 	player_sprite.setTexture(player_texture);
 	player_sprite.setOrigin(sf::Vector2f(player_texture.getSize().x / 2.0f, player_texture.getSize().y / 2.0f));
 }
