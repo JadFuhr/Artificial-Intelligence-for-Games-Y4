@@ -14,9 +14,13 @@ public:
 	void handleInput(sf::Time dt);
 	void playerUpdate(sf::Time dt);
 	void playerRender(sf::RenderWindow& window);
+
 	void setupSprite();
 
 	sf::Vector2f getPosition() const;
+
+	void setupPlayerSprite();
+
 private:
 
 	sf::RectangleShape player;
@@ -25,10 +29,10 @@ private:
 
 
 	float speed{ 200.0f };
-	float acceleration{ 100.0f };
-	float deceleration{ 50.0f };
-	float maxSpeed{ 250.0f };
-	float rotationSpeed{ 100.0f };
+	float acceleration{ 150.0f };
+	float deceleration{ 100.0f };
+	float maxSpeed{ 600.0f };
+	float rotationSpeed{ 150.0f };
 };
 
 #endif 

@@ -6,12 +6,13 @@
 Player::Player(float size)
 {
 	player.setSize(sf::Vector2f(size, size));
-	player.setFillColor(sf::Color::Black);
-	player.setOutlineColor(sf::Color::White);
-	player.setOutlineThickness(2);
+	player.setFillColor(sf::Color::Transparent);
+	//player.setOutlineColor(sf::Color::White);
+	//player.setOutlineThickness(2);
+	player.setOrigin(sf::Vector2f(size / 2.0f, size / 2.0f));
 	player.setPosition(sf::Vector2f(200, 200));
 
-	setupSprite();
+	setupPlayerSprite();
 }
 
 
@@ -22,8 +23,6 @@ sf::Vector2f Player::getPosition() const
 
 void Player::handleInput(sf::Time dt)
 {
-	sf::Vector2f movement{ 0.0f,0.0f };
-
 	// forward acceleration
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
@@ -61,10 +60,12 @@ void Player::handleInput(sf::Time dt)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
 	{
 		player.rotate(sf::degrees(-rotationSpeed * dt.asSeconds()));
+		player_sprite.rotate(sf::degrees(-rotationSpeed * dt.asSeconds()));
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
 	{
 		player.rotate(sf::degrees(rotationSpeed * dt.asSeconds()));
+		player_sprite.rotate(sf::degrees(rotationSpeed * dt.asSeconds()));
 	}
 }
 
@@ -104,8 +105,12 @@ void Player::playerUpdate(sf::Time dt)
 	}
 
 	player.setPosition(pos);
+
 	player_sprite.setPosition(player.getPosition() + player.getSize() / 2.0f);
 	player_sprite.setRotation(player.getRotation());
+
+	player_sprite.setPosition(pos);
+
 }
 
 
@@ -116,17 +121,23 @@ void Player::playerRender(sf::RenderWindow& window)
 	window.draw(player_sprite);
 }
 
-void Player::setupSprite()
+void Player::setupPlayerSprite()
 {
 	if (!player_texture.loadFromFile("ASSETS\\IMAGES\\Ship.png"))
 	{
-		std::cout << "problem loading player sprite" << std::endl;
+		std::cout << "problem loading Player sprite" << std::endl;
 	}
+
 
 	sf::Vector2f texSize(player_texture.getSize());
 	sf::Vector2f playerSize = player.getSize();
 
 	player_sprite.setScale(sf::Vector2f(playerSize.x / texSize.x, playerSize.y / texSize.y));
 	player_sprite.setTexture(player_texture);
+
+	
+	player_sprite = sf::Sprite(player_texture);
+
 	player_sprite.setOrigin(sf::Vector2f(player_texture.getSize().x / 2.0f, player_texture.getSize().y / 2.0f));
+	player_sprite.rotate(sf::degrees(90));
 }
