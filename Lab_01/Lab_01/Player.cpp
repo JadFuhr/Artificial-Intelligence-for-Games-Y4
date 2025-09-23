@@ -11,7 +11,6 @@ Player::Player(float size)
 	//player.setOutlineThickness(2);
 	player.setOrigin(sf::Vector2f(size / 2.0f, size / 2.0f));
 	player.setPosition(sf::Vector2f(200, 200));
-
 	setupPlayerSprite();
 }
 

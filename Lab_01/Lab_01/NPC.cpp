@@ -13,8 +13,13 @@ NPC::NPC(float size)
 
 void NPC::npcUpdate(sf::Time dt, const Player& player)
 {
+	sf::Vector2f pos = npc.getPosition();
+
 
 	trackPlayer(dt, player);
+
+	npc_sprite.setPosition(pos);
+	npc_sprite.rotate(sf::degrees(5));
 
 }
 
@@ -57,5 +62,7 @@ void NPC::setupNPCSprite()
 	npc_sprite = sf::Sprite(npc_texture);
 	npc_sprite.setOrigin(sf::Vector2f(npc_texture.getSize().x / 2, npc_texture.getSize().y / 2));
 	npc_sprite.setPosition(sf::Vector2f(npc.getPosition().x, npc.getPosition().y));
+
+	
 }
 
