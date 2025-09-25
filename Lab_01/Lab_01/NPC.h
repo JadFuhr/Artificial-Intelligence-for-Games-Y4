@@ -15,6 +15,7 @@ public:
 	void npcRender(sf::RenderWindow& window);
 	void trackPlayer(sf::Time dt, const Player& player);
 	void setupNPCSprite();
+
 private:
 
 	sf::RectangleShape npc;
