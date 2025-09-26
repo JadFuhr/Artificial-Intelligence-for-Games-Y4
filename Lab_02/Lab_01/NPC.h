@@ -16,6 +16,9 @@ public:
 	void trackPlayer(sf::Time dt, const Player& player);
 	void setupNPCSprite();
 	void setUpVisionCone();
+	void toggleActive();
+	bool isActive()const { return active; }
+
 private:
 
 	sf::RectangleShape npc;
@@ -33,6 +36,8 @@ private:
 
 	void updateVisionCone();
 	bool playerInVision(const Player& player);
+
+	bool active = false;
 
 };
 

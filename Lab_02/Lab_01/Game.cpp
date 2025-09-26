@@ -59,6 +59,11 @@ void Game::processKeys(const std::optional<sf::Event> t_event)
 	{
 		exitGame = true;
 	}
+
+	if (sf::Keyboard::Key::Num1 == newKeypress->code)
+	{
+		npc.toggleActive();
+	}
 }
 
 void Game::checkKeyboardState()
