@@ -11,6 +11,7 @@ NPC::NPC(float size)
 
 	setupNPCSprite();
 	setUpVisionCone();
+	setUpText();
 }
 
 void NPC::npcUpdate(sf::Time dt, const Player& player)
@@ -35,6 +36,10 @@ void NPC::npcUpdate(sf::Time dt, const Player& player)
 			visionCone.setFillColor(sf::Color(0, 255, 0, 100));
 		}
 	}
+
+
+	sf::Vector2f npcPos = npc.getPosition();
+
 
 }
 
@@ -97,6 +102,7 @@ void NPC::setUpVisionCone()
 
 
 }
+
 
 void NPC::updateVisionCone()
 {

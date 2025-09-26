@@ -16,6 +16,7 @@ public:
 	void trackPlayer(sf::Time dt, const Player& player);
 	void setupNPCSprite();
 	void setUpVisionCone();
+	//void setUpText();
 	void toggleActive();
 	bool isActive()const { return active; }
 
@@ -24,6 +25,9 @@ private:
 	sf::RectangleShape npc;
 	sf::Texture npc_texture;
 	sf::Sprite npc_sprite{ npc_texture };
+
+	//sf::Text behaviorText;
+	//std::string seekBehaviour = "SEEK";
 
 	float speed{ 150.0f };
 	sf::Vector2f direction{ 1.0f,1.0f };
@@ -38,6 +42,8 @@ private:
 	bool playerInVision(const Player& player);
 
 	bool active = false;
+
+
 
 };
 
