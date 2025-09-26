@@ -10,6 +10,7 @@
 #include <SFML/Audio.hpp>
 #include "Player.h"
 #include "NPC.h"
+#include "NPC2.h"
 #include "Constants.h"
 
 class Game
@@ -27,7 +28,8 @@ private:
 	void render();
 
 	Player player;
-	NPC npc;
+	NPC npc1;
+	NPC2 npc2;
 
 	sf::RenderWindow window; 
 	sf::Font font;	

@@ -13,7 +13,8 @@ public:
 
 	void npcUpdate(sf::Time dt, const Player& player);
 	void npcRender(sf::RenderWindow& window);
-	void trackPlayer(sf::Time dt, const Player& player);
+	void Seek(sf::Time dt, const Player& player);
+	void Wander(sf::Time dt);
 	void setupNPCSprite();
 	void setUpVisionCone();
 	//void setUpText();
@@ -22,9 +23,11 @@ public:
 
 private:
 
-	sf::RectangleShape npc;
-	sf::Texture npc_texture;
-	sf::Sprite npc_sprite{ npc_texture };
+	sf::RectangleShape npc1,npc2,npc3,npc4;
+
+	sf::Texture npc1_texture;
+
+	sf::Sprite npc1_sprite{ npc1_texture };
 
 	//sf::Text behaviorText;
 	//std::string seekBehaviour = "SEEK";
