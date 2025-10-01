@@ -1,7 +1,7 @@
 #include <iostream>
-#include <cmath>
+
 #include "NPC.h"
-#include "NPC2.h"
+
 
 NPC::NPC(float size)
 {
