@@ -4,6 +4,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include "Constants.h"
 
 class Boid
 {
@@ -18,10 +19,8 @@ public:
 	void setBoidPositon(const sf::Vector2f& pos);
 	sf::Vector2f getBoidPosition() const;
 
-	void setBoidVelocity(const sf::Vector2f& velocity);
+	void setBoidVelocity(const sf::Vector2f& vel);
 	sf::Vector2f getBoidVelocity() const;
-
-	void wrapAround(float width, float height);
 
 
 private:
