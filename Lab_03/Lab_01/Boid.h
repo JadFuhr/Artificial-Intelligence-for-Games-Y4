@@ -2,6 +2,7 @@
 #ifndef BOID_HPP
 #define BOID_HPP
 
+#include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "Constants.h"

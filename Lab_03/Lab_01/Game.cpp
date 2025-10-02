@@ -1,9 +1,7 @@
 //Author: Jad Fuhr
 //Student Number: C00290965
  
- 
 #include "Game.h"
-#include <iostream>
 
 Game::Game() :
 	window{ sf::VideoMode{ sf::Vector2u{WINDOW_X, WINDOW_Y}, 32U }, "Basic Movement" },player(50.0f),npc1(25.0f),npc2(25.0f)
@@ -66,7 +64,7 @@ void Game::processKeys(const std::optional<sf::Event> t_event)
 	}
 	if (sf::Keyboard::Key::Num2 == newKeypress->code)
 	{
-		npc2.toggleActive2();
+		npc2.toggleActive();
 	}
 }
 
@@ -86,7 +84,7 @@ void Game::update(sf::Time t_deltaTime)
 	player.handleInput(t_deltaTime);
 	player.playerUpdate(t_deltaTime);
 	npc1.npcUpdate(t_deltaTime, player);
-	npc2.npc2Update(t_deltaTime, player);
+	npc2.update(t_deltaTime, player);
 	if (exitGame)
 	{
 		window.close();
@@ -100,7 +98,7 @@ void Game::render()
 
 	player.playerRender(window);
 	npc1.npcRender(window);
-	npc2.npc2Render(window);
+	npc2.render(window);
 	window.display();
 }
 

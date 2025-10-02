@@ -25,6 +25,7 @@
     <ClCompile Include="NPC.cpp" />
     <ClCompile Include="NPC2.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Swarm.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Boid.h" />
@@ -33,6 +34,7 @@
     <ClInclude Include="NPC.h" />
     <ClInclude Include="NPC2.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Swarm.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="ASSETS\IMAGES\SFML-LOGO.png">

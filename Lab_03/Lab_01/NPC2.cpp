@@ -1,4 +1,3 @@
-#include <iostream>
 #include "NPC2.h"
 
 
@@ -9,19 +8,19 @@ NPC2::NPC2(float size)
 	npc2.setPosition(sf::Vector2f(900.0f, 200.0f));
 	npc2.setOrigin(sf::Vector2f(size / 2.0f, size / 2.0f));
 
-	setupNPC2Sprite();
-	setUpVisionCone2();
+	setupSprite();
+	setUpVisionCone();
 	
 }
 
-void NPC2::npc2Render(sf::RenderWindow& window)
+void NPC2::render(sf::RenderWindow& window)
 {
 	window.draw(npc2);
 	window.draw(npc2_sprite);
 	window.draw(visionCone);
 }
 
-void NPC2::setUpVisionCone2()
+void NPC2::setUpVisionCone()
 {
 
 
@@ -35,7 +34,7 @@ void NPC2::setUpVisionCone2()
 
 }
 
-void NPC2::toggleActive2()
+void NPC2::toggleActive()
 {
 
 	active = !active;
@@ -50,7 +49,7 @@ sf::Vector2f NPC2::rotateVector(sf::Vector2f& vec, float degrees)
 	return sf::Vector2f(vec.x * cs - vec.y * sn, vec.x * sn + vec.y * cs);
 }
 
-void NPC2::updateVisionCone2()
+void NPC2::updateVisionCone()
 {
 
 	if (active)
@@ -65,7 +64,7 @@ void NPC2::updateVisionCone2()
 
 }
 
-bool NPC2::playerInVision2(const Player& player)
+bool NPC2::playerInVision(const Player& player)
 {
 	if (active)
 	{
@@ -95,7 +94,7 @@ bool NPC2::playerInVision2(const Player& player)
 	return false;
 }
 
-void NPC2::npc2Update(sf::Time dt, const Player& player)
+void NPC2::update(sf::Time dt, const Player& player)
 {
 
 	if (active)
@@ -120,15 +119,14 @@ void NPC2::npc2Update(sf::Time dt, const Player& player)
 		npc2.setPosition(pos);
 
 		// Update vision cone
-		updateVisionCone2();
+		updateVisionCone();
 
 		// Update sprite
 		npc2_sprite.setPosition(npc2.getPosition());
-		float angle = std::atan2(facingDir.y, facingDir.x) * 180.f / 3.14159f;
-		npc2_sprite.setRotation(sf::degrees(angle));
+		npc2_sprite.rotate(sf::degrees(2));
 
 		// Change vision cone color if player in view
-		if (playerInVision2(player))
+		if (playerInVision(player))
 			visionCone.setFillColor(sf::Color(255, 0, 0, 100));
 		else
 			visionCone.setFillColor(sf::Color(0, 255, 0, 100));
@@ -167,7 +165,7 @@ void NPC2::Wander(sf::Time dt)
 
 }
 
-void NPC2::setupNPC2Sprite()
+void NPC2::setupSprite()
 {
 
 	if (!npc2_texture.loadFromFile("ASSETS\\IMAGES\\Alien2.png"))

@@ -6,11 +6,13 @@
 // C:\SFML - 3.0.0\include\SFML\System\Exception.hpp(41, 47) : 
 // warning C4275 : non dll - interface class 'std::runtime_error' used as base for dll - interface class 'sf::Exception'
 
+#include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "Player.h"
 #include "NPC.h"
 #include "NPC2.h"
+#include "Swarm.h"
 #include "Constants.h"
 
 class Game

@@ -2,6 +2,7 @@
 #ifndef NPC2_HPP
 #define NPC2_HPP
 
+#include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "Player.h"
@@ -12,13 +13,13 @@ class NPC2
 public:
 	NPC2(float size = 25.0f);
 
-	void npc2Update(sf::Time dt, const Player& player);
+	void update(sf::Time dt, const Player& player);
 	void Wander(sf::Time dt);
-	void setupNPC2Sprite();
-	void npc2Render(sf::RenderWindow& window);
-	void setUpVisionCone2();
-	void toggleActive2();
-	bool isActive2()const { return active; }
+	void setupSprite();
+	void render(sf::RenderWindow& window);
+	void setUpVisionCone();
+	void toggleActive();
+	bool isActive()const { return active; }
 	sf::Vector2f rotateVector(sf::Vector2f& vec, float degrees);
 private:
 
@@ -42,8 +43,8 @@ private:
 	float wanderOffset = 50.0f;           // Distance of circle in front of NPC
 	float wanderRadius = 30.0f;           // Radius of the wander circle
 
-	void updateVisionCone2();
-	bool playerInVision2(const Player& player);
+	void updateVisionCone();
+	bool playerInVision(const Player& player);
 
 	bool active = false;
 

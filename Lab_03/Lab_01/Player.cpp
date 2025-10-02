@@ -1,6 +1,5 @@
-#include <iostream>
 #include "Player.h"
-
+#include <iostream>
 
 
 Player::Player(float size)

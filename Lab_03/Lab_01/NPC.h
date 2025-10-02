@@ -2,6 +2,7 @@
 #ifndef NPC_HPP
 #define NPC_HPP
 
+#include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "Player.h"
