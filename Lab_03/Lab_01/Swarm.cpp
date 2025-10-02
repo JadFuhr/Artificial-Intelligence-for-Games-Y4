@@ -1,30 +1,61 @@
 #include "Swarm.h"
 
-Swarm::Swarm(unsigned int count)
+Swarm::Swarm(unsigned int count): a(50.f), b(200.f), n(2), m(4) // tune these for behavior
 {
+    boids.reserve(count);
 
-
+    for (unsigned int i = 0; i < count; ++i)
+    {
+        sf::Vector2f pos(static_cast<float>(std::rand() % 800), static_cast<float>(std::rand() % 600));
+        boids.emplace_back(pos);
+    }
 
 }
 
 void Swarm::update(float dt)
 {
 
+    for (size_t i = 0; i < boids.size(); ++i)
+    {
+        sf::Vector2f totalForce(0.f, 0.f);
 
+        for (size_t j = 0; j < boids.size(); ++j)
+        {
+            if (i == j) continue;
+            totalForce += computeLJF(boids[i], boids[j]);
+        }
+
+        boids[i].applyForce(totalForce);
+    }
+
+    for (auto& b : boids)
+    {
+        b.updateBoid(dt);
+    }
 
 }
 
 void Swarm::renderSwarm(sf::RenderWindow& window)
 {
 
-
+    for (auto& b : boids)
+    {
+        b.renderBoid(window);
+    }
 
 }
 
 void Swarm::respawn(unsigned int count, sf::Vector2u windowSize)
 {
 
+    boids.clear();
+    boids.reserve(count);
 
+    for (unsigned int i = 0; i < count; ++i)
+    {
+        sf::Vector2f pos(static_cast<float>(std::rand() % windowSize.x), static_cast<float>(std::rand() % windowSize.y));
+        boids.emplace_back(pos);
+    }
 
 }
 

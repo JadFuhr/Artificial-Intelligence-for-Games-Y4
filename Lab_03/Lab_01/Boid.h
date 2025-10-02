@@ -12,7 +12,7 @@ class Boid
 {
 public:
 
-	Boid(float radius = 3.0f);
+	Boid(const sf::Vector2f& startPos, float radius = 3.0f);
 
 	void updateBoid(float dt);
 	void renderBoid(sf::RenderWindow& window);

@@ -1,7 +1,7 @@
 #include "Boid.h"
 
 
-Boid::Boid(float radius)
+Boid::Boid(const sf::Vector2f& startPos, float radius)
 {
 
 	shape.setRadius(radius);
