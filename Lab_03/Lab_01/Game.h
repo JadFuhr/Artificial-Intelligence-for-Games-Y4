@@ -32,6 +32,7 @@ private:
 	Player player;
 	NPC npc1;
 	NPC2 npc2;
+	Swarm swarm;
 
 	sf::RenderWindow window; 
 	sf::Font font;	

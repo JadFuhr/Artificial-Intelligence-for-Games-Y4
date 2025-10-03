@@ -1,6 +1,6 @@
 #include "Swarm.h"
 
-Swarm::Swarm(unsigned int count): a(50.f), b(200.f), n(2), m(4) // tune these for behavior
+Swarm::Swarm(unsigned int count): a(200.f), b(100.f), n(1.5), m(4) // tune these for behavior
 {
     boids.reserve(count);
 

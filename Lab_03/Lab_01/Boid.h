@@ -32,8 +32,8 @@ private:
 	sf::Vector2f velocity;
 	sf::Vector2f acceleration;
 
-	float maxSpeed = 100.0f;
-	float maxForce = 200.0f;
+	float maxSpeed = 200.0f;
+	float maxForce = 400.0f;
 
 };
 

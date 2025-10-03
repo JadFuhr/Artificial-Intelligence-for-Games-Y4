@@ -4,7 +4,7 @@
 #include "Game.h"
 
 Game::Game() :
-	window{ sf::VideoMode{ sf::Vector2u{WINDOW_X, WINDOW_Y}, 32U }, "Basic Movement" },player(50.0f),npc1(25.0f),npc2(25.0f)
+	window{ sf::VideoMode{ sf::Vector2u{WINDOW_X, WINDOW_Y}, 32U }, "Basic Movement" },player(50.0f),npc1(25.0f),npc2(25.0f), swarm(50)
 { 
 	//setupSprites();  
 
@@ -66,6 +66,22 @@ void Game::processKeys(const std::optional<sf::Event> t_event)
 	{
 		npc2.toggleActive();
 	}
+	if (sf::Keyboard::Key::Num6 == newKeypress->code)
+	{
+		swarm.respawn(50, window.getSize());
+	}
+	if (sf::Keyboard::Key::Num7 == newKeypress->code)
+	{
+		swarm.respawn(100, window.getSize());
+	}
+	if (sf::Keyboard::Key::Num8 == newKeypress->code)
+	{
+		swarm.respawn(200, window.getSize());
+	}
+	if (sf::Keyboard::Key::Num9 == newKeypress->code)
+	{
+		swarm.respawn(300, window.getSize());
+	}
 }
 
 void Game::checkKeyboardState()
@@ -85,6 +101,8 @@ void Game::update(sf::Time t_deltaTime)
 	player.playerUpdate(t_deltaTime);
 	npc1.npcUpdate(t_deltaTime, player);
 	npc2.update(t_deltaTime, player);
+	swarm.update(t_deltaTime.asSeconds());
+
 	if (exitGame)
 	{
 		window.close();
@@ -99,6 +117,8 @@ void Game::render()
 	player.playerRender(window);
 	npc1.npcRender(window);
 	npc2.render(window);
+	swarm.renderSwarm(window);
+
 	window.display();
 }
 
