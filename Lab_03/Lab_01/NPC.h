@@ -21,6 +21,8 @@ public:
 	//void setUpText();
 	void toggleActive();
 	bool isActive()const { return active; }
+	void toggleVisible();
+	bool isVisible()const { return visible; }
 
 private:
 
@@ -46,7 +48,7 @@ private:
 	bool playerInVision(const Player& player);
 
 	bool active = false;
-
+	bool visible = false;
 
 
 };

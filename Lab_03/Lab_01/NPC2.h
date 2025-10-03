@@ -20,6 +20,9 @@ public:
 	void setUpVisionCone();
 	void toggleActive();
 	bool isActive()const { return active; }
+	void toggleVisible();
+	bool isVisible()const { return visible; }
+
 	sf::Vector2f rotateVector(sf::Vector2f& vec, float degrees);
 private:
 
@@ -47,6 +50,7 @@ private:
 	bool playerInVision(const Player& player);
 
 	bool active = false;
+	bool visible = false;
 
 };
 

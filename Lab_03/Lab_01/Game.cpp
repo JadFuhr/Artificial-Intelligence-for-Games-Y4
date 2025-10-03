@@ -53,18 +53,28 @@ void Game::processEvents()
 void Game::processKeys(const std::optional<sf::Event> t_event)
 {
 	const sf::Event::KeyPressed *newKeypress = t_event->getIf<sf::Event::KeyPressed>();
-	if (sf::Keyboard::Key::Escape == newKeypress->code)
-	{
-		exitGame = true;
-	}
 
+	if (sf::Keyboard::Key::Up == newKeypress->code)
+	{
+		npc1.toggleVisible();
+	}
 	if (sf::Keyboard::Key::Num1 == newKeypress->code)
 	{
 		npc1.toggleActive();
 	}
+
+	if (sf::Keyboard::Key::Down == newKeypress->code)
+	{
+		npc2.toggleVisible();
+	}
 	if (sf::Keyboard::Key::Num2 == newKeypress->code)
 	{
 		npc2.toggleActive();
+	}
+
+	if (sf::Keyboard::Key::Left == newKeypress->code)
+	{
+		swarm.toggleVisible();
 	}
 	if (sf::Keyboard::Key::Num6 == newKeypress->code)
 	{
@@ -80,7 +90,7 @@ void Game::processKeys(const std::optional<sf::Event> t_event)
 	}
 	if (sf::Keyboard::Key::Num9 == newKeypress->code)
 	{
-		swarm.respawn(220, window.getSize());
+		swarm.respawn(235, window.getSize());
 	}
 }
 

@@ -15,9 +15,12 @@ NPC2::NPC2(float size)
 
 void NPC2::render(sf::RenderWindow& window)
 {
-	window.draw(npc2);
-	window.draw(npc2_sprite);
-	window.draw(visionCone);
+	if (visible)
+	{
+		window.draw(npc2);
+		window.draw(npc2_sprite);
+		window.draw(visionCone);
+	}
 }
 
 void NPC2::setUpVisionCone()
@@ -31,13 +34,6 @@ void NPC2::setUpVisionCone()
 	visionCone.setFillColor(sf::Color(0, 255, 0, 100));
 	visionCone.setOrigin(sf::Vector2f(0.f, 0.f));
 	visionCone.setPosition(npc2.getPosition());
-
-}
-
-void NPC2::toggleActive()
-{
-
-	active = !active;
 
 }
 
@@ -118,14 +114,13 @@ void NPC2::update(sf::Time dt, const Player& player)
 
 		npc2.setPosition(pos);
 
-		// Update vision cone
 		updateVisionCone();
 
-		// Update sprite
+
 		npc2_sprite.setPosition(npc2.getPosition());
 		npc2_sprite.rotate(sf::degrees(2));
 
-		// Change vision cone color if player in view
+		// Change vision cone color 
 		if (playerInVision(player))
 			visionCone.setFillColor(sf::Color(255, 0, 0, 100));
 		else
@@ -179,3 +174,13 @@ void NPC2::setupSprite()
 
 }
 
+
+void NPC2::toggleActive()
+{
+	active = !active;
+}
+
+void NPC2::toggleVisible()
+{
+	visible = !visible;
+}

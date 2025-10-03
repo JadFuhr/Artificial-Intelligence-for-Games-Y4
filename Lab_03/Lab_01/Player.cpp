@@ -6,10 +6,9 @@ Player::Player(float size)
 {
 	player.setSize(sf::Vector2f(size, size));
 	player.setFillColor(sf::Color::Transparent);
-	//player.setOutlineColor(sf::Color::White);
-	//player.setOutlineThickness(2);
 	player.setOrigin(sf::Vector2f(size / 2.0f, size / 2.0f));
 	player.setPosition(sf::Vector2f(200, 200));
+
 	setupPlayerSprite();
 }
 

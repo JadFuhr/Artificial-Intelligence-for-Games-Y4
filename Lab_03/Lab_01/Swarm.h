@@ -19,6 +19,8 @@ public:
 	void renderSwarm(sf::RenderWindow& window);
 	void respawn(unsigned int count, sf::Vector2u windowSize);
 
+	void toggleVisible();
+	bool isVisible()const { return visible; }
 
 private:
 
@@ -30,5 +32,7 @@ private:
 	float m;	// repulsion attenuation
 
 	sf::Vector2f computeLJF(const Boid& me, const Boid& you);
+
+	bool visible = true;
 };
 #endif

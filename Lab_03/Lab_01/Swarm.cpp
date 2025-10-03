@@ -1,6 +1,6 @@
 #include "Swarm.h"
 
-Swarm::Swarm(unsigned int count): a(400.f), b(200.f), n(0.5), m(4) // tune these for behavior
+Swarm::Swarm(unsigned int count): a(400.f), b(200.f), n(0.5), m(4) //  behavior tuning
 {
     boids.reserve(count);
 
@@ -37,12 +37,13 @@ void Swarm::update(float dt)
 
 void Swarm::renderSwarm(sf::RenderWindow& window)
 {
-
-    for (auto& b : boids)
+    if (visible)
     {
-        b.renderBoid(window);
+        for (auto& b : boids)
+        {
+            b.renderBoid(window);
+        }
     }
-
 }
 
 void Swarm::respawn(unsigned int count, sf::Vector2u windowSize)
@@ -64,7 +65,7 @@ sf::Vector2f Swarm::computeLJF(const Boid& me, const Boid& you)
     sf::Vector2f r = me.getBoidPosition() - you.getBoidPosition();
     float d = std::sqrt(r.x * r.x + r.y * r.y);
 
-    if (d < 0)
+    if (d <= 0)
     {
         return { 0.f, 0.f }; // avoid divide by zero
     }
@@ -78,4 +79,9 @@ sf::Vector2f Swarm::computeLJF(const Boid& me, const Boid& you)
     r.y /= d;
 
     return { r.x * u, r.y * u };
+}
+
+void Swarm::toggleVisible()
+{
+    visible = !visible;
 }

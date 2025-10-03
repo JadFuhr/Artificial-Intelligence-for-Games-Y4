@@ -67,9 +67,13 @@ void NPC::npcUpdate(sf::Time dt, const Player& player)
 
 void NPC::npcRender(sf::RenderWindow& window)
 {
-	window.draw(npc1);
-	window.draw(npc1_sprite);
-	window.draw(visionCone);
+	if (visible)
+	{
+		window.draw(npc1);
+		window.draw(npc1_sprite);
+		window.draw(visionCone);
+	}
+
 }
 
 void NPC::Seek(sf::Time dt, const Player& player)
@@ -168,5 +172,12 @@ void NPC::toggleActive()
 {
 	active = !active;
 }
+
+void NPC::toggleVisible()
+{
+	visible = !visible;
+}
+
+
 
 
