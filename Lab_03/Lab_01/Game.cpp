@@ -80,7 +80,7 @@ void Game::processKeys(const std::optional<sf::Event> t_event)
 	}
 	if (sf::Keyboard::Key::Num9 == newKeypress->code)
 	{
-		swarm.respawn(300, window.getSize());
+		swarm.respawn(220, window.getSize());
 	}
 }
 

@@ -1,12 +1,12 @@
 #include "Swarm.h"
 
-Swarm::Swarm(unsigned int count): a(200.f), b(100.f), n(1.5), m(4) // tune these for behavior
+Swarm::Swarm(unsigned int count): a(400.f), b(200.f), n(0.5), m(4) // tune these for behavior
 {
     boids.reserve(count);
 
     for (unsigned int i = 0; i < count; ++i)
     {
-        sf::Vector2f pos(static_cast<float>(std::rand() % 800), static_cast<float>(std::rand() % 600));
+        sf::Vector2f pos(static_cast<float>(std::rand() % WINDOW_X), static_cast<float>(std::rand() % WINDOW_Y));
         boids.emplace_back(pos);
     }
 
@@ -64,7 +64,7 @@ sf::Vector2f Swarm::computeLJF(const Boid& me, const Boid& you)
     sf::Vector2f r = me.getBoidPosition() - you.getBoidPosition();
     float d = std::sqrt(r.x * r.x + r.y * r.y);
 
-    if (d < 1e-5f)
+    if (d < 0)
     {
         return { 0.f, 0.f }; // avoid divide by zero
     }
