@@ -61,8 +61,21 @@ void Swarm::respawn(unsigned int count, sf::Vector2u windowSize)
 
 sf::Vector2f Swarm::computeLJF(const Boid& me, const Boid& you)
 {
+    sf::Vector2f r = me.getBoidPosition() - you.getBoidPosition();
+    float d = std::sqrt(r.x * r.x + r.y * r.y);
+
+    if (d < 1e-5f)
+    {
+        return { 0.f, 0.f }; // avoid divide by zero
+    }
 
 
+    // Potential energy U = -A/r^N + B/r^M
+    float u = -a / std::pow(d, n) + b / std::pow(d, m);
 
-	return sf::Vector2f();
+    // Normalize R
+    r.x /= d;
+    r.y /= d;
+
+    return { r.x * u, r.y * u };
 }
