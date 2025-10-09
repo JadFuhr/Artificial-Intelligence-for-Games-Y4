@@ -36,6 +36,13 @@ void Agent::setTarget(Vector2D targetPos)
     target = targetPos;
 }
 
+void Agent::setPosition(Vector2D newPos)
+{
+    position = newPos;
+    shape.setPosition(sf::Vector2f(position.x, position.y));
+}
+
+
 Vector2D Agent::getPosition() const
 {
     return position;

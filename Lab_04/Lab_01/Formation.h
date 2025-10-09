@@ -13,18 +13,19 @@ public:
     void initialize(Vector2D startPos);
     void update(float dt);
     void render(sf::RenderWindow& window);
-    void handleInput();
     void toggleVisible();
 
 private:
+    void handleInput();
+
     std::vector<Agent> members;
     Agent anchor;
     bool visible = true;
 
     std::vector<Vector2D> offsets = { {-30,30}, {30,30}, {-30,-30}, {30,-30} };
-    Vector2D movement{ 0.f,0.f };
+    Vector2D movement{ 0.f, 0.f };
     float speed = 150.f;
 
-    // Store the anchor's target 
-    Vector2D anchorTarget;
+    Vector2D anchorPosition;
+    float anchorAngle = 0.f; // rotation angle (radians)
 };

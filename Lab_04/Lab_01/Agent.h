@@ -1,5 +1,4 @@
 #pragma once
-#include "stdafx.h"
 #include "Global.h"
 
 class Agent
@@ -11,6 +10,7 @@ public:
     void update(float dt);
     void render(sf::RenderWindow& window);
     void setTarget(Vector2D targetPos);
+    void setPosition(Vector2D newPos); 
     void setIsAnchor(bool anchor);
     Vector2D getPosition() const;
 
