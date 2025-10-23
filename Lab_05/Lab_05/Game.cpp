@@ -45,16 +45,28 @@ void Game::processEvents()
 		{
 			processKeys(newEvent);
 		}
+		if (const auto* mouseEvent = newEvent->getIf<sf::Event::MouseButtonPressed>())
+		{
+			sf::Vector2i mousePos(mouseEvent->position.x, mouseEvent->position.y);
+
+			bool isLeft = (mouseEvent->button == sf::Mouse::Button::Left);
+
+			handleMouseClick(mousePos, isLeft);
+		}
+
 	}
 }
 
 void Game::processKeys(const std::optional<sf::Event> t_event)
 {
 	const sf::Event::KeyPressed *newKeypress = t_event->getIf<sf::Event::KeyPressed>();
+
 	if (sf::Keyboard::Key::Escape == newKeypress->code)
 	{
 		exitGame = true;
 	}
+
+
 }
 
 void Game::checkKeyboardState()
@@ -125,6 +137,43 @@ void Game::drawGrid()
 		{
 			window.draw(tile.shape);
 		}
+	}
+
+}
+
+void Game::handleMouseClick(sf::Vector2i mousePos, bool isLeftClick)
+{
+
+	int gridX = mousePos.x / tileSize;
+	int gridY = mousePos.y / tileSize;
+
+	// Ensure click is within grid bounds
+	if (gridX < 0 || gridX >= cols || gridY < 0 || gridY >= rows)
+		return;
+
+	if (isLeftClick)
+	{
+		// Reset previous start tile
+		if (startTile.x >= 0)
+		{
+			grid[startTile.y][startTile.x].shape.setFillColor(sf::Color::White);
+		}
+
+
+		startTile = { gridX, gridY };
+		grid[gridY][gridX].shape.setFillColor(sf::Color::Green);
+	}
+	else
+	{
+		// Reset previous goal tile
+		if (endTile.x >= 0)
+		{
+			grid[endTile.y][endTile.x].shape.setFillColor(sf::Color::White);
+		}
+
+
+		endTile = { gridX, gridY };
+		grid[gridY][gridX].shape.setFillColor(sf::Color::Red);
 	}
 
 }
