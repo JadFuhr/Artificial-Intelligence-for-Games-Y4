@@ -5,6 +5,8 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include "Tiles.h"
+
 
 class Game
 {
@@ -21,11 +23,20 @@ private:
 	void render();
 	void setupSprites();
 
+	void createGrid();
+	void drawGrid();
+
 	sf::RenderWindow window; 
 	sf::Font font;	
 	sf::Texture texture;
 	sf::Sprite sprite{ texture }; 
 	
+	// grid data
+	static const int rows = 50;
+	static const int cols = 50;
+	static constexpr float tileSize = 21.0f; // adjust for your window size
+	std::vector<std::vector<Tile>> grid;
+
 	bool exitGame = false; 
 };
 

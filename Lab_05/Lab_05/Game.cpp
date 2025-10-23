@@ -2,9 +2,10 @@
 #include <iostream>
 
 Game::Game() :
-	window{ sf::VideoMode{ sf::Vector2u{1020U, 720U}, 32U }, "FlowField Pathfinding" }
+	window{ sf::VideoMode{ sf::Vector2u{1050U, 1050U}, 32U }, "FlowField Pathfinding" }
 { 
-	setupSprites(); 
+	createGrid();
+	//setupSprites(); 
 }
 
 Game::~Game()
@@ -75,10 +76,11 @@ void Game::update(sf::Time t_deltaTime)
 
 void Game::render()
 {
-	window.clear(sf::Color::Black);
+	window.clear(sf::Color::Blue);
 
-	window.draw(sprite);
-	
+	//window.draw(sprite);
+	drawGrid();
+
 	window.display();
 }
 
@@ -92,4 +94,37 @@ void Game::setupSprites()
 	
 	sprite.setTexture(texture,true);
 	sprite.setPosition(sf::Vector2f{ 150.0f, 50.0f });
+}
+
+void Game::createGrid()
+{
+
+	grid.reserve(rows);
+
+	for (int y = 0; y < rows; ++y)
+	{
+		std::vector<Tile> row;
+		row.reserve(cols);
+		for (int x = 0; x < cols; ++x)
+		{
+			float posX = x * tileSize;
+			float posY = y * tileSize;
+			row.emplace_back(posX, posY, tileSize);
+		}
+		grid.push_back(std::move(row));
+	}
+
+}
+
+void Game::drawGrid()
+{
+
+	for (auto& row : grid)
+	{
+		for (auto& tile : row)
+		{
+			window.draw(tile.shape);
+		}
+	}
+
 }
