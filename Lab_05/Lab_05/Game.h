@@ -25,8 +25,10 @@ private:
 
 	void createGrid();
 	void drawGrid();
+	//void drawFlowField();
 
-	void handleMouseClick(sf::Vector2i mousePos, bool isLeftClick);
+
+	void handleMouseClick(sf::Vector2i mousePos, sf::Mouse::Button button);
 
 	sf::RenderWindow window; 
 	sf::Font font;	

@@ -45,13 +45,9 @@ void Game::processEvents()
 		{
 			processKeys(newEvent);
 		}
-		if (const auto* mouseEvent = newEvent->getIf<sf::Event::MouseButtonPressed>())
+		if (const auto* mouse = newEvent->getIf<sf::Event::MouseButtonPressed>())
 		{
-			sf::Vector2i mousePos(mouseEvent->position.x, mouseEvent->position.y);
-
-			bool isLeft = (mouseEvent->button == sf::Mouse::Button::Left);
-
-			handleMouseClick(mousePos, isLeft);
+			handleMouseClick({ mouse->position.x, mouse->position.y }, mouse->button);
 		}
 
 	}
@@ -141,39 +137,103 @@ void Game::drawGrid()
 
 }
 
-void Game::handleMouseClick(sf::Vector2i mousePos, bool isLeftClick)
+void Game::handleMouseClick(sf::Vector2i mousePos, sf::Mouse::Button button)
 {
 
 	int gridX = mousePos.x / tileSize;
 	int gridY = mousePos.y / tileSize;
 
-	// Ensure click is within grid bounds
+	// within gridbounds check
 	if (gridX < 0 || gridX >= cols || gridY < 0 || gridY >= rows)
-		return;
-
-	if (isLeftClick)
 	{
-		// Reset previous start tile
-		if (startTile.x >= 0)
+		return;
+	}
+
+
+	if (button == sf::Mouse::Button::Middle)
+	{
+		// Get a reference to the tile that was clicked
+		Tile& clickedTile = grid[gridY][gridX];
+
+		// Toggle the tile’s walkable state:
+		clickedTile.traversable = !clickedTile.traversable;
+
+		// Set the movement cost:
+		if (clickedTile.traversable)		// - Normal tiles have a cost of 1.
 		{
-			grid[startTile.y][startTile.x].shape.setFillColor(sf::Color::White);
+			clickedTile.cost = 1;
+		}
+		else
+		{
+			clickedTile.cost = 9999;	// - Obstacles have a huge cost (effectively unwalkable).
 		}
 
+		// Change the tile color:
+		if (clickedTile.traversable)
+		{
+			clickedTile.shape.setFillColor(sf::Color::White);		// - White for walkable.
+		}
+		else
+		{
+			clickedTile.shape.setFillColor(sf::Color(60, 60, 60)); // // - Dark gray for obstacle.
+		}
 
-		startTile = { gridX, gridY };
-		grid[gridY][gridX].shape.setFillColor(sf::Color::Green);
-	}
-	else
-	{
-		// Reset previous goal tile
+		// If new obstacle happens to cover the start or goal tile,
+		// remove those markers so they don’t sit on top of walls.
+		if (!clickedTile.traversable)
+		{
+			if (startTile.x == gridX && startTile.y == gridY)
+			{
+				startTile = { -1, -1 };
+			}
+
+			if (endTile.x == gridX && endTile.y == gridY)
+			{
+				endTile = { -1, -1 };
+			}
+
+		}
+
+		// If a goal tile exists (red tile already placed),
+		// recalculate the integration and flow fields
 		if (endTile.x >= 0)
 		{
-			grid[endTile.y][endTile.x].shape.setFillColor(sf::Color::White);
+			//computeIntegrationField();
+			//computeFlowField();
 		}
 
+		return;
+	}
 
+	if (button == sf::Mouse::Button::Left)
+	{
+		// reset previous start tile if it still exists and is traversable
+		if (startTile.x >= 0)
+		{
+			auto& prev = grid[startTile.y][startTile.x];
+			prev.shape.setFillColor(prev.traversable ? sf::Color::White : sf::Color(60, 60, 60));
+		}
+		// set new start
+		startTile = { gridX, gridY };
+		grid[gridY][gridX].shape.setFillColor(sf::Color::Green);
+		return;
+	}
+	
+	if (button == sf::Mouse::Button::Right)
+	{
+		// reset previous end tile color
+		if (endTile.x >= 0)
+		{
+			auto& prev = grid[endTile.y][endTile.x];
+			prev.shape.setFillColor(prev.traversable ? sf::Color::White : sf::Color(60, 60, 60));
+		}
 		endTile = { gridX, gridY };
 		grid[gridY][gridX].shape.setFillColor(sf::Color::Red);
+
+		// compute integration and flow fields now that we have a goal
+		//computeIntegrationField();
+		//computeFlowField();
+		return;
 	}
 
 }
