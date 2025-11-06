@@ -199,6 +199,27 @@ void Game::drawFlowField(sf::RenderWindow& window)
 			};
 
 			window.draw(line, 2, sf::PrimitiveType::Lines);
+
+			if (tile.flowDir != sf::Vector2f(0.0f, 0.0f))
+			{
+				// perp vectors for arrowhead
+				sf::Vector2f left(-tile.flowDir.y, tile.flowDir.x);
+				sf::Vector2f right(tile.flowDir.y, -tile.flowDir.x);
+
+				float arrowSize = 3.0f; //arrowhead size
+				sf::Vector2f end = center + dir;	// tip of main arrow line
+
+				// two small offset lines forming the arrowhead
+				sf::Vector2f leftTip = end - tile.flowDir * arrowSize + left * (arrowSize / 2.f);
+				sf::Vector2f rightTip = end - tile.flowDir * arrowSize + right * (arrowSize / 2.f);
+
+				sf::Vertex arrowLeft[] = { { end, sf::Color::Blue }, { leftTip, sf::Color::Blue } };
+				sf::Vertex arrowRight[] = { { end, sf::Color::Blue }, { rightTip, sf::Color::Blue } };
+
+				// draw both small lines
+				window.draw(arrowLeft, 2, sf::PrimitiveType::Lines);
+				window.draw(arrowRight, 2, sf::PrimitiveType::Lines);
+			}
 		}
 	}
 
@@ -318,7 +339,7 @@ void Game::computeFlowField()
 			}
 
 			// normalize so the arrow length is consistent
-			/*float length = std::sqrt(bestDir.x * bestDir.x + bestDir.y * bestDir.y);
+			float length = std::sqrt(bestDir.x * bestDir.x + bestDir.y * bestDir.y);
 
 			if (length > 0)
 			{
@@ -327,7 +348,7 @@ void Game::computeFlowField()
 			else
 			{
 				tile.flowDir = { 0.f, 0.f };
-			}*/
+			}
 
 		}
 	}
