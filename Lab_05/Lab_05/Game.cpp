@@ -13,9 +13,15 @@ Game::Game() :
 	//setupSprites(); 
 }
 
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 Game::~Game()
 {
 }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 void Game::run()
 {	
@@ -36,6 +42,9 @@ void Game::run()
 		render(); 
 	}
 }
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void Game::processEvents()
 {
@@ -58,6 +67,9 @@ void Game::processEvents()
 	}
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 void Game::processKeys(const std::optional<sf::Event> t_event)
 {
 	const sf::Event::KeyPressed *newKeypress = t_event->getIf<sf::Event::KeyPressed>();
@@ -70,6 +82,9 @@ void Game::processKeys(const std::optional<sf::Event> t_event)
 
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 void Game::checkKeyboardState()
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
@@ -77,6 +92,9 @@ void Game::checkKeyboardState()
 		exitGame = true;
 	}
 }
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void Game::update(sf::Time t_deltaTime)
 {
@@ -87,16 +105,22 @@ void Game::update(sf::Time t_deltaTime)
 	}
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 void Game::render()
 {
 	window.clear(sf::Color::Blue);
 
 	//window.draw(sprite);
 	drawGrid();
-	//drawFlowField(window);
+	drawFlowField(window);
 
 	window.display();
 }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 void Game::setupSprites()
 {
@@ -109,6 +133,9 @@ void Game::setupSprites()
 	sprite.setTexture(texture,true);
 	sprite.setPosition(sf::Vector2f{ 150.0f, 50.0f });
 }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 void Game::createGrid()
 {
@@ -130,6 +157,9 @@ void Game::createGrid()
 	integrationField.assign(rows, std::vector<int>(cols, 0));
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 void Game::drawGrid()
 {
 
@@ -143,6 +173,39 @@ void Game::drawGrid()
 
 }
 
+void Game::drawFlowField(sf::RenderWindow& window)
+{
+
+	for (int y = 0; y < rows; ++y)
+	{
+		for (int x = 0; x < cols; ++x)
+		{
+			Tile& tile = grid[y][x];
+
+			// Draw the base tile first
+			window.draw(tile.shape);
+
+			// Skip non-traversable tiles
+			if (!tile.traversable)
+				continue;
+
+			// Draw an arrow (a line) showing flow direction
+			sf::Vector2f center = tile.shape.getPosition() + sf::Vector2f(tileSize / 2.f, tileSize / 2.f);
+			sf::Vector2f dir = tile.flowDir * 10.f; // make it visible
+
+			sf::Vertex line[] = {
+				{ center, sf::Color::Blue },
+				{ center + dir, sf::Color::Blue }
+			};
+
+			window.draw(line, 2, sf::PrimitiveType::Lines);
+		}
+	}
+
+
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 void Game::computeIntegrationField()
@@ -213,12 +276,13 @@ void Game::computeIntegrationField()
 	}
 }
 
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 void Game::computeFlowField()
 {
-	const int dirs[8][2] = {
-		{-1, 0}, {1, 0}, {0, -1}, {0, 1},
-		{-1, -1}, {-1, 1}, {1, -1}, {1, 1}
-	};
+	const int dirs[8][2] = { {-1, 0}, {1, 0}, {0, -1}, {0, 1},{-1, -1}, {-1, 1}, {1, -1}, {1, 1} };
 
 	for (int y = 0; y < rows; ++y)
 	{
@@ -242,7 +306,9 @@ void Game::computeFlowField()
 				int nx = x + d[1];
 
 				if (ny < 0 || ny >= rows || nx < 0 || nx >= cols)
+				{
 					continue;
+				}
 
 				if (integrationField[ny][nx] < bestCost)
 				{
@@ -252,16 +318,26 @@ void Game::computeFlowField()
 			}
 
 			// normalize so the arrow length is consistent
-			float length = std::sqrt(bestDir.x * bestDir.x + bestDir.y * bestDir.y);
+			/*float length = std::sqrt(bestDir.x * bestDir.x + bestDir.y * bestDir.y);
+
 			if (length > 0)
+			{
 				tile.flowDir = bestDir / length;
+			}
 			else
+			{
 				tile.flowDir = { 0.f, 0.f };
+			}*/
+
 		}
 	}
 
 	std::cout << "Flow field computed.\n";
 }
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 void Game::handleMouseClick(sf::Vector2i mousePos, sf::Mouse::Button button)
 {
