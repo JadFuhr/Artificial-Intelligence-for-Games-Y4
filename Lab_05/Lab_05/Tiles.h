@@ -8,7 +8,7 @@ struct Tile
     sf::RectangleShape shape;
     bool traversable = true;
     int cost = 1;
-    sf::Vector2f flow{ 0.0f,0.0f }; // unit vector (dir to best neighbour)
+    sf::Vector2f flowDir{ 0.0f,0.0f }; // unit vector (dir to best neighbour)
 
     // integration cost field
     // vector field

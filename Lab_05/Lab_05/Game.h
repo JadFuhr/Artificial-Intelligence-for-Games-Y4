@@ -25,9 +25,10 @@ private:
 
 	void createGrid();
 	void drawGrid();
-	//void drawFlowField();
+	//void drawFlowField(sf::RenderWindow& window);
 
-
+	void computeIntegrationField();
+	void computeFlowField();
 	void handleMouseClick(sf::Vector2i mousePos, sf::Mouse::Button button);
 
 	sf::RenderWindow window; 
@@ -38,9 +39,11 @@ private:
 	// grid data
 	static const int rows = 50;
 	static const int cols = 50;
-	static constexpr float tileSize = 21.0f; // adjust for your window size
+	static constexpr float tileSize = 21.0f; // adjust for window size
 	std::vector<std::vector<Tile>> grid;
 
+	std::vector<std::vector<int>> integrationField;
+	const int INF = std::numeric_limits<int>::max() / 4;		// gives largest num an int can hold,divided by 4 just for convenience sake (defines large number to represent infinity )
 
 	// mouse click variables
 	sf::Vector2i startTile = { -1,-1 };

@@ -1,4 +1,9 @@
 #include "Game.h"
+#include <queue>
+#include <utility>
+#include <vector>
+#include <limits>
+#include <cmath>
 #include <iostream>
 
 Game::Game() :
@@ -88,6 +93,7 @@ void Game::render()
 
 	//window.draw(sprite);
 	drawGrid();
+	//drawFlowField(window);
 
 	window.display();
 }
@@ -121,7 +127,7 @@ void Game::createGrid()
 		}
 		grid.push_back(std::move(row));
 	}
-
+	integrationField.assign(rows, std::vector<int>(cols, 0));
 }
 
 void Game::drawGrid()
@@ -135,6 +141,126 @@ void Game::drawGrid()
 		}
 	}
 
+}
+
+
+
+void Game::computeIntegrationField()
+{
+	const int INF = std::numeric_limits<int>::max() / 4;
+
+	for (int y = 0; y < rows; ++y)
+	{
+		for (int x = 0; x < cols; ++x)
+		{
+			integrationField[y][x] = INF;
+		}
+	}
+
+	std::cout << "All tiles set to INF cost (" << INF << ")\n";
+
+	if (endTile.x < 0 || endTile.y < 0)
+	{
+		return;
+	}
+
+	using Node = std::pair<int, std::pair<int, int>>;
+
+	auto cmp = [](const Node& a, const Node& b) { return a.first > b.first; };
+
+	std::priority_queue<Node, std::vector<Node>, decltype(cmp)> pq(cmp);
+
+	integrationField[endTile.y][endTile.x] = 0;
+
+	pq.push({ 0, { endTile.y, endTile.x } });
+
+	const int dirs[4][2] = { {-1,0}, {1,0}, {0,-1}, {0,1} };
+
+	while (!pq.empty())
+	{
+		auto cur = pq.top();
+		pq.pop();
+
+		int costSoFar = cur.first;
+		int y = cur.second.first;
+		int x = cur.second.second;
+
+		if (costSoFar != integrationField[y][x]) continue;
+
+		for (auto& d : dirs)
+		{
+			int ny = y + d[0];
+			int nx = x + d[1];
+
+			if (ny < 0 || ny >= rows || nx < 0 || nx >= cols)
+			{
+				continue;
+			}
+
+			if (!grid[ny][nx].traversable)
+			{
+				continue;
+			}
+
+			int newCost = costSoFar + grid[ny][nx].cost;
+
+			if (newCost < integrationField[ny][nx])
+			{
+				integrationField[ny][nx] = newCost;
+				pq.push({ newCost, { ny, nx } });
+			}
+		}
+	}
+}
+
+void Game::computeFlowField()
+{
+	const int dirs[8][2] = {
+		{-1, 0}, {1, 0}, {0, -1}, {0, 1},
+		{-1, -1}, {-1, 1}, {1, -1}, {1, 1}
+	};
+
+	for (int y = 0; y < rows; ++y)
+	{
+		for (int x = 0; x < cols; ++x)
+		{
+			Tile& tile = grid[y][x];
+
+			if (!tile.traversable)
+			{
+				tile.flowDir = { 0.f, 0.f };
+				continue;
+			}
+
+			int bestCost = integrationField[y][x];
+			sf::Vector2f bestDir = { 0.f, 0.f };
+
+			// look at all neighbors, pick one with smallest integration cost
+			for (auto& d : dirs)
+			{
+				int ny = y + d[0];
+				int nx = x + d[1];
+
+				if (ny < 0 || ny >= rows || nx < 0 || nx >= cols)
+					continue;
+
+				if (integrationField[ny][nx] < bestCost)
+				{
+					bestCost = integrationField[ny][nx];
+					bestDir = sf::Vector2f((float)d[1], (float)d[0]); // note: (x,y) swap
+				}
+			}
+
+			// normalize so the arrow length is consistent
+			float length = std::sqrt(bestDir.x * bestDir.x + bestDir.y * bestDir.y);
+			if (length > 0)
+				tile.flowDir = bestDir / length;
+			else
+				tile.flowDir = { 0.f, 0.f };
+		}
+	}
+
+	std::cout << "Flow field computed.\n";
 }
 
 void Game::handleMouseClick(sf::Vector2i mousePos, sf::Mouse::Button button)
@@ -198,8 +324,8 @@ void Game::handleMouseClick(sf::Vector2i mousePos, sf::Mouse::Button button)
 		// recalculate the integration and flow fields
 		if (endTile.x >= 0)
 		{
-			//computeIntegrationField();
-			//computeFlowField();
+			computeIntegrationField();
+			computeFlowField();
 		}
 
 		return;
@@ -217,6 +343,7 @@ void Game::handleMouseClick(sf::Vector2i mousePos, sf::Mouse::Button button)
 		startTile = { gridX, gridY };
 		grid[gridY][gridX].shape.setFillColor(sf::Color::Green);
 		return;
+
 	}
 	
 	if (button == sf::Mouse::Button::Right)
@@ -231,8 +358,9 @@ void Game::handleMouseClick(sf::Vector2i mousePos, sf::Mouse::Button button)
 		grid[gridY][gridX].shape.setFillColor(sf::Color::Red);
 
 		// compute integration and flow fields now that we have a goal
-		//computeIntegrationField();
-		//computeFlowField();
+		computeIntegrationField();
+		computeFlowField();
+		std::cout << "Goal tile at (" << endTile.x << ", " << endTile.y << ") set to cost 0\n";
 		return;
 	}
 
