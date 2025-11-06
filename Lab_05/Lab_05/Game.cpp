@@ -115,6 +115,7 @@ void Game::render()
 	//window.draw(sprite);
 	drawGrid();
 	drawFlowField(window);
+	drawPath(window);
 
 	window.display();
 }
@@ -212,7 +213,7 @@ void Game::drawFlowField(sf::RenderWindow& window)
 				// two small offset lines forming the arrowhead
 				sf::Vector2f leftTip = end - tile.flowDir * arrowSize + left * (arrowSize / 2.f);
 				sf::Vector2f rightTip = end - tile.flowDir * arrowSize + right * (arrowSize / 2.f);
-
+				                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
 				sf::Vertex arrowLeft[] = { { end, sf::Color::Blue }, { leftTip, sf::Color::Blue } };
 				sf::Vertex arrowRight[] = { { end, sf::Color::Blue }, { rightTip, sf::Color::Blue } };
 
@@ -224,6 +225,69 @@ void Game::drawFlowField(sf::RenderWindow& window)
 	}
 
 
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+void Game::drawPath(sf::RenderWindow& window)
+{
+	//only if both tiles exist
+	if (startTile.x < 0 || endTile.x < 0)
+	{
+		return;
+	}
+
+	sf::Vector2i current = startTile;
+
+	// Store visited tiles to avoid infinite loops
+	std::vector<sf::Vector2i> visited;
+
+	for (int i = 0; i < 1000; ++i) // limit to prevent infinite loops
+	{
+		visited.push_back(current);
+
+		Tile& tile = grid[current.y][current.x];
+
+		// Compute next tile based on flowDir
+		sf::Vector2f dir = tile.flowDir;
+
+		if (dir == sf::Vector2f(0.f, 0.f))
+		{
+			break; // No direction — stop here
+		}
+
+		// Find the next grid cell in the direction of flow
+		int nextX = current.x + static_cast<int>(std::round(dir.x));
+		int nextY = current.y + static_cast<int>(std::round(dir.y));
+
+		// Break if out of bounds
+		if (nextX < 0 || nextX >= cols || nextY < 0 || nextY >= rows)
+		{
+			break;
+		}
+
+		current = { nextX, nextY };
+
+		// If we've reached the end tile, stop
+		if (current == endTile)
+		{
+			visited.push_back(current);
+			break;
+		}
+	}
+
+	// Draw the path
+	for (auto& pos : visited)
+	{
+		sf::CircleShape stepShape(tileSize / 4.f);
+
+		stepShape.setFillColor(sf::Color(255, 255, 0, 180)); // Yellow with transparency
+		stepShape.setOrigin(sf::Vector2f(stepShape.getRadius(), stepShape.getRadius()));
+		stepShape.setPosition(sf::Vector2f(grid[pos.y][pos.x].shape.getPosition().x + tileSize / 2.f, grid[pos.y][pos.x].shape.getPosition().y + tileSize / 2.f));
+
+		window.draw(stepShape);
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -433,12 +497,18 @@ void Game::handleMouseClick(sf::Vector2i mousePos, sf::Mouse::Button button)
 		// reset previous start tile if it still exists and is traversable
 		if (startTile.x >= 0)
 		{
+			computeIntegrationField();
+			computeFlowField();
+
 			auto& prev = grid[startTile.y][startTile.x];
 			prev.shape.setFillColor(prev.traversable ? sf::Color::White : sf::Color(60, 60, 60));
 		}
 		// set new start
 		startTile = { gridX, gridY };
 		grid[gridY][gridX].shape.setFillColor(sf::Color::Green);
+
+
+
 		return;
 
 	}
