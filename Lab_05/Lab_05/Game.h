@@ -26,6 +26,7 @@ private:
 	void createGrid();
 	void drawGrid();
 	void drawFlowField(sf::RenderWindow& window);
+	void drawPath(sf::RenderWindow& window);
 
 	void computeIntegrationField();
 	void computeFlowField();
