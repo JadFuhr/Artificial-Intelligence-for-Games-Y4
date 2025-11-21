@@ -115,7 +115,7 @@ void Game::render()
 	//window.draw(sprite);
 	drawGrid();
 	drawFlowField(window);
-	drawPath(window);
+	//drawPath(window);
 
 	window.display();
 }
