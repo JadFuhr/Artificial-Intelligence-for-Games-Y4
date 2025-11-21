@@ -367,7 +367,14 @@ void Game::computeIntegrationField()
 
 void Game::computeFlowField()
 {
-	const int dirs[8][2] = { {-1, 0}, {1, 0}, {0, -1}, {0, 1},{-1, -1}, {-1, 1}, {1, -1}, {1, 1} };
+	const int dirs[8][2] = { {-1, 0},  // up
+							{1, 0}, // down
+							{0, -1}, // left
+							{0, 1},// right
+							{-1, -1}, // up-left
+							{-1, 1}, // up-right
+							{1, -1}, // down-left
+							{1, 1} };// down-right
 
 	for (int y = 0; y < rows; ++y)
 	{
@@ -398,7 +405,7 @@ void Game::computeFlowField()
 				if (integrationField[ny][nx] < bestCost)
 				{
 					bestCost = integrationField[ny][nx];
-					bestDir = sf::Vector2f((float)d[1], (float)d[0]); // note: (x,y) swap
+					bestDir = sf::Vector2f((float)d[1], (float)d[0]); // (x,y) swap
 				}
 			}
 
