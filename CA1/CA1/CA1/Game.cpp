@@ -9,7 +9,7 @@ Game::Game() :
 	gameState(GameState::PLACING),
 	currentPlayer(Player::PLAYER1),
 	selectedPieceIndex(-1),
-	selectedBoardPiece(nullptr),
+//electedBoardPiece(nullptr),
 	cellSize(100.0f),
 	boardOffsetX(250.0f),
 	boardOffsetY(100.0f),
@@ -79,7 +79,7 @@ void Game::processKeys(const std::optional<sf::Event> t_event)
 	}
 }
 
-void Game::processMouseClick(sf::Vector2i mousePos) 
+void Game::processMouseClick(sf::Vector2i mousePos)
 {
 	if (gameState == GameState::GAME_OVER || currentPlayer == Player::PLAYER2)
 	{
@@ -89,7 +89,7 @@ void Game::processMouseClick(sf::Vector2i mousePos)
 	int col = static_cast<int>((mousePos.x - boardOffsetX) / cellSize);
 	int row = static_cast<int>((mousePos.y - boardOffsetY) / cellSize);
 
-	if (row >= 0 && row < BOARD_SIZE && col >= 0 && col < BOARD_SIZE) 
+	if (row >= 0 && row < BOARD_SIZE && col >= 0 && col < BOARD_SIZE)
 	{
 		if (gameState == GameState::PLACING)
 		{
@@ -97,13 +97,20 @@ void Game::processMouseClick(sf::Vector2i mousePos)
 		}
 		else if (gameState == GameState::MOVING)
 		{
-			if (selectedBoardPiece == nullptr)
+			// First click: select a piece
+			if (!m_selectedPiece.isSelected)
 			{
-				if (board[row][col].owner == currentPlayer)
+				if (board[row][col].owner == currentPlayer &&
+					board[row][col].type != PieceType::NONE)
 				{
-					selectedBoardPiece = &board[row][col];
+					m_selectedPiece.row = row;
+					m_selectedPiece.col = col;
+					m_selectedPiece.isSelected = true;
+
+					std::cout << "Selected piece at (" << row << "," << col << ")\n";
 				}
 			}
+			// Second click: move the selected piece
 			else
 			{
 				movePiece(row, col);
@@ -112,6 +119,7 @@ void Game::processMouseClick(sf::Vector2i mousePos)
 	}
 	else
 	{
+		// Clicking outside board during PLACING phase
 		if (gameState == GameState::PLACING)
 		{
 			float pieceX = 50.0f;
@@ -121,12 +129,12 @@ void Game::processMouseClick(sf::Vector2i mousePos)
 			{
 				if (!player1Pieces[i].isPlaced)
 				{
-					if (mousePos.x >= pieceX && mousePos.x <= pieceX + 80 &&mousePos.y >= pieceY && mousePos.y <= pieceY + 80)
+					if (mousePos.x >= pieceX && mousePos.x <= pieceX + 80 &&
+						mousePos.y >= pieceY && mousePos.y <= pieceY + 80)
 					{
 						selectPiece(i);
 						return;
 					}
-
 					pieceY += 100.0f;
 				}
 			}
@@ -309,29 +317,68 @@ void Game::placePiece(int row, int col)
 	}
 }
 
-void Game::movePiece(int row, int col)
+void Game::movePiece(int newRow, int newCol)
 {
-
-	if (selectedBoardPiece != nullptr)
+	if (!m_selectedPiece.isSelected)
 	{
-		if (isValidMove(*selectedBoardPiece, row, col))
+		return;
+	}
+
+	int oldRow = m_selectedPiece.row;
+	int oldCol = m_selectedPiece.col;
+
+	// Get reference to the piece we're moving
+	Piece& pieceToMove = board[oldRow][oldCol];
+
+	// Validate the move
+	if (isValidMove(pieceToMove, newRow, newCol))
+	{
+		std::cout << "Moving piece from (" << oldRow << "," << oldCol
+			<< ") to (" << newRow << "," << newCol << ")\n";
+
+		// Find this piece in the player's piece vector and update it
+		std::vector<Piece>& pieces = (currentPlayer == Player::PLAYER1) ?
+			player1Pieces : player2Pieces;
+
+		for (auto& piece : pieces)
 		{
-			board[selectedBoardPiece->row][selectedBoardPiece->col] = Piece();
-
-			selectedBoardPiece->row = row;
-			selectedBoardPiece->col = col;
-			board[row][col] = *selectedBoardPiece;
-
-			selectedBoardPiece = nullptr;
-
-			if (checkWin(currentPlayer))
+			if (piece.row == oldRow && piece.col == oldCol &&
+				piece.owner == currentPlayer)
 			{
-				gameState = GameState::GAME_OVER;
-				return;
+				// Update the piece in the vector
+				piece.row = newRow;
+				piece.col = newCol;
+				break;
 			}
-
-			switchTurn();
 		}
+
+		// Update the board
+		board[newRow][newCol] = pieceToMove;
+		board[newRow][newCol].row = newRow;
+		board[newRow][newCol].col = newCol;
+
+		// Clear old position
+		board[oldRow][oldCol] = Piece();
+
+		// Deselect
+		m_selectedPiece.isSelected = false;
+
+		// Check win
+		if (checkWin(currentPlayer))
+		{
+			gameState = GameState::GAME_OVER;
+			std::cout << "Game Over! " <<
+				(currentPlayer == Player::PLAYER1 ? "Player 1" : "AI") << " wins!\n";
+			return;
+		}
+
+		switchTurn();
+	}
+	else
+	{
+		std::cout << "Invalid move!\n";
+		// Deselect if invalid move
+		m_selectedPiece.isSelected = false;
 	}
 }
 
@@ -473,32 +520,66 @@ void Game::aiTurn()
 
 void Game::aiPlacePiece()
 {
-	// During placing, just use random placement
+	// Find the best unplaced piece
+	Move bestPlacement;
+	int bestScore = std::numeric_limits<int>::min();
+
 	for (int i = 0; i < player2Pieces.size(); i++)
 	{
 		if (!player2Pieces[i].isPlaced)
 		{
-			for (int attempts = 0; attempts < 100; attempts++)
+			// Try placing this piece on every empty cell
+			for (int row = 0; row < BOARD_SIZE; row++)
 			{
-				int row = rand() % BOARD_SIZE;
-				int col = rand() % BOARD_SIZE;
-
-				if (isValidPlacement(row, col))
+				for (int col = 0; col < BOARD_SIZE; col++)
 				{
-					player2Pieces[i].row = row;
-					player2Pieces[i].col = col;
-					player2Pieces[i].isPlaced = true;
-					board[row][col] = player2Pieces[i];
-
-					if (checkWin(Player::PLAYER2))
+					if (isValidPlacement(row, col))
 					{
-						gameState = GameState::GAME_OVER;
-						return;
-					}
+						// Temporarily place the piece
+						player2Pieces[i].row = row;
+						player2Pieces[i].col = col;
+						player2Pieces[i].isPlaced = true;
+						board[row][col] = player2Pieces[i];
 
-					switchTurn();
+						// Evaluate using minimax (or just evaluateBoard for speed)
+						int score = evaluateBoard();
+						// OR for deeper search: minimax(2, false, MIN, MAX);
+
+						// Undo the placement
+						board[row][col] = Piece();
+						player2Pieces[i].isPlaced = false;
+						player2Pieces[i].row = -1;
+						player2Pieces[i].col = -1;
+
+						// Track best placement
+						if (score > bestScore)
+						{
+							bestScore = score;
+							bestPlacement = Move(i, -1, -1, row, col);
+						}
+					}
+				}
+			}
+
+			// Place the best piece found
+			if (bestPlacement.pieceIndex >= 0)
+			{
+				player2Pieces[bestPlacement.pieceIndex].row = bestPlacement.toRow;
+
+				player2Pieces[bestPlacement.pieceIndex].col = bestPlacement.toCol;
+
+				player2Pieces[bestPlacement.pieceIndex].isPlaced = true;
+
+				board[bestPlacement.toRow][bestPlacement.toCol] = player2Pieces[bestPlacement.pieceIndex];
+
+				if (checkWin(Player::PLAYER2))
+				{
+					gameState = GameState::GAME_OVER;
 					return;
 				}
+
+				switchTurn();
+				return;
 			}
 		}
 	}
@@ -574,15 +655,12 @@ void Game::drawPieces()
 				switch (board[row][col].type)
 				{
 				case PieceType::DONKEY:
-
 					currentSprite = &donkeySprite;
 					break;
 				case PieceType::SNAKE:
-
 					currentSprite = &snakeSprite;
 					break;
 				case PieceType::FROG:
-
 					currentSprite = &frogSprite;
 					break;
 				}
@@ -590,13 +668,13 @@ void Game::drawPieces()
 				if (currentSprite != nullptr)
 				{
 					// Set position
-					currentSprite->setPosition(sf::Vector2f(boardOffsetX + col * cellSize + 10, boardOffsetY + row * cellSize + 10));
+					currentSprite->setPosition(sf::Vector2f(
+						boardOffsetX + col * cellSize + 10,
+						boardOffsetY + row * cellSize + 10));
 
 					// Scale to fit cell
 					sf::FloatRect bounds = currentSprite->getLocalBounds();
-
 					float scale = (cellSize - 20) / std::max(bounds.size.x, bounds.size.y);
-
 					currentSprite->setScale(sf::Vector2f(scale, scale));
 
 					// Color based on owner (Blue for Player 1, Red for AI)
@@ -610,12 +688,27 @@ void Game::drawPieces()
 					}
 
 					window.draw(*currentSprite);
+
+					// ? NEW: Highlight selected piece
+					if (m_selectedPiece.isSelected &&
+						m_selectedPiece.row == row &&
+						m_selectedPiece.col == col)
+					{
+						sf::RectangleShape highlight(sf::Vector2f(cellSize - 2, cellSize - 2));
+						highlight.setPosition(sf::Vector2f(
+							boardOffsetX + col * cellSize,
+							boardOffsetY + row * cellSize));
+						highlight.setFillColor(sf::Color::Transparent);
+						highlight.setOutlineColor(sf::Color::Yellow);
+						highlight.setOutlineThickness(3);
+						window.draw(highlight);
+					}
 				}
 			}
 		}
 	}
 
-	// Draw unplaced pieces on the left side
+	// Draw unplaced pieces on the left side (PLACING phase only)
 	if (gameState == GameState::PLACING)
 	{
 		float pieceX = 50.0f;
@@ -627,26 +720,21 @@ void Game::drawPieces()
 			{
 				sf::Sprite* currentSprite = nullptr;
 
-				// Select the appropriate sprite
 				switch (player1Pieces[i].type)
 				{
 				case PieceType::DONKEY:
-
 					currentSprite = &donkeySprite;
 					break;
 				case PieceType::SNAKE:
-
 					currentSprite = &snakeSprite;
 					break;
 				case PieceType::FROG:
-
 					currentSprite = &frogSprite;
 					break;
 				}
 
 				if (currentSprite != nullptr)
 				{
-					// Set position and scale for unplaced pieces
 					currentSprite->setPosition(sf::Vector2f(pieceX, pieceY));
 					currentSprite->setScale(sf::Vector2f(0.5f, 0.5f));
 					currentSprite->setColor(sf::Color::Blue);
@@ -669,6 +757,7 @@ void Game::drawPieces()
 		}
 	}
 }
+
 
 void Game::drawUI()
 {
@@ -777,6 +866,25 @@ int Game::evaluateBoard()
 
 	score -= countLineThreats(Player::PLAYER1, 3) * 50;  // Human 3 in a row
 	score -= countLineThreats(Player::PLAYER1, 2) * 10;  // Human 2 in a row
+
+	// 3. DIAGONAL THREATS 
+	score += countDiagonalThreats(Player::PLAYER2, 3) * 100;
+	score += countDiagonalThreats(Player::PLAYER2, 2) * 20;
+	score -= countDiagonalThreats(Player::PLAYER1, 3) * 100;
+	score -= countDiagonalThreats(Player::PLAYER1, 2) * 20;
+
+	// 4. CENTER CONTROL 
+	score += evaluateCenterControl(Player::PLAYER2) * 15;
+	score -= evaluateCenterControl(Player::PLAYER1) * 15;
+
+	// 5. MOBILITY (more possible moves = better position)
+	score += evaluateMobility(Player::PLAYER2) * 3;
+	score -= evaluateMobility(Player::PLAYER1) * 3;
+
+	// 6. PIECE VALUE (Frogs and Snakes are more valuable due to movement)
+	score += evaluatePiecePositions(Player::PLAYER2) * 5;
+	score -= evaluatePiecePositions(Player::PLAYER1) * 5;
+
 
 	return score;
 }
@@ -922,4 +1030,131 @@ Move Game::findBestMove()
 	}
 
 	return bestMove;
+}
+
+///////////////////////////////////////////////////////////////////////
+// advanced evaluation functions
+///////////////////////////////////////////////////////////////////////
+
+int Game::countDiagonalThreats(Player player, int length)
+{
+	int count = 0;
+
+	// Diagonal (top-left to bottom-right) ?
+	for (int row = 0; row <= BOARD_SIZE - length; row++)
+	{
+		for (int col = 0; col <= BOARD_SIZE - length; col++)
+		{
+			int playerCount = 0;
+			int emptyCount = 0;
+
+			for (int i = 0; i < length; i++)
+			{
+				if (board[row + i][col + i].owner == player)
+				{
+					playerCount++;
+				}
+				else if (board[row + i][col + i].type == PieceType::NONE)
+				{
+					emptyCount++;
+				}
+			}
+
+			if (playerCount == length - 1 && emptyCount == 1)
+			{
+				count++;
+			}
+		}
+	}
+
+	// Diagonal (top-right to bottom-left) ?
+	for (int row = 0; row <= BOARD_SIZE - length; row++)
+	{
+		for (int col = length - 1; col < BOARD_SIZE; col++)
+		{
+			int playerCount = 0;
+			int emptyCount = 0;
+
+			for (int i = 0; i < length; i++)
+			{
+				if (board[row + i][col - i].owner == player)
+				{
+					playerCount++;
+				}
+				else if (board[row + i][col - i].type == PieceType::NONE)
+				{
+					emptyCount++;
+				}
+			}
+
+			if (playerCount == length - 1 && emptyCount == 1)
+			{
+				count++;
+			}
+		}
+	}
+
+	return count;
+}
+
+int Game::evaluateCenterControl(Player player)
+{
+	int centerScore = 0;
+	int center = BOARD_SIZE / 2; // Center cell (2 on a 5x5 board)
+
+	// Pieces closer to center are more valuable
+	for (int row = 0; row < BOARD_SIZE; row++)
+	{
+		for (int col = 0; col < BOARD_SIZE; col++)
+		{
+			if (board[row][col].owner == player)
+			{
+				// Distance from center (Manhattan distance)
+				int distFromCenter = abs(row - center) + abs(col - center);
+
+				// Closer to center = higher score
+				centerScore += (4 - distFromCenter); // Max distance is 4 on 5x5
+			}
+		}
+	}
+
+	return centerScore;
+}
+
+int Game::evaluateMobility(Player player)
+{
+	std::vector<Move> moves = getPossibleMoves(player);
+	return static_cast<int>(moves.size());
+}
+
+int Game::evaluatePiecePositions(Player player)
+{
+	int score = 0;
+
+	for (int row = 0; row < BOARD_SIZE; row++)
+	{
+		for (int col = 0; col < BOARD_SIZE; col++)
+		{
+			if (board[row][col].owner == player)
+			{
+				// Frogs are most valuable (can jump)
+				if (board[row][col].type == PieceType::FROG)
+				{
+					score += 3;
+				}
+				// Snakes are moderately valuable (8-way movement)
+				else if (board[row][col].type == PieceType::SNAKE)
+				{
+					score += 2;
+				}
+				// Donkeys are least valuable (4-way movement only)
+				else if (board[row][col].type == PieceType::DONKEY)
+				{
+					score += 1;
+				}
+			}
+		}
+	}
+
+	return score;
 }

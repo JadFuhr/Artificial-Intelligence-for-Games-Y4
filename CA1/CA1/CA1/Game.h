@@ -15,6 +15,12 @@ enum class PieceType {
     FROG
 };
 
+struct SelectedPiece {
+    int row = -1;
+    int col = -1;
+    bool isSelected = false;
+};
+
 // Players
 enum class Player {
     NONE,
@@ -100,6 +106,13 @@ private:
     void undoMove(const Move& move, Player player);
     Move findBestMove();
 
+	// P3 Advanced minmax and evaluation funcs
+    // Evaluation helper functions
+    int countDiagonalThreats(Player player, int length);
+    int evaluateCenterControl(Player player);
+    int evaluateMobility(Player player);
+    int evaluatePiecePositions(Player player);
+
     // Helper funcs
     int getBoardIndex(int row, int col);
     sf::Vector2f getBoardPosition(int row, int col);
@@ -134,7 +147,7 @@ private:
     GameState gameState;
     Player currentPlayer;
     int selectedPieceIndex;
-    Piece* selectedBoardPiece;
+    SelectedPiece m_selectedPiece;
 
     
     float cellSize;
