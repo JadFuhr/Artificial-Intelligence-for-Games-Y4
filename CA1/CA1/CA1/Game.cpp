@@ -680,7 +680,7 @@ void Game::drawPieces()
 					// Color based on owner (Blue for Player 1, Red for AI)
 					if (board[row][col].owner == Player::PLAYER1)
 					{
-						currentSprite->setColor(sf::Color::Blue);
+						currentSprite->setColor(sf::Color::Green);
 					}
 					else
 					{
@@ -737,7 +737,7 @@ void Game::drawPieces()
 				{
 					currentSprite->setPosition(sf::Vector2f(pieceX, pieceY));
 					currentSprite->setScale(sf::Vector2f(0.5f, 0.5f));
-					currentSprite->setColor(sf::Color::Blue);
+					currentSprite->setColor(sf::Color::Green);
 
 					// Highlight selected piece
 					if (selectedPieceIndex == i)
@@ -783,7 +783,6 @@ void Game::drawUI()
 
 	window.draw(text);
 }
-
 
 ///////////////////////////////////////////////////////////////////////
 // minimax functions
@@ -853,10 +852,12 @@ int Game::evaluateBoard()
 	// Check if someone won
 	if (checkWin(Player::PLAYER2))
 	{
+		
 		return 1000;  // AI wins
 	}
 	if (checkWin(Player::PLAYER1))
 	{
+		
 		return -1000;  // Human wins
 	}
 
