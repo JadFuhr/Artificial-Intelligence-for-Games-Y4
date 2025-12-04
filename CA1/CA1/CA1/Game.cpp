@@ -76,7 +76,8 @@ void Game::processKeys(const std::optional<sf::Event> t_event)
 	const sf::Event::KeyPressed *newKeypress = t_event->getIf<sf::Event::KeyPressed>();
 	if (sf::Keyboard::Key::Escape == newKeypress->code)
 	{
-		exitGame = true;
+		resetGame();
+		gameState = GameState::MENU;
 	}
 	if (gameState == GameState::GAME_OVER && sf::Keyboard::Key::R == newKeypress->code)
 	{
@@ -167,10 +168,10 @@ void Game::processMouseClick(sf::Vector2i mousePos)
 
 void Game::checkKeyboardState()
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
-	{
-		exitGame = true;
-	}
+	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
+	//{
+	//	gameState = GameState::MENU;
+	//}
 }
 
 void Game::update(sf::Time t_deltaTime)
@@ -558,7 +559,7 @@ void Game::resetGame()
 
 	// Reset state
 	currentPlayer = Player::PLAYER1;
-	gameState = GameState::MENU;
+	gameState = GameState::PLACING;
 
 	// Clear selections
 	selectedPieceIndex = -1;
