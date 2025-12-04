@@ -6,10 +6,10 @@
 
 Game::Game() :
 	window{ sf::VideoMode{ sf::Vector2u{1020U, 720U}, 32U }, "The Fourth Protocol" },
-	gameState(GameState::PLACING),
+	gameState(GameState::MENU),
 	currentPlayer(Player::PLAYER1),
 	selectedPieceIndex(-1),
-//electedBoardPiece(nullptr),
+//slectedBoardPiece(nullptr),
 	cellSize(100.0f),
 	boardOffsetX(250.0f),
 	boardOffsetY(100.0f),
@@ -19,6 +19,7 @@ Game::Game() :
 	setupSprites();
 	setupBoard();
 	setupPieces();
+	setupMenu();
 }
 
 Game::~Game()
@@ -81,6 +82,22 @@ void Game::processKeys(const std::optional<sf::Event> t_event)
 
 void Game::processMouseClick(sf::Vector2i mousePos)
 {
+	//handle menu clicks
+	if (gameState == GameState::MENU)
+	{
+		// Check if Start button clicked
+		if (startButton.getGlobalBounds().contains(sf::Vector2f(mousePos)))
+		{
+			gameState = GameState::PLACING;
+			std::cout << "Game Started!\n";
+		}
+		// Check if Exit button clicked
+		else if (exitButton.getGlobalBounds().contains(sf::Vector2f(mousePos)))
+		{
+			exitGame = true;
+		}
+		return;
+	}
 	if (gameState == GameState::GAME_OVER || currentPlayer == Player::PLAYER2)
 	{
 		return;
@@ -159,6 +176,14 @@ void Game::update(sf::Time t_deltaTime)
 		window.close();
 	}
 
+	//update menu effects
+	if (gameState == GameState::MENU)
+	{
+		sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+		updateMenu(mousePos);
+		return;
+	}
+
 	// Check if all pieces placed
 	if (gameState == GameState::PLACING)
 	{
@@ -202,9 +227,16 @@ void Game::render()
 {
 	window.clear(sf::Color::Black);
 
-	drawBoard();
-	drawPieces();
-	drawUI();
+	if (gameState == GameState::MENU)
+	{
+		drawMenu();
+	}
+	else
+	{
+		drawBoard();
+		drawPieces();
+		drawUI();
+	}
 	
 	window.display();
 }
@@ -1158,4 +1190,81 @@ int Game::evaluatePiecePositions(Player player)
 	}
 
 	return score;
+}
+
+///////////////////////////////////////////////////////////////////////
+// setup menu functions
+///////////////////////////////////////////////////////////////////////
+
+
+void Game::setupMenu()
+{
+	// Title text
+	titleText.setFont(font);
+	titleText.setString("THE FOURTH PROTOCOL");
+	titleText.setCharacterSize(48);
+	titleText.setFillColor(sf::Color::White);
+	titleText.setPosition(sf::Vector2f(260, 150));
+
+	// Start button
+	startButton.setSize(sf::Vector2f(300, 80));
+	startButton.setPosition(sf::Vector2f(360, 320));
+	startButton.setFillColor(sf::Color(50, 150, 50));
+	startButton.setOutlineColor(sf::Color::White);
+	startButton.setOutlineThickness(3);
+
+	startButtonText.setFont(font);
+	startButtonText.setString("START GAME");
+	startButtonText.setCharacterSize(36);
+	startButtonText.setFillColor(sf::Color::White);
+	// Center text in button
+	sf::FloatRect textBounds = startButtonText.getLocalBounds();
+	startButtonText.setPosition(sf::Vector2f(startButton.getPosition().x + (startButton.getSize().x - textBounds.size.x) / 2, startButton.getPosition().y + (startButton.getSize().y - textBounds.size.y) / 2 - 10));
+
+	// Exit button
+	exitButton.setSize(sf::Vector2f(300, 80));
+	exitButton.setPosition(sf::Vector2f(360, 440));
+	exitButton.setFillColor(sf::Color(150, 50, 50));
+	exitButton.setOutlineColor(sf::Color::White);
+	exitButton.setOutlineThickness(3);
+
+	exitButtonText.setFont(font);
+	exitButtonText.setString("EXIT");
+	exitButtonText.setCharacterSize(36);
+	exitButtonText.setFillColor(sf::Color::White);
+	// Center text in button
+	textBounds = exitButtonText.getLocalBounds();
+	exitButtonText.setPosition(sf::Vector2f(exitButton.getPosition().x + (exitButton.getSize().x - textBounds.size.x) / 2, exitButton.getPosition().y + (exitButton.getSize().y - textBounds.size.y) / 2 - 10));
+}
+
+void Game::updateMenu(sf::Vector2i mousePos)
+{
+	// Hover effect for Start button
+	if (startButton.getGlobalBounds().contains(sf::Vector2f(mousePos)))
+	{
+		startButton.setFillColor(sf::Color(70, 200, 70)); // Brighter green
+	}
+	else
+	{
+		startButton.setFillColor(sf::Color(50, 150, 50)); // Normal green
+	}
+
+	// Hover effect for Exit button
+	if (exitButton.getGlobalBounds().contains(sf::Vector2f(mousePos)))
+	{
+		exitButton.setFillColor(sf::Color(200, 70, 70)); // Brighter red
+	}
+	else
+	{
+		exitButton.setFillColor(sf::Color(150, 50, 50)); // Normal red
+	}
+}
+
+void Game::drawMenu()
+{
+	window.draw(titleText);
+	window.draw(startButton);
+	window.draw(startButtonText);
+	window.draw(exitButton);
+	window.draw(exitButtonText);
 }

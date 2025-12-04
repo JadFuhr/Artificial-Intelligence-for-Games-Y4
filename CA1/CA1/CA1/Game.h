@@ -45,6 +45,7 @@ struct Piece
 // States
 enum class GameState
 {
+    MENU,
     PLACING,
     MOVING,
     GAME_OVER
@@ -83,6 +84,11 @@ private:
     void setupSprites();
     void setupBoard();
     void setupPieces();
+    void setupMenu();
+
+    // Menu functions 
+    void updateMenu(sf::Vector2i mousePos);
+    void drawMenu();
 
     // Core game logic funcs
     void selectPiece(int index);
@@ -125,6 +131,12 @@ private:
     sf::RenderWindow window;
     sf::Font font;
     sf::Text text{ font };
+
+    sf::RectangleShape startButton;
+    sf::RectangleShape exitButton;
+    sf::Text startButtonText{ font };
+    sf::Text exitButtonText{ font };
+    sf::Text titleText{ font };
 
     // Textures
     sf::Texture donkeyTexture;
