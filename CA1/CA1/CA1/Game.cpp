@@ -78,10 +78,16 @@ void Game::processKeys(const std::optional<sf::Event> t_event)
 	{
 		exitGame = true;
 	}
+	if (gameState == GameState::GAME_OVER && sf::Keyboard::Key::R == newKeypress->code)
+	{
+		resetGame();
+		return;
+	}
 }
 
 void Game::processMouseClick(sf::Vector2i mousePos)
 {
+	
 	//handle menu clicks
 	if (gameState == GameState::MENU)
 	{
@@ -532,6 +538,33 @@ void Game::switchTurn()
 {
 
 	currentPlayer = (currentPlayer == Player::PLAYER1) ? Player::PLAYER2 : Player::PLAYER1;
+}
+
+void Game::resetGame()
+{
+	// Clear board
+	for (int row = 0; row < BOARD_SIZE; row++)
+	{
+		for (int col = 0; col < BOARD_SIZE; col++)
+		{
+			board[row][col] = Piece();
+		}
+	}
+
+	// Reset player pieces
+	player1Pieces.clear();
+	player2Pieces.clear();
+	setupPieces();  // recreate all pieces
+
+	// Reset state
+	currentPlayer = Player::PLAYER1;
+	gameState = GameState::MENU;
+
+	// Clear selections
+	selectedPieceIndex = -1;
+	m_selectedPiece = SelectedPiece();
+
+	std::cout << "Game Reset!\n";
 }
 
 ///////////////////////////////////////////////////////////////////////

@@ -98,6 +98,7 @@ private:
     bool isValidMove(Piece& piece, int newRow, int newCol);
     bool checkWin(Player player);
     void switchTurn();
+    void resetGame();
 
     // AI funcs
     void aiTurn();
