@@ -1,0 +1,132 @@
+\doxysection{Move Struct Reference}
+\hypertarget{struct_move}{}\label{struct_move}\index{Move@{Move}}
+
+
+Represents a move in the game.  
+
+
+
+
+{\ttfamily \#include $<$Game.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_move_a4b1acc3a67d30c385ad9a6000526393a}{Move}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_move_a86c49003e2920ec999fead0907db62a1}{Move}} (int idx, int f\+Row, int f\+Col, int t\+Row, int t\+Col)
+\begin{DoxyCompactList}\small\item\em Parameterized constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{struct_move_ab26bb348fb25d87a71fb5c39984e9634}{piece\+Index}}
+\begin{DoxyCompactList}\small\item\em Index of piece being moved. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{struct_move_a97ae514386969281ce185e3388039762}{from\+Row}}
+\begin{DoxyCompactList}\small\item\em Starting row position. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{struct_move_a498108ed17d7bb8eebdaa6fce7870d72}{from\+Col}}
+\begin{DoxyCompactList}\small\item\em Starting column position. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{struct_move_a4fc5440750d884293f660012dd00d8c5}{to\+Row}}
+\begin{DoxyCompactList}\small\item\em Destination row position. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{struct_move_a426434326fddb8bdda8d165f774d2b8d}{to\+Col}}
+\begin{DoxyCompactList}\small\item\em Destination column position. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a move in the game. 
+
+\label{doc-constructors}
+\Hypertarget{struct_move_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{struct_move_a4b1acc3a67d30c385ad9a6000526393a}\index{Move@{Move}!Move@{Move}}
+\index{Move@{Move}!Move@{Move}}
+\doxysubsubsection{\texorpdfstring{Move()}{Move()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{struct_move_a4b1acc3a67d30c385ad9a6000526393a} 
+Move\+::\+Move (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default constructor. 
+
+\Hypertarget{struct_move_a86c49003e2920ec999fead0907db62a1}\index{Move@{Move}!Move@{Move}}
+\index{Move@{Move}!Move@{Move}}
+\doxysubsubsection{\texorpdfstring{Move()}{Move()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{struct_move_a86c49003e2920ec999fead0907db62a1} 
+Move\+::\+Move (\begin{DoxyParamCaption}\item[{int}]{idx}{, }\item[{int}]{f\+Row}{, }\item[{int}]{f\+Col}{, }\item[{int}]{t\+Row}{, }\item[{int}]{t\+Col}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Parameterized constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em idx} & \doxylink{struct_piece}{Piece} index \\
+\hline
+{\em f\+Row} & From row \\
+\hline
+{\em f\+Col} & From column \\
+\hline
+{\em t\+Row} & To row \\
+\hline
+{\em t\+Col} & To column \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-variable-members}
+\Hypertarget{struct_move_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{struct_move_a498108ed17d7bb8eebdaa6fce7870d72}\index{Move@{Move}!fromCol@{fromCol}}
+\index{fromCol@{fromCol}!Move@{Move}}
+\doxysubsubsection{\texorpdfstring{fromCol}{fromCol}}
+{\footnotesize\ttfamily \label{struct_move_a498108ed17d7bb8eebdaa6fce7870d72} 
+int Move\+::from\+Col}
+
+
+
+Starting column position. 
+
+\Hypertarget{struct_move_a97ae514386969281ce185e3388039762}\index{Move@{Move}!fromRow@{fromRow}}
+\index{fromRow@{fromRow}!Move@{Move}}
+\doxysubsubsection{\texorpdfstring{fromRow}{fromRow}}
+{\footnotesize\ttfamily \label{struct_move_a97ae514386969281ce185e3388039762} 
+int Move\+::from\+Row}
+
+
+
+Starting row position. 
+
+\Hypertarget{struct_move_ab26bb348fb25d87a71fb5c39984e9634}\index{Move@{Move}!pieceIndex@{pieceIndex}}
+\index{pieceIndex@{pieceIndex}!Move@{Move}}
+\doxysubsubsection{\texorpdfstring{pieceIndex}{pieceIndex}}
+{\footnotesize\ttfamily \label{struct_move_ab26bb348fb25d87a71fb5c39984e9634} 
+int Move\+::piece\+Index}
+
+
+
+Index of piece being moved. 
+
+\Hypertarget{struct_move_a426434326fddb8bdda8d165f774d2b8d}\index{Move@{Move}!toCol@{toCol}}
+\index{toCol@{toCol}!Move@{Move}}
+\doxysubsubsection{\texorpdfstring{toCol}{toCol}}
+{\footnotesize\ttfamily \label{struct_move_a426434326fddb8bdda8d165f774d2b8d} 
+int Move\+::to\+Col}
+
+
+
+Destination column position. 
+
+\Hypertarget{struct_move_a4fc5440750d884293f660012dd00d8c5}\index{Move@{Move}!toRow@{toRow}}
+\index{toRow@{toRow}!Move@{Move}}
+\doxysubsubsection{\texorpdfstring{toRow}{toRow}}
+{\footnotesize\ttfamily \label{struct_move_a4fc5440750d884293f660012dd00d8c5} 
+int Move\+::to\+Row}
+
+
+
+Destination row position. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gameuser/\+Desktop/\+Artificial-\/\+Intelligence-\/for-\/\+Games-\/\+Y4/\+CA1/\+CA1/\+CA1/\mbox{\hyperlink{_game_8h}{Game.\+h}}\end{DoxyCompactItemize}

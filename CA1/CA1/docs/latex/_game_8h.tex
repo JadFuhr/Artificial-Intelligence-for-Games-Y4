@@ -1,0 +1,144 @@
+\doxysection{CA1/\+Game.h File Reference}
+\hypertarget{_game_8h}{}\label{_game_8h}\index{CA1/Game.h@{CA1/Game.h}}
+
+
+Main game class header for The Fourth Protocol.  
+
+
+{\ttfamily \#include $<$SFML/\+Graphics.\+hpp$>$}\newline
+{\ttfamily \#include $<$SFML/\+Audio.\+hpp$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_selected_piece}{Selected\+Piece}}
+\begin{DoxyCompactList}\small\item\em Stores information about currently selected piece. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_piece}{Piece}}
+\begin{DoxyCompactList}\small\item\em Represents a game piece with its properties. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_move}{Move}}
+\begin{DoxyCompactList}\small\item\em Represents a move in the game. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_game}{Game}}
+\begin{DoxyCompactList}\small\item\em Main game class that handles all game logic and rendering. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{_game_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021}{Piece\+Type}} \{ \mbox{\hyperlink{_game_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021ab50339a10e1de285ac99d4c3990b8693}{NONE}}
+, \mbox{\hyperlink{_game_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021accfe3460be77734fe329bb4a711e818b}{DONKEY}}
+, \mbox{\hyperlink{_game_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021a6a30da74d0b15b45ec14072c93b6645d}{SNAKE}}
+, \mbox{\hyperlink{_game_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021a45780b39c03887e3180322f2a644fc34}{FROG}}
+ \}
+\begin{DoxyCompactList}\small\item\em Defines the types of game pieces available. \end{DoxyCompactList}\item 
+enum class \mbox{\hyperlink{_game_8h_a9c8780378078e51e7c9041cbac392db9}{Player}} \{ \mbox{\hyperlink{_game_8h_a9c8780378078e51e7c9041cbac392db9ab50339a10e1de285ac99d4c3990b8693}{NONE}}
+, \mbox{\hyperlink{_game_8h_a9c8780378078e51e7c9041cbac392db9a8e8478fd786f76ac4c83d5d3e1f267f2}{PLAYER1}}
+, \mbox{\hyperlink{_game_8h_a9c8780378078e51e7c9041cbac392db9a843a04bf323577f88418d120b31233d1}{PLAYER2}}
+ \}
+\begin{DoxyCompactList}\small\item\em Defines the players in the game. \end{DoxyCompactList}\item 
+enum class \mbox{\hyperlink{_game_8h_a7899b65f1ea0f655e4bbf8d2a5714285}{Game\+State}} \{ \newline
+\mbox{\hyperlink{_game_8h_a7899b65f1ea0f655e4bbf8d2a5714285a3ed53fbeb1eab0443561b68ca0c0b5cf}{MENU}}
+, \mbox{\hyperlink{_game_8h_a7899b65f1ea0f655e4bbf8d2a5714285a3226a010723ad09aabee03aa61c0183b}{DIFFICULTY\+\_\+\+SELECT}}
+, \mbox{\hyperlink{_game_8h_a7899b65f1ea0f655e4bbf8d2a5714285ae462f1ba0f6e3e5d31389982db27f3aa}{PLACING}}
+, \mbox{\hyperlink{_game_8h_a7899b65f1ea0f655e4bbf8d2a5714285aaf5a690fd5ec6f789dbfc51ec6a891ba}{MOVING}}
+, \newline
+\mbox{\hyperlink{_game_8h_a7899b65f1ea0f655e4bbf8d2a5714285af8454a27e1df41397bf42444fe5aa45b}{GAME\+\_\+\+OVER}}
+ \}
+\begin{DoxyCompactList}\small\item\em Defines the possible states of the game. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Main game class header for The Fourth Protocol. 
+
+\begin{DoxyAuthor}{Author}
+Jad Fuhr 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+05/12/2025 
+\end{DoxyDate}
+
+
+\label{doc-enum-members}
+\Hypertarget{_game_8h_doc-enum-members}
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{_game_8h_a7899b65f1ea0f655e4bbf8d2a5714285}\index{Game.h@{Game.h}!GameState@{GameState}}
+\index{GameState@{GameState}!Game.h@{Game.h}}
+\doxysubsubsection{\texorpdfstring{GameState}{GameState}}
+{\footnotesize\ttfamily \label{_game_8h_a7899b65f1ea0f655e4bbf8d2a5714285} 
+enum class \mbox{\hyperlink{_game_8h_a7899b65f1ea0f655e4bbf8d2a5714285}{Game\+State}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Defines the possible states of the game. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MENU@{MENU}!Game.h@{Game.h}}\index{Game.h@{Game.h}!MENU@{MENU}}}\Hypertarget{_game_8h_a7899b65f1ea0f655e4bbf8d2a5714285a3ed53fbeb1eab0443561b68ca0c0b5cf}\label{_game_8h_a7899b65f1ea0f655e4bbf8d2a5714285a3ed53fbeb1eab0443561b68ca0c0b5cf} 
+MENU&Main menu screen. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DIFFICULTY\_SELECT@{DIFFICULTY\_SELECT}!Game.h@{Game.h}}\index{Game.h@{Game.h}!DIFFICULTY\_SELECT@{DIFFICULTY\_SELECT}}}\Hypertarget{_game_8h_a7899b65f1ea0f655e4bbf8d2a5714285a3226a010723ad09aabee03aa61c0183b}\label{_game_8h_a7899b65f1ea0f655e4bbf8d2a5714285a3226a010723ad09aabee03aa61c0183b} 
+DIFFICULTY\+\_\+\+SELECT&Difficulty selection screen. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PLACING@{PLACING}!Game.h@{Game.h}}\index{Game.h@{Game.h}!PLACING@{PLACING}}}\Hypertarget{_game_8h_a7899b65f1ea0f655e4bbf8d2a5714285ae462f1ba0f6e3e5d31389982db27f3aa}\label{_game_8h_a7899b65f1ea0f655e4bbf8d2a5714285ae462f1ba0f6e3e5d31389982db27f3aa} 
+PLACING&\doxylink{struct_piece}{Piece} placement phase. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MOVING@{MOVING}!Game.h@{Game.h}}\index{Game.h@{Game.h}!MOVING@{MOVING}}}\Hypertarget{_game_8h_a7899b65f1ea0f655e4bbf8d2a5714285aaf5a690fd5ec6f789dbfc51ec6a891ba}\label{_game_8h_a7899b65f1ea0f655e4bbf8d2a5714285aaf5a690fd5ec6f789dbfc51ec6a891ba} 
+MOVING&\doxylink{struct_piece}{Piece} movement phase. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GAME\_OVER@{GAME\_OVER}!Game.h@{Game.h}}\index{Game.h@{Game.h}!GAME\_OVER@{GAME\_OVER}}}\Hypertarget{_game_8h_a7899b65f1ea0f655e4bbf8d2a5714285af8454a27e1df41397bf42444fe5aa45b}\label{_game_8h_a7899b65f1ea0f655e4bbf8d2a5714285af8454a27e1df41397bf42444fe5aa45b} 
+GAME\+\_\+\+OVER&\doxylink{class_game}{Game} over state. \\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{_game_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021}\index{Game.h@{Game.h}!PieceType@{PieceType}}
+\index{PieceType@{PieceType}!Game.h@{Game.h}}
+\doxysubsubsection{\texorpdfstring{PieceType}{PieceType}}
+{\footnotesize\ttfamily \label{_game_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021} 
+enum class \mbox{\hyperlink{_game_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021}{Piece\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Defines the types of game pieces available. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NONE@{NONE}!Game.h@{Game.h}}\index{Game.h@{Game.h}!NONE@{NONE}}}\Hypertarget{_game_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021ab50339a10e1de285ac99d4c3990b8693}\label{_game_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021ab50339a10e1de285ac99d4c3990b8693} 
+NONE&No piece. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DONKEY@{DONKEY}!Game.h@{Game.h}}\index{Game.h@{Game.h}!DONKEY@{DONKEY}}}\Hypertarget{_game_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021accfe3460be77734fe329bb4a711e818b}\label{_game_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021accfe3460be77734fe329bb4a711e818b} 
+DONKEY&Donkey piece -\/ moves orthogonally one square. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SNAKE@{SNAKE}!Game.h@{Game.h}}\index{Game.h@{Game.h}!SNAKE@{SNAKE}}}\Hypertarget{_game_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021a6a30da74d0b15b45ec14072c93b6645d}\label{_game_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021a6a30da74d0b15b45ec14072c93b6645d} 
+SNAKE&Snake piece -\/ moves in any direction one square. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FROG@{FROG}!Game.h@{Game.h}}\index{Game.h@{Game.h}!FROG@{FROG}}}\Hypertarget{_game_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021a45780b39c03887e3180322f2a644fc34}\label{_game_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021a45780b39c03887e3180322f2a644fc34} 
+FROG&Frog piece -\/ can jump over other pieces. \\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{_game_8h_a9c8780378078e51e7c9041cbac392db9}\index{Game.h@{Game.h}!Player@{Player}}
+\index{Player@{Player}!Game.h@{Game.h}}
+\doxysubsubsection{\texorpdfstring{Player}{Player}}
+{\footnotesize\ttfamily \label{_game_8h_a9c8780378078e51e7c9041cbac392db9} 
+enum class \mbox{\hyperlink{_game_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Defines the players in the game. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NONE@{NONE}!Game.h@{Game.h}}\index{Game.h@{Game.h}!NONE@{NONE}}}\Hypertarget{_game_8h_a9c8780378078e51e7c9041cbac392db9ab50339a10e1de285ac99d4c3990b8693}\label{_game_8h_a9c8780378078e51e7c9041cbac392db9ab50339a10e1de285ac99d4c3990b8693} 
+NONE&No player. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PLAYER1@{PLAYER1}!Game.h@{Game.h}}\index{Game.h@{Game.h}!PLAYER1@{PLAYER1}}}\Hypertarget{_game_8h_a9c8780378078e51e7c9041cbac392db9a8e8478fd786f76ac4c83d5d3e1f267f2}\label{_game_8h_a9c8780378078e51e7c9041cbac392db9a8e8478fd786f76ac4c83d5d3e1f267f2} 
+PLAYER1&Human player. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PLAYER2@{PLAYER2}!Game.h@{Game.h}}\index{Game.h@{Game.h}!PLAYER2@{PLAYER2}}}\Hypertarget{_game_8h_a9c8780378078e51e7c9041cbac392db9a843a04bf323577f88418d120b31233d1}\label{_game_8h_a9c8780378078e51e7c9041cbac392db9a843a04bf323577f88418d120b31233d1} 
+PLAYER2&AI player. \\
+\hline
+
+\end{DoxyEnumFields}

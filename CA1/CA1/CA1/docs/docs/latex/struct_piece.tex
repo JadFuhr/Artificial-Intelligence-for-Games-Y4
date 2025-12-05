@@ -1,0 +1,126 @@
+\doxysection{Piece Struct Reference}
+\hypertarget{struct_piece}{}\label{struct_piece}\index{Piece@{Piece}}
+
+
+Represents a game piece with its properties.  
+
+
+
+
+{\ttfamily \#include $<$Game.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_piece_ac57de5803bbad829b143bc7268267dc1}{Piece}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_piece_abdb4d7b21ff8902ca7cc60f35c219a06}{Piece}} (\mbox{\hyperlink{_game_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021}{Piece\+Type}} t, \mbox{\hyperlink{_game_8h_a9c8780378078e51e7c9041cbac392db9}{Player}} p)
+\begin{DoxyCompactList}\small\item\em Parameterized constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_game_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021}{Piece\+Type}} \mbox{\hyperlink{struct_piece_ab8f29312ab7939c96ff03f1fb8957d1c}{type}}
+\begin{DoxyCompactList}\small\item\em Type of the piece. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_game_8h_a9c8780378078e51e7c9041cbac392db9}{Player}} \mbox{\hyperlink{struct_piece_a248c5d966874b6cec47694e050191423}{owner}}
+\begin{DoxyCompactList}\small\item\em Owner of the piece. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{struct_piece_ac6ef7c474f20562cb629c2452ce0631d}{row}}
+\begin{DoxyCompactList}\small\item\em Current row position. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{struct_piece_a4017d278fbe40f96214961ab71f17d35}{col}}
+\begin{DoxyCompactList}\small\item\em Current column position. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{struct_piece_a057d5e85bb9a89b95da7d9ab1e657147}{is\+Placed}}
+\begin{DoxyCompactList}\small\item\em Whether piece has been placed on board. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a game piece with its properties. 
+
+\label{doc-constructors}
+\Hypertarget{struct_piece_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{struct_piece_ac57de5803bbad829b143bc7268267dc1}\index{Piece@{Piece}!Piece@{Piece}}
+\index{Piece@{Piece}!Piece@{Piece}}
+\doxysubsubsection{\texorpdfstring{Piece()}{Piece()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{struct_piece_ac57de5803bbad829b143bc7268267dc1} 
+Piece\+::\+Piece (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default constructor. 
+
+\Hypertarget{struct_piece_abdb4d7b21ff8902ca7cc60f35c219a06}\index{Piece@{Piece}!Piece@{Piece}}
+\index{Piece@{Piece}!Piece@{Piece}}
+\doxysubsubsection{\texorpdfstring{Piece()}{Piece()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{struct_piece_abdb4d7b21ff8902ca7cc60f35c219a06} 
+Piece\+::\+Piece (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_game_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021}{Piece\+Type}}}]{t}{, }\item[{\mbox{\hyperlink{_game_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}}]{p}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Parameterized constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & \doxylink{struct_piece}{Piece} type \\
+\hline
+{\em p} & \doxylink{_game_8h_a9c8780378078e51e7c9041cbac392db9}{Player} owner \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-variable-members}
+\Hypertarget{struct_piece_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{struct_piece_a4017d278fbe40f96214961ab71f17d35}\index{Piece@{Piece}!col@{col}}
+\index{col@{col}!Piece@{Piece}}
+\doxysubsubsection{\texorpdfstring{col}{col}}
+{\footnotesize\ttfamily \label{struct_piece_a4017d278fbe40f96214961ab71f17d35} 
+int Piece\+::col}
+
+
+
+Current column position. 
+
+\Hypertarget{struct_piece_a057d5e85bb9a89b95da7d9ab1e657147}\index{Piece@{Piece}!isPlaced@{isPlaced}}
+\index{isPlaced@{isPlaced}!Piece@{Piece}}
+\doxysubsubsection{\texorpdfstring{isPlaced}{isPlaced}}
+{\footnotesize\ttfamily \label{struct_piece_a057d5e85bb9a89b95da7d9ab1e657147} 
+bool Piece\+::is\+Placed}
+
+
+
+Whether piece has been placed on board. 
+
+\Hypertarget{struct_piece_a248c5d966874b6cec47694e050191423}\index{Piece@{Piece}!owner@{owner}}
+\index{owner@{owner}!Piece@{Piece}}
+\doxysubsubsection{\texorpdfstring{owner}{owner}}
+{\footnotesize\ttfamily \label{struct_piece_a248c5d966874b6cec47694e050191423} 
+\mbox{\hyperlink{_game_8h_a9c8780378078e51e7c9041cbac392db9}{Player}} Piece\+::owner}
+
+
+
+Owner of the piece. 
+
+\Hypertarget{struct_piece_ac6ef7c474f20562cb629c2452ce0631d}\index{Piece@{Piece}!row@{row}}
+\index{row@{row}!Piece@{Piece}}
+\doxysubsubsection{\texorpdfstring{row}{row}}
+{\footnotesize\ttfamily \label{struct_piece_ac6ef7c474f20562cb629c2452ce0631d} 
+int Piece\+::row}
+
+
+
+Current row position. 
+
+\Hypertarget{struct_piece_ab8f29312ab7939c96ff03f1fb8957d1c}\index{Piece@{Piece}!type@{type}}
+\index{type@{type}!Piece@{Piece}}
+\doxysubsubsection{\texorpdfstring{type}{type}}
+{\footnotesize\ttfamily \label{struct_piece_ab8f29312ab7939c96ff03f1fb8957d1c} 
+\mbox{\hyperlink{_game_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021}{Piece\+Type}} Piece\+::type}
+
+
+
+Type of the piece. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gameuser/\+Desktop/\+Artificial-\/\+Intelligence-\/for-\/\+Games-\/\+Y4/\+CA1/\+CA1/\+CA1/\mbox{\hyperlink{_game_8h}{Game.\+h}}\end{DoxyCompactItemize}

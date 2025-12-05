@@ -258,7 +258,7 @@ void Game::update(sf::Time t_deltaTime)
 	{
 		static sf::Clock aiDelay;
 
-		if (aiDelay.getElapsedTime().asSeconds() > 0.5f)
+		if (aiDelay.getElapsedTime().asSeconds() > 0.1f)
 		{
 			aiTurn();
 			aiDelay.restart();
@@ -1133,9 +1133,9 @@ Move Game::findBestMove()
 	for (const Move& move : moves)
 	{
 		makeMove(move, Player::PLAYER2);
-		int score = minimax(MAX_DEPTH - 1, false,
-			std::numeric_limits<int>::min(),
-			std::numeric_limits<int>::max());
+
+		int score = minimax(MAX_DEPTH - 1, false, std::numeric_limits<int>::min(), std::numeric_limits<int>::max());
+
 		undoMove(move, Player::PLAYER2);
 
 		if (score > bestScore)
