@@ -9,7 +9,6 @@ Game::Game() :
 	gameState(GameState::MENU),
 	currentPlayer(Player::PLAYER1),
 	selectedPieceIndex(-1),
-	//slectedBoardPiece(nullptr),
 	cellSize(100.0f),
 	boardOffsetX(250.0f),
 	boardOffsetY(100.0f),
