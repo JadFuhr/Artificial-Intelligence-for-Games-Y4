@@ -9,17 +9,20 @@ Game::Game() :
 	gameState(GameState::MENU),
 	currentPlayer(Player::PLAYER1),
 	selectedPieceIndex(-1),
-//slectedBoardPiece(nullptr),
+	//slectedBoardPiece(nullptr),
 	cellSize(100.0f),
 	boardOffsetX(250.0f),
 	boardOffsetY(100.0f),
-	exitGame(false)
+	exitGame(false),
+	currentDifficulty(Difficulty::MEDIUM),
+	MAX_DEPTH(3)
 { 
 	srand(static_cast<unsigned>(time(0)));
 	setupSprites();
 	setupBoard();
 	setupPieces();
 	setupMenu();
+	setupDifficultyScreen();
 }
 
 Game::~Game()
@@ -95,8 +98,8 @@ void Game::processMouseClick(sf::Vector2i mousePos)
 		// Check if Start button clicked
 		if (startButton.getGlobalBounds().contains(sf::Vector2f(mousePos)))
 		{
-			gameState = GameState::PLACING;
-			std::cout << "Game Started!\n";
+			gameState = GameState::DIFFICULTY_SELECT;
+			std::cout << "Opening difficulty selection\n";
 		}
 		// Check if Exit button clicked
 		else if (exitButton.getGlobalBounds().contains(sf::Vector2f(mousePos)))
@@ -105,6 +108,32 @@ void Game::processMouseClick(sf::Vector2i mousePos)
 		}
 		return;
 	}
+
+	// Handle difficulty selection clicks
+	if (gameState == GameState::DIFFICULTY_SELECT)
+	{
+		if (easyButton.getGlobalBounds().contains(sf::Vector2f(mousePos)))
+		{
+			setDifficulty(Difficulty::EASY);
+			gameState = GameState::PLACING;
+		}
+		else if (mediumButton.getGlobalBounds().contains(sf::Vector2f(mousePos)))
+		{
+			setDifficulty(Difficulty::MEDIUM);
+			gameState = GameState::PLACING;
+		}
+		else if (hardButton.getGlobalBounds().contains(sf::Vector2f(mousePos)))
+		{
+			setDifficulty(Difficulty::HARD);
+			gameState = GameState::PLACING;
+		}
+		else if (backButton.getGlobalBounds().contains(sf::Vector2f(mousePos)))
+		{
+			gameState = GameState::MENU;
+		}
+		return;
+	}
+
 	if (gameState == GameState::GAME_OVER || currentPlayer == Player::PLAYER2)
 	{
 		return;
@@ -191,6 +220,14 @@ void Game::update(sf::Time t_deltaTime)
 		return;
 	}
 
+	// Update difficulty selection screen
+	if (gameState == GameState::DIFFICULTY_SELECT)
+	{
+		sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+		updateDifficultyScreen(mousePos);
+		return;
+	}
+
 	// Check if all pieces placed
 	if (gameState == GameState::PLACING)
 	{
@@ -237,6 +274,10 @@ void Game::render()
 	if (gameState == GameState::MENU)
 	{
 		drawMenu();
+	}
+	else if (gameState == GameState::DIFFICULTY_SELECT)  // NEW
+	{
+		drawDifficultyScreen();
 	}
 	else
 	{
@@ -286,6 +327,13 @@ void Game::setupSprites()
 	{
 		std::cout << "Problem loading font\n";
 	}
+
+	restartText.setFont(font);
+	restartText.setString("Press R to Restart");
+	restartText.setCharacterSize(28);
+	restartText.setFillColor(sf::Color::Yellow);
+	restartText.setPosition(sf::Vector2f(350, 620));
+
 }
 
 void Game::setupBoard()
@@ -824,7 +872,6 @@ void Game::drawPieces()
 	}
 }
 
-
 void Game::drawUI()
 {
 	text.setFont(font);
@@ -836,6 +883,9 @@ void Game::drawUI()
 		text.setString("Game Over!");
 
 		text.setPosition(sf::Vector2f(400, 30));
+
+		// Draw restart instructions
+		window.draw(restartText);
 	}
 	else
 	{
@@ -1230,7 +1280,6 @@ int Game::evaluatePiecePositions(Player player)
 // setup menu functions
 ///////////////////////////////////////////////////////////////////////
 
-
 void Game::setupMenu()
 {
 	// Title text
@@ -1301,4 +1350,162 @@ void Game::drawMenu()
 	window.draw(startButtonText);
 	window.draw(exitButton);
 	window.draw(exitButtonText);
+}
+
+///////////////////////////////////////////////////////////////////////
+// setup difficulty screen functions
+///////////////////////////////////////////////////////////////////////
+
+void Game::setupDifficultyScreen()
+{
+	// Title
+	difficultyTitleText.setFont(font);
+	difficultyTitleText.setString("SELECT DIFFICULTY");
+	difficultyTitleText.setCharacterSize(48);
+	difficultyTitleText.setFillColor(sf::Color::White);
+	difficultyTitleText.setPosition(sf::Vector2f(300, 100));
+
+	// Easy button
+	easyButton.setSize(sf::Vector2f(300, 80));
+	easyButton.setPosition(sf::Vector2f(360, 220));
+	easyButton.setFillColor(sf::Color(50, 150, 50));
+	easyButton.setOutlineColor(sf::Color::White);
+	easyButton.setOutlineThickness(3);
+
+	easyButtonText.setFont(font);
+	easyButtonText.setString("EASY");
+	easyButtonText.setCharacterSize(36);
+	easyButtonText.setFillColor(sf::Color::White);
+
+	sf::FloatRect textBounds = easyButtonText.getLocalBounds();
+
+	easyButtonText.setPosition(sf::Vector2f(easyButton.getPosition().x + (easyButton.getSize().x - textBounds.size.x) / 2,easyButton.getPosition().y + (easyButton.getSize().y - textBounds.size.y) / 2 - 10));
+
+	// Medium button
+	mediumButton.setSize(sf::Vector2f(300, 80));
+	mediumButton.setPosition(sf::Vector2f(360, 320));
+	mediumButton.setFillColor(sf::Color(150, 150, 50));
+	mediumButton.setOutlineColor(sf::Color::White);
+	mediumButton.setOutlineThickness(3);
+
+	mediumButtonText.setFont(font);
+	mediumButtonText.setString("MEDIUM");
+	mediumButtonText.setCharacterSize(36);
+	mediumButtonText.setFillColor(sf::Color::White);
+
+	textBounds = mediumButtonText.getLocalBounds();
+
+	mediumButtonText.setPosition(sf::Vector2f(mediumButton.getPosition().x + (mediumButton.getSize().x - textBounds.size.x) / 2,
+		mediumButton.getPosition().y + (mediumButton.getSize().y - textBounds.size.y) / 2 - 10));
+
+	// Hard button
+	hardButton.setSize(sf::Vector2f(300, 80));
+	hardButton.setPosition(sf::Vector2f(360, 420));
+	hardButton.setFillColor(sf::Color(150, 50, 50));
+	hardButton.setOutlineColor(sf::Color::White);
+	hardButton.setOutlineThickness(3);
+
+	hardButtonText.setFont(font);
+	hardButtonText.setString("HARD");
+	hardButtonText.setCharacterSize(36);
+	hardButtonText.setFillColor(sf::Color::White);
+
+	textBounds = hardButtonText.getLocalBounds();
+
+	hardButtonText.setPosition(sf::Vector2f(hardButton.getPosition().x + (hardButton.getSize().x - textBounds.size.x) / 2,
+		hardButton.getPosition().y + (hardButton.getSize().y - textBounds.size.y) / 2 - 10));
+
+	// Back button
+	backButton.setSize(sf::Vector2f(200, 60));
+	backButton.setPosition(sf::Vector2f(410, 540));
+	backButton.setFillColor(sf::Color(70, 70, 70));
+	backButton.setOutlineColor(sf::Color::White);
+	backButton.setOutlineThickness(2);
+
+	backButtonText.setFont(font);
+	backButtonText.setString("BACK");
+	backButtonText.setCharacterSize(28);
+	backButtonText.setFillColor(sf::Color::White);
+
+	textBounds = backButtonText.getLocalBounds();
+
+	backButtonText.setPosition(sf::Vector2f(backButton.getPosition().x + (backButton.getSize().x - textBounds.size.x) / 2,
+		backButton.getPosition().y + (backButton.getSize().y - textBounds.size.y) / 2 - 10));
+}
+
+void Game::updateDifficultyScreen(sf::Vector2i mousePos)
+{
+	// Hover effect for Easy button
+	if (easyButton.getGlobalBounds().contains(sf::Vector2f(mousePos)))
+	{
+		easyButton.setFillColor(sf::Color(70, 200, 70));
+	}
+	else
+	{
+		easyButton.setFillColor(sf::Color(50, 150, 50));
+	}
+
+	// Hover effect for Medium button
+	if (mediumButton.getGlobalBounds().contains(sf::Vector2f(mousePos)))
+	{
+		mediumButton.setFillColor(sf::Color(200, 200, 70));
+	}
+	else
+	{
+		mediumButton.setFillColor(sf::Color(150, 150, 50));
+	}
+
+	// Hover effect for Hard button
+	if (hardButton.getGlobalBounds().contains(sf::Vector2f(mousePos)))
+	{
+		hardButton.setFillColor(sf::Color(200, 70, 70));
+	}
+	else
+	{
+		hardButton.setFillColor(sf::Color(150, 50, 50));
+	}
+
+	// Hover effect for Back button
+	if (backButton.getGlobalBounds().contains(sf::Vector2f(mousePos)))
+	{
+		backButton.setFillColor(sf::Color(100, 100, 100));
+	}
+	else
+	{
+		backButton.setFillColor(sf::Color(70, 70, 70));
+	}
+}
+
+void Game::drawDifficultyScreen()
+{
+	window.draw(difficultyTitleText);
+	window.draw(easyButton);
+	window.draw(easyButtonText);
+	window.draw(mediumButton);
+	window.draw(mediumButtonText);
+	window.draw(hardButton);
+	window.draw(hardButtonText);
+	window.draw(backButton);
+	window.draw(backButtonText);
+}
+
+void Game::setDifficulty(Difficulty difficulty)
+{
+	currentDifficulty = difficulty;
+
+	switch (difficulty)
+	{
+	case Difficulty::EASY:
+		MAX_DEPTH = 1;
+		std::cout << "Difficulty set to EASY (Depth: 1)\n";
+		break;
+	case Difficulty::MEDIUM:
+		MAX_DEPTH = 3;
+		std::cout << "Difficulty set to MEDIUM (Depth: 3)\n";
+		break;
+	case Difficulty::HARD:
+		MAX_DEPTH = 5;
+		std::cout << "Difficulty set to HARD (Depth: 5)\n";
+		break;
+	}
 }

@@ -46,10 +46,14 @@ struct Piece
 enum class GameState
 {
     MENU,
+    DIFFICULTY_SELECT,
     PLACING,
     MOVING,
     GAME_OVER
 };
+
+
+
 
 // Structure to store move
 struct Move
@@ -72,6 +76,15 @@ public:
     void run();
 
 private:
+    // Difficulty settings
+    enum class Difficulty {
+        EASY,
+        MEDIUM,
+        HARD
+    };
+
+    Difficulty currentDifficulty = Difficulty::MEDIUM;
+
     // Main game loop funcs
     void processEvents();
     void processKeys(const std::optional<sf::Event> t_event);
@@ -89,6 +102,12 @@ private:
     // Menu functions 
     void updateMenu(sf::Vector2i mousePos);
     void drawMenu();
+
+	// Difficulty screen functions
+    void setupDifficultyScreen();
+    void updateDifficultyScreen(sf::Vector2i mousePos);
+    void drawDifficultyScreen();
+    void setDifficulty(Difficulty difficulty);
 
     // Core game logic funcs
     void selectPiece(int index);
@@ -133,11 +152,24 @@ private:
     sf::Font font;
     sf::Text text{ font };
 
+    // menu screen ui elements
     sf::RectangleShape startButton;
     sf::RectangleShape exitButton;
     sf::Text startButtonText{ font };
     sf::Text exitButtonText{ font };
     sf::Text titleText{ font };
+	sf::Text restartText{ font };
+
+    // Difficulty screen UI elements
+    sf::RectangleShape easyButton;
+    sf::RectangleShape mediumButton;
+    sf::RectangleShape hardButton;
+    sf::RectangleShape backButton;
+    sf::Text easyButtonText{ font };
+    sf::Text mediumButtonText{ font };
+    sf::Text hardButtonText{ font };
+    sf::Text backButtonText{ font };
+    sf::Text difficultyTitleText{ font };
 
     // Textures
     sf::Texture donkeyTexture;
@@ -168,8 +200,7 @@ private:
     float boardOffsetY;
 
     // Minimax settings
-    static const int MAX_DEPTH = 3;  // Search depth for minimax
-
+    int MAX_DEPTH;  // Search depth for minimax
 
     bool exitGame;
 };
