@@ -1,0 +1,1279 @@
+\doxysection{Game Class Reference}
+\hypertarget{class_game}{}\label{class_game}\index{Game@{Game}}
+
+
+Main game class that handles all game logic and rendering.  
+
+
+
+
+{\ttfamily \#include $<$Game.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_game_ad59df6562a58a614fda24622d3715b65}{Game}} ()
+\begin{DoxyCompactList}\small\item\em Constructor -\/ initializes game window and components. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_game_ae3d112ca6e0e55150d2fdbc704474530}{\texorpdfstring{$\sim$}{\string~}\+Game}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a1ab78f5ed0d5ea879157357cf2fb2afa}{run}} ()
+\begin{DoxyCompactList}\small\item\em Main game loop. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Types}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{class_game_a05bd11ffe83f5e0f2132fe15a9f2381c}{Difficulty}} \{ \mbox{\hyperlink{class_game_a05bd11ffe83f5e0f2132fe15a9f2381ca6e5affbf5c08fef0e28c094856f94627}{EASY}}
+, \mbox{\hyperlink{class_game_a05bd11ffe83f5e0f2132fe15a9f2381cac87f3be66ffc3c0d4249f1c2cc5f3cce}{MEDIUM}}
+, \mbox{\hyperlink{class_game_a05bd11ffe83f5e0f2132fe15a9f2381ca7c144eae2e08db14c82e376603cc01f4}{HARD}}
+ \}
+\begin{DoxyCompactList}\small\item\em AI difficulty levels. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_game_a79f698dda206dd7a9bed28b3f88bdc38}{process\+Events}} ()
+\begin{DoxyCompactList}\small\item\em Processes all events from the event queue. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a88c8c1e5ea297bb218d81b6a2a61c580}{process\+Keys}} (const std\+::optional$<$ sf\+::\+Event $>$ t\+\_\+event)
+\begin{DoxyCompactList}\small\item\em Processes keyboard input. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a9dd68a7c8e77113b25ef4a842cc9c92b}{process\+Mouse\+Click}} (sf\+::\+Vector2i mouse\+Pos)
+\begin{DoxyCompactList}\small\item\em Processes mouse click events. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a55249c1379fd2c654bcb754273d5e9c5}{check\+Keyboard\+State}} ()
+\begin{DoxyCompactList}\small\item\em Checks current keyboard state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a1d2aee62bac8e228344e1f44fab504e0}{update}} (sf\+::\+Time t\+\_\+delta\+Time)
+\begin{DoxyCompactList}\small\item\em Updates game state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a15ddd769261d923827a3cdf41499c843}{render}} ()
+\begin{DoxyCompactList}\small\item\em Renders all game elements to screen. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a42f8fa81830715656976a041aed86185}{setup\+Sprites}} ()
+\begin{DoxyCompactList}\small\item\em Loads and sets up all sprite textures. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_acb204be43a7a64a22c22ee10653e91dc}{setup\+Board}} ()
+\begin{DoxyCompactList}\small\item\em Initializes the game board. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a14a54a3f8cafa7c17f620369ede8ead1}{setup\+Pieces}} ()
+\begin{DoxyCompactList}\small\item\em Creates initial piece sets for both players. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a2ef7505757363fe2aa7d0100e0392e92}{setup\+Menu}} ()
+\begin{DoxyCompactList}\small\item\em Sets up main menu UI elements. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a2135de8b0ed2d2f1c6df4baded72922d}{update\+Menu}} (sf\+::\+Vector2i mouse\+Pos)
+\begin{DoxyCompactList}\small\item\em Updates menu hover effects. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_ad03a5123cd16e37d2fdacefc8f8d15a7}{draw\+Menu}} ()
+\begin{DoxyCompactList}\small\item\em Renders the main menu. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a58663ae0a15d32a8831db10cfc971175}{setup\+Difficulty\+Screen}} ()
+\begin{DoxyCompactList}\small\item\em Sets up difficulty selection screen UI. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_aea8dbbcfe6524abeea11792404ae4e42}{update\+Difficulty\+Screen}} (sf\+::\+Vector2i mouse\+Pos)
+\begin{DoxyCompactList}\small\item\em Updates difficulty screen hover effects. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a3765d23d36be7b56998ab81d25d34d50}{draw\+Difficulty\+Screen}} ()
+\begin{DoxyCompactList}\small\item\em Renders difficulty selection screen. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a3fca74975dac13e45da06984bc0ebd3c}{set\+Difficulty}} (\mbox{\hyperlink{class_game_a05bd11ffe83f5e0f2132fe15a9f2381c}{Difficulty}} difficulty)
+\begin{DoxyCompactList}\small\item\em Sets the AI difficulty level. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a5322dde23e700a1359c0291311cb8b99}{select\+Piece}} (int index)
+\begin{DoxyCompactList}\small\item\em Selects a piece for placement. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a9655cfbbb339e3e485ae0b756cdec8d4}{place\+Piece}} (int row, int col)
+\begin{DoxyCompactList}\small\item\em Places selected piece on the board. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_ad34b183b27da0cda5f7651208da39ecc}{move\+Piece}} (int row, int col)
+\begin{DoxyCompactList}\small\item\em Moves a piece to new position. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_game_ac5431b11858d722f052ec572177438e0}{is\+Valid\+Placement}} (int row, int col)
+\begin{DoxyCompactList}\small\item\em Checks if a placement is valid. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_game_a0b4aacd3e1aac903fc0e7e6bf22062e6}{is\+Valid\+Move}} (\mbox{\hyperlink{struct_piece}{Piece}} \&piece, int new\+Row, int new\+Col)
+\begin{DoxyCompactList}\small\item\em Checks if a move is valid for a piece. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_game_aed6ebd1198e150bab56784fa9a30bfe4}{check\+Win}} (\mbox{\hyperlink{_game_8h_a9c8780378078e51e7c9041cbac392db9}{Player}} player)
+\begin{DoxyCompactList}\small\item\em Checks if a player has won. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a7f043cd607b895dedd713a74bb54d87e}{switch\+Turn}} ()
+\begin{DoxyCompactList}\small\item\em Switches turn to other player. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a47c726a80fd133c0a4f6b8fba56d8832}{reset\+Game}} ()
+\begin{DoxyCompactList}\small\item\em Resets game to initial state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a50dd7146951651c623f0ce6cedc5a3fb}{ai\+Turn}} ()
+\begin{DoxyCompactList}\small\item\em Executes AI turn (placement or movement) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a1dda8c9eb93c4f9d21d6d391972b6dae}{ai\+Place\+Piece}} ()
+\begin{DoxyCompactList}\small\item\em AI piece placement logic. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_affe4850bba7ae3426e9f5cfb477f6cc4}{ai\+Move\+Piece}} ()
+\begin{DoxyCompactList}\small\item\em AI piece movement logic. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_game_a6ab67f763128082ae3cdcf06e2d5c0fa}{minimax}} (int depth, bool is\+Maximizing, int alpha, int beta)
+\begin{DoxyCompactList}\small\item\em Minimax algorithm with alpha-\/beta pruning. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_game_aedce388cb0e22a268cab4c0d1a2de7e5}{evaluate\+Board}} ()
+\begin{DoxyCompactList}\small\item\em Evaluates current board state. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{struct_move}{Move}} $>$ \mbox{\hyperlink{class_game_a9844d9359fda648a6f62c873da650ea3}{get\+Possible\+Moves}} (\mbox{\hyperlink{_game_8h_a9c8780378078e51e7c9041cbac392db9}{Player}} player)
+\begin{DoxyCompactList}\small\item\em Gets all possible moves for a player. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a18baa2c48ab1cc913b9771f7adc98f69}{make\+Move}} (const \mbox{\hyperlink{struct_move}{Move}} \&move, \mbox{\hyperlink{_game_8h_a9c8780378078e51e7c9041cbac392db9}{Player}} player)
+\begin{DoxyCompactList}\small\item\em Applies a move to the board. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a1556cfda15114d2ef545775cf69dac8c}{undo\+Move}} (const \mbox{\hyperlink{struct_move}{Move}} \&move, \mbox{\hyperlink{_game_8h_a9c8780378078e51e7c9041cbac392db9}{Player}} player)
+\begin{DoxyCompactList}\small\item\em Undoes a move on the board. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_move}{Move}} \mbox{\hyperlink{class_game_a4547bfdb4eddaacaa19c4b4cdd2bb465}{find\+Best\+Move}} ()
+\begin{DoxyCompactList}\small\item\em Finds best move using minimax. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_game_a284c3b4bbc27485711ca8388c1581d05}{count\+Diagonal\+Threats}} (\mbox{\hyperlink{_game_8h_a9c8780378078e51e7c9041cbac392db9}{Player}} player, int length)
+\begin{DoxyCompactList}\small\item\em Counts diagonal threats of specified length. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_game_a2aa0de7bea63e6515d766b404e8c683d}{evaluate\+Center\+Control}} (\mbox{\hyperlink{_game_8h_a9c8780378078e51e7c9041cbac392db9}{Player}} player)
+\begin{DoxyCompactList}\small\item\em Evaluates player\textquotesingle{}s control of center squares. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_game_a7a7f183d84e63ad884de14aaa8003652}{evaluate\+Mobility}} (\mbox{\hyperlink{_game_8h_a9c8780378078e51e7c9041cbac392db9}{Player}} player)
+\begin{DoxyCompactList}\small\item\em Evaluates player\textquotesingle{}s mobility (number of possible moves) \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_game_a539e057d6a60d6590ce24a139365e571}{evaluate\+Piece\+Positions}} (\mbox{\hyperlink{_game_8h_a9c8780378078e51e7c9041cbac392db9}{Player}} player)
+\begin{DoxyCompactList}\small\item\em Evaluates piece positioning and value. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_game_ae0bb1f98045cacb9aca23cdf7c97ded6}{get\+Board\+Index}} (int row, int col)
+\begin{DoxyCompactList}\small\item\em Converts row/col to linear board index. \end{DoxyCompactList}\item 
+sf\+::\+Vector2f \mbox{\hyperlink{class_game_a1ed44c0e8d4e474520cb9719135b4262}{get\+Board\+Position}} (int row, int col)
+\begin{DoxyCompactList}\small\item\em Gets screen position for board cell. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a19efdc76ec92e32b43b27372d1e06387}{draw\+Board}} ()
+\begin{DoxyCompactList}\small\item\em Renders the game board. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a858b8b2541b5891abeeb87ab92029be0}{draw\+Pieces}} ()
+\begin{DoxyCompactList}\small\item\em Renders all pieces. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a788b77534d6b041d58b05a7857f675a7}{draw\+UI}} ()
+\begin{DoxyCompactList}\small\item\em Renders UI elements (text, etc) \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_game_a29f96e7f38ae894ead049f712b38ff6e}{count\+Line\+Threats}} (\mbox{\hyperlink{_game_8h_a9c8780378078e51e7c9041cbac392db9}{Player}} player, int length)
+\begin{DoxyCompactList}\small\item\em Counts line threats (horizontal/vertical) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_game_a05bd11ffe83f5e0f2132fe15a9f2381c}{Difficulty}} \mbox{\hyperlink{class_game_a5f107c1e36df1b45effe86a8f1173de4}{current\+Difficulty}} = \mbox{\hyperlink{class_game_a05bd11ffe83f5e0f2132fe15a9f2381cac87f3be66ffc3c0d4249f1c2cc5f3cce}{Difficulty\+::\+MEDIUM}}
+\begin{DoxyCompactList}\small\item\em Current AI difficulty. \end{DoxyCompactList}\item 
+sf\+::\+Render\+Window \mbox{\hyperlink{class_game_a223de215aeb661cd423ac145756cc730}{window}}
+\begin{DoxyCompactList}\small\item\em Main game window. \end{DoxyCompactList}\item 
+sf\+::\+Font \mbox{\hyperlink{class_game_af729561d89036f0c841bc1a428dc43cf}{font}}
+\begin{DoxyCompactList}\small\item\em \doxylink{class_game}{Game} font. \end{DoxyCompactList}\item 
+sf\+::\+Text \mbox{\hyperlink{class_game_a0bdfd716dd956fbd02a2877e30e217e6}{text}} \{ \mbox{\hyperlink{class_game_af729561d89036f0c841bc1a428dc43cf}{font}} \}
+\begin{DoxyCompactList}\small\item\em General text object. \end{DoxyCompactList}\item 
+sf\+::\+Rectangle\+Shape \mbox{\hyperlink{class_game_a55dbdecd77d80652f815ee406b3d03fa}{start\+Button}}
+\begin{DoxyCompactList}\small\item\em Start button shape. \end{DoxyCompactList}\item 
+sf\+::\+Rectangle\+Shape \mbox{\hyperlink{class_game_a971bf60849e0603ff625dde7380126f2}{exit\+Button}}
+\begin{DoxyCompactList}\small\item\em Exit button shape. \end{DoxyCompactList}\item 
+sf\+::\+Text \mbox{\hyperlink{class_game_ae225881964bdaa950044ad9d4cf9d704}{start\+Button\+Text}} \{ \mbox{\hyperlink{class_game_af729561d89036f0c841bc1a428dc43cf}{font}} \}
+\begin{DoxyCompactList}\small\item\em Start button text. \end{DoxyCompactList}\item 
+sf\+::\+Text \mbox{\hyperlink{class_game_a2b2537d818a732442ea3ab4b02fc0424}{exit\+Button\+Text}} \{ \mbox{\hyperlink{class_game_af729561d89036f0c841bc1a428dc43cf}{font}} \}
+\begin{DoxyCompactList}\small\item\em Exit button text. \end{DoxyCompactList}\item 
+sf\+::\+Text \mbox{\hyperlink{class_game_ac348b43a6854bb48adf9a68d027ea7ed}{title\+Text}} \{ \mbox{\hyperlink{class_game_af729561d89036f0c841bc1a428dc43cf}{font}} \}
+\begin{DoxyCompactList}\small\item\em Title text. \end{DoxyCompactList}\item 
+sf\+::\+Text \mbox{\hyperlink{class_game_aaf2f1a20abb7d6e3fbea411af90a4588}{restart\+Text}} \{ \mbox{\hyperlink{class_game_af729561d89036f0c841bc1a428dc43cf}{font}} \}
+\begin{DoxyCompactList}\small\item\em Restart instruction text. \end{DoxyCompactList}\item 
+sf\+::\+Rectangle\+Shape \mbox{\hyperlink{class_game_a323c627e0d7548839ca40db26c58c299}{easy\+Button}}
+\begin{DoxyCompactList}\small\item\em Easy difficulty button. \end{DoxyCompactList}\item 
+sf\+::\+Rectangle\+Shape \mbox{\hyperlink{class_game_a18d1af80164c8b78ea40244169235893}{medium\+Button}}
+\begin{DoxyCompactList}\small\item\em Medium difficulty button. \end{DoxyCompactList}\item 
+sf\+::\+Rectangle\+Shape \mbox{\hyperlink{class_game_a7dccff1cb1442339d8491c60c0d1428d}{hard\+Button}}
+\begin{DoxyCompactList}\small\item\em Hard difficulty button. \end{DoxyCompactList}\item 
+sf\+::\+Rectangle\+Shape \mbox{\hyperlink{class_game_a422e0b97053cfcae92768ca7b770bba3}{back\+Button}}
+\begin{DoxyCompactList}\small\item\em Back button. \end{DoxyCompactList}\item 
+sf\+::\+Text \mbox{\hyperlink{class_game_a63032e4764b5f787c9af001917143f83}{easy\+Button\+Text}} \{ \mbox{\hyperlink{class_game_af729561d89036f0c841bc1a428dc43cf}{font}} \}
+\begin{DoxyCompactList}\small\item\em Easy button text. \end{DoxyCompactList}\item 
+sf\+::\+Text \mbox{\hyperlink{class_game_acded8606bac78b29916df74123adf68c}{medium\+Button\+Text}} \{ \mbox{\hyperlink{class_game_af729561d89036f0c841bc1a428dc43cf}{font}} \}
+\begin{DoxyCompactList}\small\item\em Medium button text. \end{DoxyCompactList}\item 
+sf\+::\+Text \mbox{\hyperlink{class_game_aea390ea26acd6b20625532577ed582d7}{hard\+Button\+Text}} \{ \mbox{\hyperlink{class_game_af729561d89036f0c841bc1a428dc43cf}{font}} \}
+\begin{DoxyCompactList}\small\item\em Hard button text. \end{DoxyCompactList}\item 
+sf\+::\+Text \mbox{\hyperlink{class_game_a101776d5f3674b85736fd49f4a9ae2fe}{back\+Button\+Text}} \{ \mbox{\hyperlink{class_game_af729561d89036f0c841bc1a428dc43cf}{font}} \}
+\begin{DoxyCompactList}\small\item\em Back button text. \end{DoxyCompactList}\item 
+sf\+::\+Text \mbox{\hyperlink{class_game_aaaae76f29b706aee7886869ab759d540}{difficulty\+Title\+Text}} \{ \mbox{\hyperlink{class_game_af729561d89036f0c841bc1a428dc43cf}{font}} \}
+\begin{DoxyCompactList}\small\item\em \doxylink{class_game_a05bd11ffe83f5e0f2132fe15a9f2381c}{Difficulty} screen title. \end{DoxyCompactList}\item 
+sf\+::\+Texture \mbox{\hyperlink{class_game_a038e769993704a2253d1047a6d82e855}{donkey\+Texture}}
+\begin{DoxyCompactList}\small\item\em Donkey piece texture. \end{DoxyCompactList}\item 
+sf\+::\+Texture \mbox{\hyperlink{class_game_a902341c7718f5c4df3d6cf997d12f5b4}{snake\+Texture}}
+\begin{DoxyCompactList}\small\item\em Snake piece texture. \end{DoxyCompactList}\item 
+sf\+::\+Texture \mbox{\hyperlink{class_game_aadd7e399cfd36912c053417c1e715772}{frog\+Texture}}
+\begin{DoxyCompactList}\small\item\em Frog piece texture. \end{DoxyCompactList}\item 
+sf\+::\+Sprite \mbox{\hyperlink{class_game_ac8cc91c497455aa95ebc72bef3430720}{donkey\+Sprite}} \{ \mbox{\hyperlink{class_game_a038e769993704a2253d1047a6d82e855}{donkey\+Texture}} \}
+\begin{DoxyCompactList}\small\item\em Donkey sprite. \end{DoxyCompactList}\item 
+sf\+::\+Sprite \mbox{\hyperlink{class_game_a77c6c20668ef5954c14ecc757d1fe2c6}{snake\+Sprite}} \{ \mbox{\hyperlink{class_game_a902341c7718f5c4df3d6cf997d12f5b4}{snake\+Texture}} \}
+\begin{DoxyCompactList}\small\item\em Snake sprite. \end{DoxyCompactList}\item 
+sf\+::\+Sprite \mbox{\hyperlink{class_game_a4d7e968d6eb096427af514eaf69f1fee}{frog\+Sprite}} \{ \mbox{\hyperlink{class_game_aadd7e399cfd36912c053417c1e715772}{frog\+Texture}} \}
+\begin{DoxyCompactList}\small\item\em Frog sprite. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_piece}{Piece}} \mbox{\hyperlink{class_game_af00a4bc6df700209831af2e1e66f6ff2}{board}} \mbox{[}\mbox{\hyperlink{class_game_a88c367cac3fcbe8d2923da562d528012}{BOARD\+\_\+\+SIZE}}\mbox{]}\mbox{[}\mbox{\hyperlink{class_game_a88c367cac3fcbe8d2923da562d528012}{BOARD\+\_\+\+SIZE}}\mbox{]}
+\begin{DoxyCompactList}\small\item\em \doxylink{class_game}{Game} board array. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{struct_piece}{Piece}} $>$ \mbox{\hyperlink{class_game_a35b522f2ff4589b73c1f6260ae8de9e1}{player1\+Pieces}}
+\begin{DoxyCompactList}\small\item\em \doxylink{_game_8h_a9c8780378078e51e7c9041cbac392db9}{Player} 1\textquotesingle{}s pieces. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{struct_piece}{Piece}} $>$ \mbox{\hyperlink{class_game_a4512a1d3ed7ea3a57cc0300ad4268fe8}{player2\+Pieces}}
+\begin{DoxyCompactList}\small\item\em AI\textquotesingle{}s pieces. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_game_8h_a7899b65f1ea0f655e4bbf8d2a5714285}{Game\+State}} \mbox{\hyperlink{class_game_a4573dd85e0711a78cc27eb0b51c79f44}{game\+State}}
+\begin{DoxyCompactList}\small\item\em Current game state. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_game_8h_a9c8780378078e51e7c9041cbac392db9}{Player}} \mbox{\hyperlink{class_game_abb5d028436cd85faa044bc218a31d716}{current\+Player}}
+\begin{DoxyCompactList}\small\item\em Current active player. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_game_af9f869096f97c3f99f93bf14596cfae3}{selected\+Piece\+Index}}
+\begin{DoxyCompactList}\small\item\em Index of selected piece. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_selected_piece}{Selected\+Piece}} \mbox{\hyperlink{class_game_ae19312cdc792218db1a9a08f21ab76be}{m\+\_\+selected\+Piece}}
+\begin{DoxyCompactList}\small\item\em Currently selected board piece. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_game_a2266d2f24a793ac535ea509735a9cff9}{cell\+Size}}
+\begin{DoxyCompactList}\small\item\em Size of board cells in pixels. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_game_a877be184cffc80679092bf747c221fed}{board\+OffsetX}}
+\begin{DoxyCompactList}\small\item\em X offset of board from window edge. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_game_a143001594866d9eb3c4de297ce86c0c9}{board\+OffsetY}}
+\begin{DoxyCompactList}\small\item\em Y offset of board from window edge. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_game_a9d007e624d4ab281eb0629aad9cf19a9}{MAX\+\_\+\+DEPTH}}
+\begin{DoxyCompactList}\small\item\em Search depth for minimax algorithm. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_game_a69eb16363bf1cf7a22f74f175ac28f79}{exit\+Game}}
+\begin{DoxyCompactList}\small\item\em Flag to exit game loop. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static const int \mbox{\hyperlink{class_game_a88c367cac3fcbe8d2923da562d528012}{BOARD\+\_\+\+SIZE}} = 5
+\begin{DoxyCompactList}\small\item\em Size of game board (5x5) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Main game class that handles all game logic and rendering. 
+
+This class manages the game loop, handles player input, AI decisions, and all rendering operations for The Fourth Protocol game. 
+
+\label{doc-enum-members}
+\Hypertarget{class_game_doc-enum-members}
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{class_game_a05bd11ffe83f5e0f2132fe15a9f2381c}\index{Game@{Game}!Difficulty@{Difficulty}}
+\index{Difficulty@{Difficulty}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{Difficulty}{Difficulty}}
+{\footnotesize\ttfamily \label{class_game_a05bd11ffe83f5e0f2132fe15a9f2381c} 
+enum class \mbox{\hyperlink{class_game_a05bd11ffe83f5e0f2132fe15a9f2381c}{Game\+::\+Difficulty}}\hspace{0.3cm}{\ttfamily [strong]}, {\ttfamily [private]}}
+
+
+
+AI difficulty levels. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EASY@{EASY}!Game@{Game}}\index{Game@{Game}!EASY@{EASY}}}\Hypertarget{class_game_a05bd11ffe83f5e0f2132fe15a9f2381ca6e5affbf5c08fef0e28c094856f94627}\label{class_game_a05bd11ffe83f5e0f2132fe15a9f2381ca6e5affbf5c08fef0e28c094856f94627} 
+EASY&Easy difficulty (depth 1) \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MEDIUM@{MEDIUM}!Game@{Game}}\index{Game@{Game}!MEDIUM@{MEDIUM}}}\Hypertarget{class_game_a05bd11ffe83f5e0f2132fe15a9f2381cac87f3be66ffc3c0d4249f1c2cc5f3cce}\label{class_game_a05bd11ffe83f5e0f2132fe15a9f2381cac87f3be66ffc3c0d4249f1c2cc5f3cce} 
+MEDIUM&Medium difficulty (depth 3) \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HARD@{HARD}!Game@{Game}}\index{Game@{Game}!HARD@{HARD}}}\Hypertarget{class_game_a05bd11ffe83f5e0f2132fe15a9f2381ca7c144eae2e08db14c82e376603cc01f4}\label{class_game_a05bd11ffe83f5e0f2132fe15a9f2381ca7c144eae2e08db14c82e376603cc01f4} 
+HARD&Hard difficulty (depth 5) \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{doc-constructors}
+\Hypertarget{class_game_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_game_ad59df6562a58a614fda24622d3715b65}\index{Game@{Game}!Game@{Game}}
+\index{Game@{Game}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{Game()}{Game()}}
+{\footnotesize\ttfamily \label{class_game_ad59df6562a58a614fda24622d3715b65} 
+Game\+::\+Game (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Constructor -\/ initializes game window and components. 
+
+\Hypertarget{class_game_ae3d112ca6e0e55150d2fdbc704474530}\index{Game@{Game}!````~Game@{\texorpdfstring{$\sim$}{\string~}Game}}
+\index{````~Game@{\texorpdfstring{$\sim$}{\string~}Game}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Game()}{\string~Game()}}
+{\footnotesize\ttfamily \label{class_game_ae3d112ca6e0e55150d2fdbc704474530} 
+Game\+::\texorpdfstring{$\sim$}{\string~}\+Game (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Destructor. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_game_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_game_affe4850bba7ae3426e9f5cfb477f6cc4}\index{Game@{Game}!aiMovePiece@{aiMovePiece}}
+\index{aiMovePiece@{aiMovePiece}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{aiMovePiece()}{aiMovePiece()}}
+{\footnotesize\ttfamily \label{class_game_affe4850bba7ae3426e9f5cfb477f6cc4} 
+void Game\+::ai\+Move\+Piece (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+AI piece movement logic. 
+
+\Hypertarget{class_game_a1dda8c9eb93c4f9d21d6d391972b6dae}\index{Game@{Game}!aiPlacePiece@{aiPlacePiece}}
+\index{aiPlacePiece@{aiPlacePiece}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{aiPlacePiece()}{aiPlacePiece()}}
+{\footnotesize\ttfamily \label{class_game_a1dda8c9eb93c4f9d21d6d391972b6dae} 
+void Game\+::ai\+Place\+Piece (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+AI piece placement logic. 
+
+\Hypertarget{class_game_a50dd7146951651c623f0ce6cedc5a3fb}\index{Game@{Game}!aiTurn@{aiTurn}}
+\index{aiTurn@{aiTurn}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{aiTurn()}{aiTurn()}}
+{\footnotesize\ttfamily \label{class_game_a50dd7146951651c623f0ce6cedc5a3fb} 
+void Game\+::ai\+Turn (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Executes AI turn (placement or movement) 
+
+\Hypertarget{class_game_a55249c1379fd2c654bcb754273d5e9c5}\index{Game@{Game}!checkKeyboardState@{checkKeyboardState}}
+\index{checkKeyboardState@{checkKeyboardState}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{checkKeyboardState()}{checkKeyboardState()}}
+{\footnotesize\ttfamily \label{class_game_a55249c1379fd2c654bcb754273d5e9c5} 
+void Game\+::check\+Keyboard\+State (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Checks current keyboard state. 
+
+\Hypertarget{class_game_aed6ebd1198e150bab56784fa9a30bfe4}\index{Game@{Game}!checkWin@{checkWin}}
+\index{checkWin@{checkWin}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{checkWin()}{checkWin()}}
+{\footnotesize\ttfamily \label{class_game_aed6ebd1198e150bab56784fa9a30bfe4} 
+bool Game\+::check\+Win (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_game_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}}]{player}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Checks if a player has won. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & \doxylink{_game_8h_a9c8780378078e51e7c9041cbac392db9}{Player} to check for win \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if player has won 
+\end{DoxyReturn}
+\Hypertarget{class_game_a284c3b4bbc27485711ca8388c1581d05}\index{Game@{Game}!countDiagonalThreats@{countDiagonalThreats}}
+\index{countDiagonalThreats@{countDiagonalThreats}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{countDiagonalThreats()}{countDiagonalThreats()}}
+{\footnotesize\ttfamily \label{class_game_a284c3b4bbc27485711ca8388c1581d05} 
+int Game\+::count\+Diagonal\+Threats (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_game_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}}]{player}{, }\item[{int}]{length}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Counts diagonal threats of specified length. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & \doxylink{_game_8h_a9c8780378078e51e7c9041cbac392db9}{Player} to count threats for \\
+\hline
+{\em length} & Length of threat to count \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of diagonal threats 
+\end{DoxyReturn}
+\Hypertarget{class_game_a29f96e7f38ae894ead049f712b38ff6e}\index{Game@{Game}!countLineThreats@{countLineThreats}}
+\index{countLineThreats@{countLineThreats}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{countLineThreats()}{countLineThreats()}}
+{\footnotesize\ttfamily \label{class_game_a29f96e7f38ae894ead049f712b38ff6e} 
+int Game\+::count\+Line\+Threats (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_game_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}}]{player}{, }\item[{int}]{length}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Counts line threats (horizontal/vertical) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & \doxylink{_game_8h_a9c8780378078e51e7c9041cbac392db9}{Player} to count threats for \\
+\hline
+{\em length} & Length of threat \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of line threats 
+\end{DoxyReturn}
+\Hypertarget{class_game_a19efdc76ec92e32b43b27372d1e06387}\index{Game@{Game}!drawBoard@{drawBoard}}
+\index{drawBoard@{drawBoard}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{drawBoard()}{drawBoard()}}
+{\footnotesize\ttfamily \label{class_game_a19efdc76ec92e32b43b27372d1e06387} 
+void Game\+::draw\+Board (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Renders the game board. 
+
+\Hypertarget{class_game_a3765d23d36be7b56998ab81d25d34d50}\index{Game@{Game}!drawDifficultyScreen@{drawDifficultyScreen}}
+\index{drawDifficultyScreen@{drawDifficultyScreen}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{drawDifficultyScreen()}{drawDifficultyScreen()}}
+{\footnotesize\ttfamily \label{class_game_a3765d23d36be7b56998ab81d25d34d50} 
+void Game\+::draw\+Difficulty\+Screen (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Renders difficulty selection screen. 
+
+\Hypertarget{class_game_ad03a5123cd16e37d2fdacefc8f8d15a7}\index{Game@{Game}!drawMenu@{drawMenu}}
+\index{drawMenu@{drawMenu}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{drawMenu()}{drawMenu()}}
+{\footnotesize\ttfamily \label{class_game_ad03a5123cd16e37d2fdacefc8f8d15a7} 
+void Game\+::draw\+Menu (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Renders the main menu. 
+
+\Hypertarget{class_game_a858b8b2541b5891abeeb87ab92029be0}\index{Game@{Game}!drawPieces@{drawPieces}}
+\index{drawPieces@{drawPieces}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{drawPieces()}{drawPieces()}}
+{\footnotesize\ttfamily \label{class_game_a858b8b2541b5891abeeb87ab92029be0} 
+void Game\+::draw\+Pieces (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Renders all pieces. 
+
+\Hypertarget{class_game_a788b77534d6b041d58b05a7857f675a7}\index{Game@{Game}!drawUI@{drawUI}}
+\index{drawUI@{drawUI}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{drawUI()}{drawUI()}}
+{\footnotesize\ttfamily \label{class_game_a788b77534d6b041d58b05a7857f675a7} 
+void Game\+::draw\+UI (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Renders UI elements (text, etc) 
+
+\Hypertarget{class_game_aedce388cb0e22a268cab4c0d1a2de7e5}\index{Game@{Game}!evaluateBoard@{evaluateBoard}}
+\index{evaluateBoard@{evaluateBoard}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{evaluateBoard()}{evaluateBoard()}}
+{\footnotesize\ttfamily \label{class_game_aedce388cb0e22a268cab4c0d1a2de7e5} 
+int Game\+::evaluate\+Board (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Evaluates current board state. 
+
+\begin{DoxyReturn}{Returns}
+Score representing board advantage 
+\end{DoxyReturn}
+\Hypertarget{class_game_a2aa0de7bea63e6515d766b404e8c683d}\index{Game@{Game}!evaluateCenterControl@{evaluateCenterControl}}
+\index{evaluateCenterControl@{evaluateCenterControl}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{evaluateCenterControl()}{evaluateCenterControl()}}
+{\footnotesize\ttfamily \label{class_game_a2aa0de7bea63e6515d766b404e8c683d} 
+int Game\+::evaluate\+Center\+Control (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_game_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}}]{player}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Evaluates player\textquotesingle{}s control of center squares. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & \doxylink{_game_8h_a9c8780378078e51e7c9041cbac392db9}{Player} to evaluate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Center control score 
+\end{DoxyReturn}
+\Hypertarget{class_game_a7a7f183d84e63ad884de14aaa8003652}\index{Game@{Game}!evaluateMobility@{evaluateMobility}}
+\index{evaluateMobility@{evaluateMobility}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{evaluateMobility()}{evaluateMobility()}}
+{\footnotesize\ttfamily \label{class_game_a7a7f183d84e63ad884de14aaa8003652} 
+int Game\+::evaluate\+Mobility (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_game_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}}]{player}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Evaluates player\textquotesingle{}s mobility (number of possible moves) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & \doxylink{_game_8h_a9c8780378078e51e7c9041cbac392db9}{Player} to evaluate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Mobility score 
+\end{DoxyReturn}
+\Hypertarget{class_game_a539e057d6a60d6590ce24a139365e571}\index{Game@{Game}!evaluatePiecePositions@{evaluatePiecePositions}}
+\index{evaluatePiecePositions@{evaluatePiecePositions}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{evaluatePiecePositions()}{evaluatePiecePositions()}}
+{\footnotesize\ttfamily \label{class_game_a539e057d6a60d6590ce24a139365e571} 
+int Game\+::evaluate\+Piece\+Positions (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_game_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}}]{player}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Evaluates piece positioning and value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & \doxylink{_game_8h_a9c8780378078e51e7c9041cbac392db9}{Player} to evaluate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{struct_piece}{Piece} position score 
+\end{DoxyReturn}
+\Hypertarget{class_game_a4547bfdb4eddaacaa19c4b4cdd2bb465}\index{Game@{Game}!findBestMove@{findBestMove}}
+\index{findBestMove@{findBestMove}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{findBestMove()}{findBestMove()}}
+{\footnotesize\ttfamily \label{class_game_a4547bfdb4eddaacaa19c4b4cdd2bb465} 
+\mbox{\hyperlink{struct_move}{Move}} Game\+::find\+Best\+Move (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Finds best move using minimax. 
+
+\begin{DoxyReturn}{Returns}
+Best move for AI 
+\end{DoxyReturn}
+\Hypertarget{class_game_ae0bb1f98045cacb9aca23cdf7c97ded6}\index{Game@{Game}!getBoardIndex@{getBoardIndex}}
+\index{getBoardIndex@{getBoardIndex}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{getBoardIndex()}{getBoardIndex()}}
+{\footnotesize\ttfamily \label{class_game_ae0bb1f98045cacb9aca23cdf7c97ded6} 
+int Game\+::get\+Board\+Index (\begin{DoxyParamCaption}\item[{int}]{row}{, }\item[{int}]{col}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Converts row/col to linear board index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & Board row \\
+\hline
+{\em col} & Board column \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Linear index 
+\end{DoxyReturn}
+\Hypertarget{class_game_a1ed44c0e8d4e474520cb9719135b4262}\index{Game@{Game}!getBoardPosition@{getBoardPosition}}
+\index{getBoardPosition@{getBoardPosition}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{getBoardPosition()}{getBoardPosition()}}
+{\footnotesize\ttfamily \label{class_game_a1ed44c0e8d4e474520cb9719135b4262} 
+sf\+::\+Vector2f Game\+::get\+Board\+Position (\begin{DoxyParamCaption}\item[{int}]{row}{, }\item[{int}]{col}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Gets screen position for board cell. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & Board row \\
+\hline
+{\em col} & Board column \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Screen position vector 
+\end{DoxyReturn}
+\Hypertarget{class_game_a9844d9359fda648a6f62c873da650ea3}\index{Game@{Game}!getPossibleMoves@{getPossibleMoves}}
+\index{getPossibleMoves@{getPossibleMoves}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{getPossibleMoves()}{getPossibleMoves()}}
+{\footnotesize\ttfamily \label{class_game_a9844d9359fda648a6f62c873da650ea3} 
+std\+::vector$<$ \mbox{\hyperlink{struct_move}{Move}} $>$ Game\+::get\+Possible\+Moves (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_game_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}}]{player}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Gets all possible moves for a player. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & \doxylink{_game_8h_a9c8780378078e51e7c9041cbac392db9}{Player} to get moves for \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vector of possible moves 
+\end{DoxyReturn}
+\Hypertarget{class_game_a0b4aacd3e1aac903fc0e7e6bf22062e6}\index{Game@{Game}!isValidMove@{isValidMove}}
+\index{isValidMove@{isValidMove}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{isValidMove()}{isValidMove()}}
+{\footnotesize\ttfamily \label{class_game_a0b4aacd3e1aac903fc0e7e6bf22062e6} 
+bool Game\+::is\+Valid\+Move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_piece}{Piece}} \&}]{piece}{, }\item[{int}]{new\+Row}{, }\item[{int}]{new\+Col}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Checks if a move is valid for a piece. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em piece} & The piece to move \\
+\hline
+{\em new\+Row} & Destination row \\
+\hline
+{\em new\+Col} & Destination column \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if move is valid 
+\end{DoxyReturn}
+\Hypertarget{class_game_ac5431b11858d722f052ec572177438e0}\index{Game@{Game}!isValidPlacement@{isValidPlacement}}
+\index{isValidPlacement@{isValidPlacement}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{isValidPlacement()}{isValidPlacement()}}
+{\footnotesize\ttfamily \label{class_game_ac5431b11858d722f052ec572177438e0} 
+bool Game\+::is\+Valid\+Placement (\begin{DoxyParamCaption}\item[{int}]{row}{, }\item[{int}]{col}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Checks if a placement is valid. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & Row to check \\
+\hline
+{\em col} & Column to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if placement is valid 
+\end{DoxyReturn}
+\Hypertarget{class_game_a18baa2c48ab1cc913b9771f7adc98f69}\index{Game@{Game}!makeMove@{makeMove}}
+\index{makeMove@{makeMove}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{makeMove()}{makeMove()}}
+{\footnotesize\ttfamily \label{class_game_a18baa2c48ab1cc913b9771f7adc98f69} 
+void Game\+::make\+Move (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_move}{Move}} \&}]{move}{, }\item[{\mbox{\hyperlink{_game_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}}]{player}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Applies a move to the board. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em move} & \doxylink{struct_move}{Move} to make \\
+\hline
+{\em player} & \doxylink{_game_8h_a9c8780378078e51e7c9041cbac392db9}{Player} making the move \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_game_a6ab67f763128082ae3cdcf06e2d5c0fa}\index{Game@{Game}!minimax@{minimax}}
+\index{minimax@{minimax}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{minimax()}{minimax()}}
+{\footnotesize\ttfamily \label{class_game_a6ab67f763128082ae3cdcf06e2d5c0fa} 
+int Game\+::minimax (\begin{DoxyParamCaption}\item[{int}]{depth}{, }\item[{bool}]{is\+Maximizing}{, }\item[{int}]{alpha}{, }\item[{int}]{beta}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Minimax algorithm with alpha-\/beta pruning. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em depth} & Current search depth \\
+\hline
+{\em is\+Maximizing} & Whether current player is maximizing \\
+\hline
+{\em alpha} & Alpha value for pruning \\
+\hline
+{\em beta} & Beta value for pruning \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Evaluation score for current position 
+\end{DoxyReturn}
+\Hypertarget{class_game_ad34b183b27da0cda5f7651208da39ecc}\index{Game@{Game}!movePiece@{movePiece}}
+\index{movePiece@{movePiece}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{movePiece()}{movePiece()}}
+{\footnotesize\ttfamily \label{class_game_ad34b183b27da0cda5f7651208da39ecc} 
+void Game\+::move\+Piece (\begin{DoxyParamCaption}\item[{int}]{row}{, }\item[{int}]{col}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Moves a piece to new position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & Destination row \\
+\hline
+{\em col} & Destination column \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_game_a9655cfbbb339e3e485ae0b756cdec8d4}\index{Game@{Game}!placePiece@{placePiece}}
+\index{placePiece@{placePiece}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{placePiece()}{placePiece()}}
+{\footnotesize\ttfamily \label{class_game_a9655cfbbb339e3e485ae0b756cdec8d4} 
+void Game\+::place\+Piece (\begin{DoxyParamCaption}\item[{int}]{row}{, }\item[{int}]{col}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Places selected piece on the board. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & Row to place piece \\
+\hline
+{\em col} & Column to place piece \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_game_a79f698dda206dd7a9bed28b3f88bdc38}\index{Game@{Game}!processEvents@{processEvents}}
+\index{processEvents@{processEvents}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{processEvents()}{processEvents()}}
+{\footnotesize\ttfamily \label{class_game_a79f698dda206dd7a9bed28b3f88bdc38} 
+void Game\+::process\+Events (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Processes all events from the event queue. 
+
+\Hypertarget{class_game_a88c8c1e5ea297bb218d81b6a2a61c580}\index{Game@{Game}!processKeys@{processKeys}}
+\index{processKeys@{processKeys}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{processKeys()}{processKeys()}}
+{\footnotesize\ttfamily \label{class_game_a88c8c1e5ea297bb218d81b6a2a61c580} 
+void Game\+::process\+Keys (\begin{DoxyParamCaption}\item[{const std\+::optional$<$ sf\+::\+Event $>$}]{t\+\_\+event}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Processes keyboard input. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+event} & The keyboard event to process \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_game_a9dd68a7c8e77113b25ef4a842cc9c92b}\index{Game@{Game}!processMouseClick@{processMouseClick}}
+\index{processMouseClick@{processMouseClick}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{processMouseClick()}{processMouseClick()}}
+{\footnotesize\ttfamily \label{class_game_a9dd68a7c8e77113b25ef4a842cc9c92b} 
+void Game\+::process\+Mouse\+Click (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2i}]{mouse\+Pos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Processes mouse click events. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mouse\+Pos} & Position of the mouse click \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_game_a15ddd769261d923827a3cdf41499c843}\index{Game@{Game}!render@{render}}
+\index{render@{render}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily \label{class_game_a15ddd769261d923827a3cdf41499c843} 
+void Game\+::render (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Renders all game elements to screen. 
+
+\Hypertarget{class_game_a47c726a80fd133c0a4f6b8fba56d8832}\index{Game@{Game}!resetGame@{resetGame}}
+\index{resetGame@{resetGame}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{resetGame()}{resetGame()}}
+{\footnotesize\ttfamily \label{class_game_a47c726a80fd133c0a4f6b8fba56d8832} 
+void Game\+::reset\+Game (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Resets game to initial state. 
+
+\Hypertarget{class_game_a1ab78f5ed0d5ea879157357cf2fb2afa}\index{Game@{Game}!run@{run}}
+\index{run@{run}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily \label{class_game_a1ab78f5ed0d5ea879157357cf2fb2afa} 
+void Game\+::run (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Main game loop. 
+
+\Hypertarget{class_game_a5322dde23e700a1359c0291311cb8b99}\index{Game@{Game}!selectPiece@{selectPiece}}
+\index{selectPiece@{selectPiece}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{selectPiece()}{selectPiece()}}
+{\footnotesize\ttfamily \label{class_game_a5322dde23e700a1359c0291311cb8b99} 
+void Game\+::select\+Piece (\begin{DoxyParamCaption}\item[{int}]{index}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Selects a piece for placement. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & Index of piece in player\textquotesingle{}s piece vector \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_game_a3fca74975dac13e45da06984bc0ebd3c}\index{Game@{Game}!setDifficulty@{setDifficulty}}
+\index{setDifficulty@{setDifficulty}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{setDifficulty()}{setDifficulty()}}
+{\footnotesize\ttfamily \label{class_game_a3fca74975dac13e45da06984bc0ebd3c} 
+void Game\+::set\+Difficulty (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_game_a05bd11ffe83f5e0f2132fe15a9f2381c}{Difficulty}}}]{difficulty}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Sets the AI difficulty level. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em difficulty} & The difficulty level to set \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_game_acb204be43a7a64a22c22ee10653e91dc}\index{Game@{Game}!setupBoard@{setupBoard}}
+\index{setupBoard@{setupBoard}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{setupBoard()}{setupBoard()}}
+{\footnotesize\ttfamily \label{class_game_acb204be43a7a64a22c22ee10653e91dc} 
+void Game\+::setup\+Board (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Initializes the game board. 
+
+\Hypertarget{class_game_a58663ae0a15d32a8831db10cfc971175}\index{Game@{Game}!setupDifficultyScreen@{setupDifficultyScreen}}
+\index{setupDifficultyScreen@{setupDifficultyScreen}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{setupDifficultyScreen()}{setupDifficultyScreen()}}
+{\footnotesize\ttfamily \label{class_game_a58663ae0a15d32a8831db10cfc971175} 
+void Game\+::setup\+Difficulty\+Screen (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Sets up difficulty selection screen UI. 
+
+\Hypertarget{class_game_a2ef7505757363fe2aa7d0100e0392e92}\index{Game@{Game}!setupMenu@{setupMenu}}
+\index{setupMenu@{setupMenu}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{setupMenu()}{setupMenu()}}
+{\footnotesize\ttfamily \label{class_game_a2ef7505757363fe2aa7d0100e0392e92} 
+void Game\+::setup\+Menu (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Sets up main menu UI elements. 
+
+\Hypertarget{class_game_a14a54a3f8cafa7c17f620369ede8ead1}\index{Game@{Game}!setupPieces@{setupPieces}}
+\index{setupPieces@{setupPieces}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{setupPieces()}{setupPieces()}}
+{\footnotesize\ttfamily \label{class_game_a14a54a3f8cafa7c17f620369ede8ead1} 
+void Game\+::setup\+Pieces (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Creates initial piece sets for both players. 
+
+\Hypertarget{class_game_a42f8fa81830715656976a041aed86185}\index{Game@{Game}!setupSprites@{setupSprites}}
+\index{setupSprites@{setupSprites}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{setupSprites()}{setupSprites()}}
+{\footnotesize\ttfamily \label{class_game_a42f8fa81830715656976a041aed86185} 
+void Game\+::setup\+Sprites (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Loads and sets up all sprite textures. 
+
+\Hypertarget{class_game_a7f043cd607b895dedd713a74bb54d87e}\index{Game@{Game}!switchTurn@{switchTurn}}
+\index{switchTurn@{switchTurn}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{switchTurn()}{switchTurn()}}
+{\footnotesize\ttfamily \label{class_game_a7f043cd607b895dedd713a74bb54d87e} 
+void Game\+::switch\+Turn (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Switches turn to other player. 
+
+\Hypertarget{class_game_a1556cfda15114d2ef545775cf69dac8c}\index{Game@{Game}!undoMove@{undoMove}}
+\index{undoMove@{undoMove}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{undoMove()}{undoMove()}}
+{\footnotesize\ttfamily \label{class_game_a1556cfda15114d2ef545775cf69dac8c} 
+void Game\+::undo\+Move (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_move}{Move}} \&}]{move}{, }\item[{\mbox{\hyperlink{_game_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}}]{player}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Undoes a move on the board. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em move} & \doxylink{struct_move}{Move} to undo \\
+\hline
+{\em player} & \doxylink{_game_8h_a9c8780378078e51e7c9041cbac392db9}{Player} whose move to undo \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_game_a1d2aee62bac8e228344e1f44fab504e0}\index{Game@{Game}!update@{update}}
+\index{update@{update}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{class_game_a1d2aee62bac8e228344e1f44fab504e0} 
+void Game\+::update (\begin{DoxyParamCaption}\item[{sf\+::\+Time}]{t\+\_\+delta\+Time}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Updates game state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+delta\+Time} & Time elapsed since last update \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_game_aea8dbbcfe6524abeea11792404ae4e42}\index{Game@{Game}!updateDifficultyScreen@{updateDifficultyScreen}}
+\index{updateDifficultyScreen@{updateDifficultyScreen}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{updateDifficultyScreen()}{updateDifficultyScreen()}}
+{\footnotesize\ttfamily \label{class_game_aea8dbbcfe6524abeea11792404ae4e42} 
+void Game\+::update\+Difficulty\+Screen (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2i}]{mouse\+Pos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Updates difficulty screen hover effects. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mouse\+Pos} & Current mouse position \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_game_a2135de8b0ed2d2f1c6df4baded72922d}\index{Game@{Game}!updateMenu@{updateMenu}}
+\index{updateMenu@{updateMenu}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{updateMenu()}{updateMenu()}}
+{\footnotesize\ttfamily \label{class_game_a2135de8b0ed2d2f1c6df4baded72922d} 
+void Game\+::update\+Menu (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2i}]{mouse\+Pos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Updates menu hover effects. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mouse\+Pos} & Current mouse position \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_game_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_game_a422e0b97053cfcae92768ca7b770bba3}\index{Game@{Game}!backButton@{backButton}}
+\index{backButton@{backButton}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{backButton}{backButton}}
+{\footnotesize\ttfamily \label{class_game_a422e0b97053cfcae92768ca7b770bba3} 
+sf\+::\+Rectangle\+Shape Game\+::back\+Button\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Back button. 
+
+\Hypertarget{class_game_a101776d5f3674b85736fd49f4a9ae2fe}\index{Game@{Game}!backButtonText@{backButtonText}}
+\index{backButtonText@{backButtonText}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{backButtonText}{backButtonText}}
+{\footnotesize\ttfamily \label{class_game_a101776d5f3674b85736fd49f4a9ae2fe} 
+sf\+::\+Text Game\+::back\+Button\+Text \{ \mbox{\hyperlink{class_game_af729561d89036f0c841bc1a428dc43cf}{font}} \}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Back button text. 
+
+\Hypertarget{class_game_af00a4bc6df700209831af2e1e66f6ff2}\index{Game@{Game}!board@{board}}
+\index{board@{board}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{board}{board}}
+{\footnotesize\ttfamily \label{class_game_af00a4bc6df700209831af2e1e66f6ff2} 
+\mbox{\hyperlink{struct_piece}{Piece}} Game\+::board\mbox{[}\mbox{\hyperlink{class_game_a88c367cac3fcbe8d2923da562d528012}{BOARD\+\_\+\+SIZE}}\mbox{]}\mbox{[}\mbox{\hyperlink{class_game_a88c367cac3fcbe8d2923da562d528012}{BOARD\+\_\+\+SIZE}}\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxylink{class_game}{Game} board array. 
+
+\Hypertarget{class_game_a88c367cac3fcbe8d2923da562d528012}\index{Game@{Game}!BOARD\_SIZE@{BOARD\_SIZE}}
+\index{BOARD\_SIZE@{BOARD\_SIZE}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{BOARD\_SIZE}{BOARD\_SIZE}}
+{\footnotesize\ttfamily \label{class_game_a88c367cac3fcbe8d2923da562d528012} 
+const int Game\+::\+BOARD\+\_\+\+SIZE = 5\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Size of game board (5x5) 
+
+\Hypertarget{class_game_a877be184cffc80679092bf747c221fed}\index{Game@{Game}!boardOffsetX@{boardOffsetX}}
+\index{boardOffsetX@{boardOffsetX}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{boardOffsetX}{boardOffsetX}}
+{\footnotesize\ttfamily \label{class_game_a877be184cffc80679092bf747c221fed} 
+float Game\+::board\+OffsetX\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+X offset of board from window edge. 
+
+\Hypertarget{class_game_a143001594866d9eb3c4de297ce86c0c9}\index{Game@{Game}!boardOffsetY@{boardOffsetY}}
+\index{boardOffsetY@{boardOffsetY}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{boardOffsetY}{boardOffsetY}}
+{\footnotesize\ttfamily \label{class_game_a143001594866d9eb3c4de297ce86c0c9} 
+float Game\+::board\+OffsetY\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Y offset of board from window edge. 
+
+\Hypertarget{class_game_a2266d2f24a793ac535ea509735a9cff9}\index{Game@{Game}!cellSize@{cellSize}}
+\index{cellSize@{cellSize}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{cellSize}{cellSize}}
+{\footnotesize\ttfamily \label{class_game_a2266d2f24a793ac535ea509735a9cff9} 
+float Game\+::cell\+Size\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Size of board cells in pixels. 
+
+\Hypertarget{class_game_a5f107c1e36df1b45effe86a8f1173de4}\index{Game@{Game}!currentDifficulty@{currentDifficulty}}
+\index{currentDifficulty@{currentDifficulty}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{currentDifficulty}{currentDifficulty}}
+{\footnotesize\ttfamily \label{class_game_a5f107c1e36df1b45effe86a8f1173de4} 
+\mbox{\hyperlink{class_game_a05bd11ffe83f5e0f2132fe15a9f2381c}{Difficulty}} Game\+::current\+Difficulty = \mbox{\hyperlink{class_game_a05bd11ffe83f5e0f2132fe15a9f2381cac87f3be66ffc3c0d4249f1c2cc5f3cce}{Difficulty\+::\+MEDIUM}}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Current AI difficulty. 
+
+\Hypertarget{class_game_abb5d028436cd85faa044bc218a31d716}\index{Game@{Game}!currentPlayer@{currentPlayer}}
+\index{currentPlayer@{currentPlayer}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{currentPlayer}{currentPlayer}}
+{\footnotesize\ttfamily \label{class_game_abb5d028436cd85faa044bc218a31d716} 
+\mbox{\hyperlink{_game_8h_a9c8780378078e51e7c9041cbac392db9}{Player}} Game\+::current\+Player\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Current active player. 
+
+\Hypertarget{class_game_aaaae76f29b706aee7886869ab759d540}\index{Game@{Game}!difficultyTitleText@{difficultyTitleText}}
+\index{difficultyTitleText@{difficultyTitleText}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{difficultyTitleText}{difficultyTitleText}}
+{\footnotesize\ttfamily \label{class_game_aaaae76f29b706aee7886869ab759d540} 
+sf\+::\+Text Game\+::difficulty\+Title\+Text \{ \mbox{\hyperlink{class_game_af729561d89036f0c841bc1a428dc43cf}{font}} \}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxylink{class_game_a05bd11ffe83f5e0f2132fe15a9f2381c}{Difficulty} screen title. 
+
+\Hypertarget{class_game_ac8cc91c497455aa95ebc72bef3430720}\index{Game@{Game}!donkeySprite@{donkeySprite}}
+\index{donkeySprite@{donkeySprite}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{donkeySprite}{donkeySprite}}
+{\footnotesize\ttfamily \label{class_game_ac8cc91c497455aa95ebc72bef3430720} 
+sf\+::\+Sprite Game\+::donkey\+Sprite \{ \mbox{\hyperlink{class_game_a038e769993704a2253d1047a6d82e855}{donkey\+Texture}} \}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Donkey sprite. 
+
+\Hypertarget{class_game_a038e769993704a2253d1047a6d82e855}\index{Game@{Game}!donkeyTexture@{donkeyTexture}}
+\index{donkeyTexture@{donkeyTexture}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{donkeyTexture}{donkeyTexture}}
+{\footnotesize\ttfamily \label{class_game_a038e769993704a2253d1047a6d82e855} 
+sf\+::\+Texture Game\+::donkey\+Texture\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Donkey piece texture. 
+
+\Hypertarget{class_game_a323c627e0d7548839ca40db26c58c299}\index{Game@{Game}!easyButton@{easyButton}}
+\index{easyButton@{easyButton}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{easyButton}{easyButton}}
+{\footnotesize\ttfamily \label{class_game_a323c627e0d7548839ca40db26c58c299} 
+sf\+::\+Rectangle\+Shape Game\+::easy\+Button\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Easy difficulty button. 
+
+\Hypertarget{class_game_a63032e4764b5f787c9af001917143f83}\index{Game@{Game}!easyButtonText@{easyButtonText}}
+\index{easyButtonText@{easyButtonText}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{easyButtonText}{easyButtonText}}
+{\footnotesize\ttfamily \label{class_game_a63032e4764b5f787c9af001917143f83} 
+sf\+::\+Text Game\+::easy\+Button\+Text \{ \mbox{\hyperlink{class_game_af729561d89036f0c841bc1a428dc43cf}{font}} \}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Easy button text. 
+
+\Hypertarget{class_game_a971bf60849e0603ff625dde7380126f2}\index{Game@{Game}!exitButton@{exitButton}}
+\index{exitButton@{exitButton}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{exitButton}{exitButton}}
+{\footnotesize\ttfamily \label{class_game_a971bf60849e0603ff625dde7380126f2} 
+sf\+::\+Rectangle\+Shape Game\+::exit\+Button\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Exit button shape. 
+
+\Hypertarget{class_game_a2b2537d818a732442ea3ab4b02fc0424}\index{Game@{Game}!exitButtonText@{exitButtonText}}
+\index{exitButtonText@{exitButtonText}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{exitButtonText}{exitButtonText}}
+{\footnotesize\ttfamily \label{class_game_a2b2537d818a732442ea3ab4b02fc0424} 
+sf\+::\+Text Game\+::exit\+Button\+Text \{ \mbox{\hyperlink{class_game_af729561d89036f0c841bc1a428dc43cf}{font}} \}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Exit button text. 
+
+\Hypertarget{class_game_a69eb16363bf1cf7a22f74f175ac28f79}\index{Game@{Game}!exitGame@{exitGame}}
+\index{exitGame@{exitGame}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{exitGame}{exitGame}}
+{\footnotesize\ttfamily \label{class_game_a69eb16363bf1cf7a22f74f175ac28f79} 
+bool Game\+::exit\+Game\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Flag to exit game loop. 
+
+\Hypertarget{class_game_af729561d89036f0c841bc1a428dc43cf}\index{Game@{Game}!font@{font}}
+\index{font@{font}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{font}{font}}
+{\footnotesize\ttfamily \label{class_game_af729561d89036f0c841bc1a428dc43cf} 
+sf\+::\+Font Game\+::font\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxylink{class_game}{Game} font. 
+
+\Hypertarget{class_game_a4d7e968d6eb096427af514eaf69f1fee}\index{Game@{Game}!frogSprite@{frogSprite}}
+\index{frogSprite@{frogSprite}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{frogSprite}{frogSprite}}
+{\footnotesize\ttfamily \label{class_game_a4d7e968d6eb096427af514eaf69f1fee} 
+sf\+::\+Sprite Game\+::frog\+Sprite \{ \mbox{\hyperlink{class_game_aadd7e399cfd36912c053417c1e715772}{frog\+Texture}} \}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Frog sprite. 
+
+\Hypertarget{class_game_aadd7e399cfd36912c053417c1e715772}\index{Game@{Game}!frogTexture@{frogTexture}}
+\index{frogTexture@{frogTexture}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{frogTexture}{frogTexture}}
+{\footnotesize\ttfamily \label{class_game_aadd7e399cfd36912c053417c1e715772} 
+sf\+::\+Texture Game\+::frog\+Texture\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Frog piece texture. 
+
+\Hypertarget{class_game_a4573dd85e0711a78cc27eb0b51c79f44}\index{Game@{Game}!gameState@{gameState}}
+\index{gameState@{gameState}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{gameState}{gameState}}
+{\footnotesize\ttfamily \label{class_game_a4573dd85e0711a78cc27eb0b51c79f44} 
+\mbox{\hyperlink{_game_8h_a7899b65f1ea0f655e4bbf8d2a5714285}{Game\+State}} Game\+::game\+State\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Current game state. 
+
+\Hypertarget{class_game_a7dccff1cb1442339d8491c60c0d1428d}\index{Game@{Game}!hardButton@{hardButton}}
+\index{hardButton@{hardButton}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{hardButton}{hardButton}}
+{\footnotesize\ttfamily \label{class_game_a7dccff1cb1442339d8491c60c0d1428d} 
+sf\+::\+Rectangle\+Shape Game\+::hard\+Button\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Hard difficulty button. 
+
+\Hypertarget{class_game_aea390ea26acd6b20625532577ed582d7}\index{Game@{Game}!hardButtonText@{hardButtonText}}
+\index{hardButtonText@{hardButtonText}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{hardButtonText}{hardButtonText}}
+{\footnotesize\ttfamily \label{class_game_aea390ea26acd6b20625532577ed582d7} 
+sf\+::\+Text Game\+::hard\+Button\+Text \{ \mbox{\hyperlink{class_game_af729561d89036f0c841bc1a428dc43cf}{font}} \}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Hard button text. 
+
+\Hypertarget{class_game_ae19312cdc792218db1a9a08f21ab76be}\index{Game@{Game}!m\_selectedPiece@{m\_selectedPiece}}
+\index{m\_selectedPiece@{m\_selectedPiece}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{m\_selectedPiece}{m\_selectedPiece}}
+{\footnotesize\ttfamily \label{class_game_ae19312cdc792218db1a9a08f21ab76be} 
+\mbox{\hyperlink{struct_selected_piece}{Selected\+Piece}} Game\+::m\+\_\+selected\+Piece\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Currently selected board piece. 
+
+\Hypertarget{class_game_a9d007e624d4ab281eb0629aad9cf19a9}\index{Game@{Game}!MAX\_DEPTH@{MAX\_DEPTH}}
+\index{MAX\_DEPTH@{MAX\_DEPTH}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{MAX\_DEPTH}{MAX\_DEPTH}}
+{\footnotesize\ttfamily \label{class_game_a9d007e624d4ab281eb0629aad9cf19a9} 
+int Game\+::\+MAX\+\_\+\+DEPTH\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Search depth for minimax algorithm. 
+
+\Hypertarget{class_game_a18d1af80164c8b78ea40244169235893}\index{Game@{Game}!mediumButton@{mediumButton}}
+\index{mediumButton@{mediumButton}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{mediumButton}{mediumButton}}
+{\footnotesize\ttfamily \label{class_game_a18d1af80164c8b78ea40244169235893} 
+sf\+::\+Rectangle\+Shape Game\+::medium\+Button\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Medium difficulty button. 
+
+\Hypertarget{class_game_acded8606bac78b29916df74123adf68c}\index{Game@{Game}!mediumButtonText@{mediumButtonText}}
+\index{mediumButtonText@{mediumButtonText}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{mediumButtonText}{mediumButtonText}}
+{\footnotesize\ttfamily \label{class_game_acded8606bac78b29916df74123adf68c} 
+sf\+::\+Text Game\+::medium\+Button\+Text \{ \mbox{\hyperlink{class_game_af729561d89036f0c841bc1a428dc43cf}{font}} \}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Medium button text. 
+
+\Hypertarget{class_game_a35b522f2ff4589b73c1f6260ae8de9e1}\index{Game@{Game}!player1Pieces@{player1Pieces}}
+\index{player1Pieces@{player1Pieces}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{player1Pieces}{player1Pieces}}
+{\footnotesize\ttfamily \label{class_game_a35b522f2ff4589b73c1f6260ae8de9e1} 
+std\+::vector$<$\mbox{\hyperlink{struct_piece}{Piece}}$>$ Game\+::player1\+Pieces\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxylink{_game_8h_a9c8780378078e51e7c9041cbac392db9}{Player} 1\textquotesingle{}s pieces. 
+
+\Hypertarget{class_game_a4512a1d3ed7ea3a57cc0300ad4268fe8}\index{Game@{Game}!player2Pieces@{player2Pieces}}
+\index{player2Pieces@{player2Pieces}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{player2Pieces}{player2Pieces}}
+{\footnotesize\ttfamily \label{class_game_a4512a1d3ed7ea3a57cc0300ad4268fe8} 
+std\+::vector$<$\mbox{\hyperlink{struct_piece}{Piece}}$>$ Game\+::player2\+Pieces\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+AI\textquotesingle{}s pieces. 
+
+\Hypertarget{class_game_aaf2f1a20abb7d6e3fbea411af90a4588}\index{Game@{Game}!restartText@{restartText}}
+\index{restartText@{restartText}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{restartText}{restartText}}
+{\footnotesize\ttfamily \label{class_game_aaf2f1a20abb7d6e3fbea411af90a4588} 
+sf\+::\+Text Game\+::restart\+Text \{ \mbox{\hyperlink{class_game_af729561d89036f0c841bc1a428dc43cf}{font}} \}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Restart instruction text. 
+
+\Hypertarget{class_game_af9f869096f97c3f99f93bf14596cfae3}\index{Game@{Game}!selectedPieceIndex@{selectedPieceIndex}}
+\index{selectedPieceIndex@{selectedPieceIndex}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{selectedPieceIndex}{selectedPieceIndex}}
+{\footnotesize\ttfamily \label{class_game_af9f869096f97c3f99f93bf14596cfae3} 
+int Game\+::selected\+Piece\+Index\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Index of selected piece. 
+
+\Hypertarget{class_game_a77c6c20668ef5954c14ecc757d1fe2c6}\index{Game@{Game}!snakeSprite@{snakeSprite}}
+\index{snakeSprite@{snakeSprite}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{snakeSprite}{snakeSprite}}
+{\footnotesize\ttfamily \label{class_game_a77c6c20668ef5954c14ecc757d1fe2c6} 
+sf\+::\+Sprite Game\+::snake\+Sprite \{ \mbox{\hyperlink{class_game_a902341c7718f5c4df3d6cf997d12f5b4}{snake\+Texture}} \}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Snake sprite. 
+
+\Hypertarget{class_game_a902341c7718f5c4df3d6cf997d12f5b4}\index{Game@{Game}!snakeTexture@{snakeTexture}}
+\index{snakeTexture@{snakeTexture}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{snakeTexture}{snakeTexture}}
+{\footnotesize\ttfamily \label{class_game_a902341c7718f5c4df3d6cf997d12f5b4} 
+sf\+::\+Texture Game\+::snake\+Texture\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Snake piece texture. 
+
+\Hypertarget{class_game_a55dbdecd77d80652f815ee406b3d03fa}\index{Game@{Game}!startButton@{startButton}}
+\index{startButton@{startButton}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{startButton}{startButton}}
+{\footnotesize\ttfamily \label{class_game_a55dbdecd77d80652f815ee406b3d03fa} 
+sf\+::\+Rectangle\+Shape Game\+::start\+Button\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Start button shape. 
+
+\Hypertarget{class_game_ae225881964bdaa950044ad9d4cf9d704}\index{Game@{Game}!startButtonText@{startButtonText}}
+\index{startButtonText@{startButtonText}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{startButtonText}{startButtonText}}
+{\footnotesize\ttfamily \label{class_game_ae225881964bdaa950044ad9d4cf9d704} 
+sf\+::\+Text Game\+::start\+Button\+Text \{ \mbox{\hyperlink{class_game_af729561d89036f0c841bc1a428dc43cf}{font}} \}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Start button text. 
+
+\Hypertarget{class_game_a0bdfd716dd956fbd02a2877e30e217e6}\index{Game@{Game}!text@{text}}
+\index{text@{text}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{text}{text}}
+{\footnotesize\ttfamily \label{class_game_a0bdfd716dd956fbd02a2877e30e217e6} 
+sf\+::\+Text Game\+::text \{ \mbox{\hyperlink{class_game_af729561d89036f0c841bc1a428dc43cf}{font}} \}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+General text object. 
+
+\Hypertarget{class_game_ac348b43a6854bb48adf9a68d027ea7ed}\index{Game@{Game}!titleText@{titleText}}
+\index{titleText@{titleText}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{titleText}{titleText}}
+{\footnotesize\ttfamily \label{class_game_ac348b43a6854bb48adf9a68d027ea7ed} 
+sf\+::\+Text Game\+::title\+Text \{ \mbox{\hyperlink{class_game_af729561d89036f0c841bc1a428dc43cf}{font}} \}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Title text. 
+
+\Hypertarget{class_game_a223de215aeb661cd423ac145756cc730}\index{Game@{Game}!window@{window}}
+\index{window@{window}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{window}{window}}
+{\footnotesize\ttfamily \label{class_game_a223de215aeb661cd423ac145756cc730} 
+sf\+::\+Render\+Window Game\+::window\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Main game window. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gameuser/\+Desktop/\+Artificial-\/\+Intelligence-\/for-\/\+Games-\/\+Y4/\+CA1/\+CA1/\+CA1/\mbox{\hyperlink{_game_8h}{Game.\+h}}\item 
+C\+:/\+Users/gameuser/\+Desktop/\+Artificial-\/\+Intelligence-\/for-\/\+Games-\/\+Y4/\+CA1/\+CA1/\+CA1/\mbox{\hyperlink{_game_8cpp}{Game.\+cpp}}\end{DoxyCompactItemize}
